@@ -34,8 +34,8 @@ public class Main {
     }
 
     private static void buildAST() throws Exception {
-//        String inFile = null;
-        String inFile = "C:/Users/echo/Desktop/M_compiler/src/com/echo/compiler/testcase/testcase_197.txt";
+        String inFile = null;
+//        String inFile = "C:/Users/echo/Desktop/M_compiler/src/com/echo/compiler/testcase/testcase_197.txt";
         InputStream in;
         if (inFile == null)
             in = System.in;
