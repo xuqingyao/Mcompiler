@@ -101,7 +101,7 @@ public class SemanticChecker extends SymbolTableBuilder{
             currentSymbolTable.get(node.getLocation(), classname, key);
         }
         VarCheck(node);
-        VarSymbol varSymbol = new VarSymbol(node.getName(),type);
+        VarSymbol varSymbol = new VarSymbol(node);
         if(currentSymbolTable == globalSymbolTable)
             varSymbol.setGlobal(true);
         String key = "$VAR_" + node.getName();
@@ -143,16 +143,10 @@ public class SemanticChecker extends SymbolTableBuilder{
         node.getCond().accept(this);
         if(!(node.getCond().getType() instanceof BoolType))
             throw new SemanticError(node.getCond().getLocation(),  "Condition expression of condition statement should have type \"bool\"");
-        if(node.getThenbody() != null){
-            if(node.getThenbody() instanceof BlockStatNode)
-                ((BlockStatNode) node.getThenbody()).setSymbolTable(currentSymbolTable);
+        if(node.getThenbody() != null)
             node.getThenbody().accept(this);
-        }
-        if(node.getElsebody() != null){
-            if(node.getElsebody() instanceof BlockStatNode)
-                ((BlockStatNode) node.getElsebody()).setSymbolTable(currentSymbolTable);
+        if(node.getElsebody() != null)
             node.getElsebody().accept(this);
-        }
     }
 
     @Override
@@ -166,11 +160,8 @@ public class SemanticChecker extends SymbolTableBuilder{
         node.getCond().accept(this);
         if(!(node.getCond().getType() instanceof BoolType))
             throw new SemanticError(node.getCond().getLocation(),  "Condition expression of condition statement should have type \"bool\"");
-        if(node.getWhilebody() != null){
-            if(node.getWhilebody() instanceof BlockStatNode)
-                ((BlockStatNode) node.getWhilebody()).setSymbolTable(currentSymbolTable);
+        if(node.getWhilebody() != null)
             node.getWhilebody().accept(this);
-        }
         Loop--;
     }
 
@@ -179,18 +170,15 @@ public class SemanticChecker extends SymbolTableBuilder{
         Loop++;
         if(node.getInit() != null)
             node.getInit().accept(this);
-        if(node.getCond() != null){
+        if(node.getCond() != null) {
             node.getCond().accept(this);
-            if(!(node.getCond().getType() instanceof BoolType))
-                throw new SemanticError(node.getCond().getLocation(), "Condition expression of for loop statement should have type \"bool\"");
+            if (!(node.getCond().getType() instanceof BoolType))
+                throw new SemanticError(node.getLocation(), "cond must be a boolean expression");
         }
         if(node.getStep() != null)
             node.getStep().accept(this);
-        if(node.getStat() != null){
-            if(node.getStat() instanceof BlockStatNode)
-                ((BlockStatNode) node.getStat()).setSymbolTable(currentSymbolTable);
+        if(node.getStat() != null)
             node.getStat().accept(this);
-        }
         Loop--;
     }
 
@@ -206,7 +194,8 @@ public class SemanticChecker extends SymbolTableBuilder{
 
     @Override
     public void visit(BreakStatNode node) {
-        if (Loop <= 0) throw new SemanticError(node.getLocation(), "Break statement cannot be used outside of loop statement");
+        if (Loop <= 0)
+            throw new SemanticError(node.getLocation(), "Break statement cannot be used outside of loop statement");
     }
 
     @Override
@@ -281,7 +270,6 @@ public class SemanticChecker extends SymbolTableBuilder{
     public void visit(MemAccessExprNode node) {
         node.getExpr().accept(this);
         String className;
-        Symbol symbol;
         Type type = node.getExpr().getType();
         if(type instanceof ClassType)
             className = ((ClassType)type).getName();
@@ -293,7 +281,7 @@ public class SemanticChecker extends SymbolTableBuilder{
             throw new SemanticError(node.getLocation(), String.format("Type \"%s\" cannot be used in member access expression", type.toString()));
         String classkey = "$CLASS_" + className;
         ClassSymbol classSymbol = (ClassSymbol)currentSymbolTable.get(node.getLocation(), className, classkey);
-        symbol = classSymbol.getSymbolTable().selfGetVarFunc(node.getLocation(), node.getMember());
+        Symbol symbol = classSymbol.getSymbolTable().selfGetVarOrFunc(node.getLocation(), node.getMember());
         if(symbol instanceof FuncSymbol)
             currentFuncSymbol = (FuncSymbol) symbol;
         node.setType(symbol.getType());
@@ -333,7 +321,7 @@ public class SemanticChecker extends SymbolTableBuilder{
                 if(!(node.getExpr().getType() instanceof BoolType))
                     throw new SemanticError(node.getLocation(), String.format("Operator \"%s\" cannot be applied to type \"%s\"", node.getOp().toString(), node.getExpr().getType().toString()));
                 node.setType(BoolType.getBoolType());
-                node.setLeftValue(true);
+                node.setLeftValue(false);
                 break;
             default:
                 throw new CompilerError(node.getLocation(), "Invalid prefix operator");
@@ -444,24 +432,23 @@ public class SemanticChecker extends SymbolTableBuilder{
     @Override
     public void visit(IdentifierExprNode node) {
         String name = node.getIdentifier();
-        Symbol symbol = currentSymbolTable.getVarFunc(node.getLocation(), name);
+        Symbol symbol = currentSymbolTable.getVarOrFunc(node.getLocation(), name);
         if(symbol instanceof VarSymbol){
             node.setVarSymbol((VarSymbol)symbol);
             node.setLeftValue(true);
-            node.setType(symbol.getType());
         }
         else if(symbol instanceof FuncSymbol){
             currentFuncSymbol = (FuncSymbol)symbol;
             node.setLeftValue(false);
-            node.setType(new FuncType(node.getIdentifier()));
         }
         else
             throw new CompilerError(node.getLocation(), "Invalid symbol type for identifier");
+        node.setType(symbol.getType());
     }
 
     @Override
     public void visit(ThisExprNode node) {
-        Symbol symbol = currentSymbolTable.getVarFunc(node.getLocation(), "this");
+        Symbol symbol = currentSymbolTable.getVarOrFunc(node.getLocation(), "this");
         if (!(symbol instanceof VarSymbol))
             throw new SemanticError(node.getLocation(), "Invalid symbol type");
         node.setType(symbol.getType());

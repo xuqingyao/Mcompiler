@@ -51,6 +51,14 @@ public class GlobalSymbolTableBuilder extends SymbolTableBuilder{
         symbolTable.put("string", stringKey, stringSymbol);
     }
 
+    public void addDefaultArrayFuncs(){
+        String arrayKey = "$CLASS_array";
+        ClassSymbol arraySymbol = new ClassSymbol("array", new ClassType("array"), symbolTable);
+        SymbolTable arraySymbolTable = arraySymbol.getSymbolTable();
+        addDefaultFunc(arraySymbolTable, "size", Arrays.asList(new VarSymbol("this", new ArrayType(null))), IntType.getIntType());
+        symbolTable.put("array", arrayKey, arraySymbol);
+    }
+
     private void checkMainFunc() {
         FuncSymbol mainFunc = (FuncSymbol)symbolTable.get("$FUNC_main");
         if (mainFunc == null)
@@ -61,16 +69,9 @@ public class GlobalSymbolTableBuilder extends SymbolTableBuilder{
             throw new SemanticError("\"main\" function should have no parameter");
     }
 
-    public void addDefaultArrayFuncs(){
-        String arrayKey = "$ARRAY_array";
-        ClassSymbol arraySymbol = new ClassSymbol("array", new ClassType("array"), symbolTable);
-        SymbolTable arraySymbolTable = arraySymbol.getSymbolTable();
-        addDefaultFunc(arraySymbolTable, "size", Arrays.asList(new VarSymbol("this", new ArrayType(null))), IntType.getIntType());
-        symbolTable.put("array", arrayKey, arraySymbol);
-    }
-
     @Override
     public void visit(ProgramNode node) {
+        symbolTable.setTop(true);
         addDefaultFuncs();
         addDefaultStringFuncs();
         addDefaultArrayFuncs();

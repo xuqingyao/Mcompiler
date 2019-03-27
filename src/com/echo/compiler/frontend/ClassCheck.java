@@ -42,15 +42,15 @@ public class ClassCheck extends SymbolTableBuilder{
 
     @Override
     public void visit(ProgramNode node){
-        for(DeclNode Decl : node.getDecls()){
-            if(Decl instanceof ClassDeclNode)
-                Decl.accept(this);
+        for(DeclNode declNode : node.getDecls()){
+            if(declNode instanceof ClassDeclNode)
+                declNode.accept(this);
         }
     }
 
     @Override
     public void visit(ClassDeclNode node){
-        ClassSymbol classSymbol = (ClassSymbol)globalSymbolTable.get(node.getLocation(), node.getName(), "CLASS_" + node.getName());
+        ClassSymbol classSymbol = (ClassSymbol)globalSymbolTable.get(node.getLocation(), node.getName(), "$CLASS_" + node.getName());
         currentSymbolTable = classSymbol.getSymbolTable();
         currentClass = classSymbol.getName();
         for(VarDeclNode var : node.getVarMember())

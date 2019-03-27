@@ -71,10 +71,11 @@ public class SymbolTable {
             return symbol;
         if (isTop)
             throw new SemanticError(location, String.format("Symbol \"%s\" not found", name));
-        else return parent.get(location, name, key);
+        else
+            return parent.get(location, name, key);
     }
 
-    public Symbol selfGetVarFunc(Location location, String name) {
+    public Symbol selfGetVarOrFunc(Location location, String name) {
         if (member.containsKey("$VAR_" + name))
             return member.get("$VAR_" + name);
         if (member.containsKey("$FUNC_" + name))
@@ -82,13 +83,13 @@ public class SymbolTable {
         throw new SemanticError(location, String.format("Symbol \"%s\" not found", name));
     }
 
-    public Symbol getVarFunc(Location location, String name) {
+    public Symbol getVarOrFunc(Location location, String name) {
         if (member.containsKey("$VAR_" + name))
             return member.get("$VAR_" + name);
         if (member.containsKey("$FUNC_" + name))
             return member.get("$FUNC_" + name);
         if (isTop)
             throw new SemanticError(location, String.format("Symbol \"%s\" not found", name));
-        return parent.getVarFunc(location, name);
+        return parent.getVarOrFunc(location, name);
     }
 }

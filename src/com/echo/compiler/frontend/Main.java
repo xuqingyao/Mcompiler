@@ -29,7 +29,7 @@ public class Main {
 
     private static void compile() throws Exception {
         buildAST();
-        printAST();
+//        printAST();
         semanticCheck();
     }
 
