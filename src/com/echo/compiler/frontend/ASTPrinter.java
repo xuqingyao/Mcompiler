@@ -495,10 +495,10 @@ public class ASTPrinter implements ASTVisitor
         addIndent();
         printf("FuncDeclNode %s:\n", node.getLocation().toString());
         printf("-> isConstruct: %b\n", node.isConstruct());
-        if (node.getType() == null) printf("returnType: null\n");
+        if (node.getReturntype() == null) printf("returnType: null\n");
         else {
             printf("-> returnType:\n");
-            node.getType().accept(this);
+            node.getReturntype().accept(this);
         }
         printf("-> name: %s\n", node.getName());
         if (node.getFormalParameters().isEmpty()) printf("-> parameterList: null");

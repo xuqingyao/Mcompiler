@@ -29,6 +29,12 @@ public interface mVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionDeclare(mParser.FunctionDeclareContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link mParser#functype}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctype(mParser.FunctypeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link mParser#formalParameters}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

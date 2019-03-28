@@ -38,6 +38,16 @@ public interface mListener extends ParseTreeListener {
 	 */
 	void exitFunctionDeclare(mParser.FunctionDeclareContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link mParser#functype}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctype(mParser.FunctypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mParser#functype}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctype(mParser.FunctypeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link mParser#formalParameters}.
 	 * @param ctx the parse tree
 	 */

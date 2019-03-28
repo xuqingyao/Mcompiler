@@ -26,13 +26,19 @@ public class SemanticChecker extends SymbolTableBuilder{
         return globalSymbolTable;
     }
 
-    public void VarCheck(VarDeclNode node){
-        if (node.getType().getType() instanceof VoidType || node.getInit().getType() instanceof VoidType)
-            throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
-        else if (!(node.getType().getType().equals(node.getInit().getType())))
-            throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
-        else if (node.getInit().getType() instanceof NullType) {
-            if (!(node.getType().getType() instanceof ClassType || node.getType().getType() instanceof ArrayType))
+    void VarCheck(VarDeclNode node) {
+        if (node.getInit() != null) {
+            node.getInit().accept(this);
+            boolean invalidInitType;
+            if (node.getType().getType() instanceof VoidType || node.getInit().getType() instanceof VoidType)
+                invalidInitType = true;
+            else if (node.getType().getType().equals(node.getInit().getType()))
+                invalidInitType = false;
+            else if (node.getInit().getType() instanceof NullType)
+                invalidInitType = !(node.getType().getType() instanceof ClassType || node.getType().getType() instanceof ArrayType);
+            else
+                invalidInitType = true;
+            if (invalidInitType)
                 throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
         }
     }
@@ -52,11 +58,11 @@ public class SemanticChecker extends SymbolTableBuilder{
     public void visit(FuncDeclNode node) {
         String key = "$FUNC_" + node.getName();
         FuncSymbol funcSymbol = (FuncSymbol)currentSymbolTable.get(node.getLocation(), node.getName(), key);//find the symbol
-        currentType = funcSymbol.getType();
+        currentType = funcSymbol.getReturntype();
         if(currentType instanceof ClassType){
             String name = ((ClassType)currentType).getName();
             String classkey = "$CLASS_" + name;
-            currentSymbolTable.get(node.getType().getLocation(), name, classkey);
+            currentSymbolTable.get(node.getLocation(), name, classkey);
         }
         node.getBody().setSymbolTable(currentSymbolTable);//go into the block, create a new symbolTable
         currentSymbolTable = node.getBody().getSymbolTable();//renew the current symbolTable
@@ -68,20 +74,19 @@ public class SemanticChecker extends SymbolTableBuilder{
         }
         for (VarDeclNode varDeclNode : node.getFormalParameters())
             varDeclNode.accept(this);
-        currentSymbolTable = currentSymbolTable.getParent();
-        node.getBody().accept(this);
+         node.getBody().accept(this);
     }
 
     @Override
     public void visit(ClassDeclNode node) {
-        String key = "$CLASS_" + node.getName();
-        ClassSymbol classSymbol = (ClassSymbol)globalSymbolTable.get(node.getLocation(), node.getName(), key);
+        String classkey = "$CLASS_" + node.getName();
+        ClassSymbol classSymbol = (ClassSymbol) currentSymbolTable.get(node.getLocation(), node.getName(), classkey);
         currentSymbolTable = classSymbol.getSymbolTable();
         currentClassType = (ClassType) classSymbol.getType();
-        for(FuncDeclNode funcDeclNode : node.getFuncMember())
+        for (FuncDeclNode funcDeclNode : node.getFuncMember())
             funcDeclNode.accept(this);
         currentClassType = null;
-        currentSymbolTable = currentSymbolTable.getParent();
+        currentSymbolTable = currentSymbolTable.getParent(); // should be globalScope
     }
 
     @Override
@@ -97,10 +102,7 @@ public class SemanticChecker extends SymbolTableBuilder{
             String key = "$CLASS_" + classname;
             currentSymbolTable.get(node.getLocation(), classname, key);
         }
-        if(node.getInit() != null){
-            node.getInit().accept(this);
-            VarCheck(node);
-        }
+        VarCheck(node);
         VarSymbol varSymbol = new VarSymbol(node);
         if(currentSymbolTable == globalSymbolTable)
             varSymbol.setGlobal(true);
@@ -201,8 +203,8 @@ public class SemanticChecker extends SymbolTableBuilder{
     @Override
     public void visit(ReturnStatNode node) {
         boolean invalidReturnType = false;
-        if(node.getExpr() != null){//no return value
-            if(currentType == null || currentType instanceof VoidType)
+        if(node.getExpr() == null){//no return value
+            if(!(currentType == null || currentType instanceof VoidType))
                 invalidReturnType = true;
         }
         else{//have return value
@@ -210,7 +212,7 @@ public class SemanticChecker extends SymbolTableBuilder{
             if(node.getExpr().getType() == null || node.getExpr().getType() instanceof VoidType)
                 invalidReturnType = true;
             else if(node.getExpr().getType() instanceof NullType){
-                if(!(currentType instanceof ClassType) && !(currentType instanceof ArrayType))
+                if(!(currentType instanceof ClassType || currentType instanceof ArrayType))
                     invalidReturnType = true;
             }
             else if(!(node.getExpr().getType().equals(currentType)))
@@ -249,20 +251,25 @@ public class SemanticChecker extends SymbolTableBuilder{
         FuncSymbol funcSymbol = currentFuncSymbol;
         node.setFuncSymbol(funcSymbol);
         int paranum = funcSymbol.getParameters().size();
-        if (paranum != node.getArgs().size())
+        int firstpara;
+        if(funcSymbol.isMember())
+            firstpara = 1;
+        else
+            firstpara = 0;
+        if (paranum - firstpara != node.getArgs().size())
             throw new SemanticError(node.getLocation(), String.format("Function call has inconsistent number of arguments, expected %d but got %d", paranum, node.getArgs().size()));
-        for (int i = 0; i < paranum; i++) {
+        for (int i = 0; i < paranum - firstpara; i++) {
             node.getArgs().get(i).accept(this);
             if (node.getArgs().get(i).getType() instanceof VoidType)
-                throw new SemanticError(node.getArgs().get(i).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
+                throw new SemanticError(node.getArgs().get(i + firstpara).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
             else if (node.getArgs().get(i).getType() instanceof NullType){
-                if(!(funcSymbol.getParameters().get(i).getType() instanceof ClassType || funcSymbol.getParameters().get(i).getType() instanceof ArrayType))
-                    throw new SemanticError(node.getArgs().get(i).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
+                if(!(funcSymbol.getParameters().get(i).getType() instanceof ClassType || funcSymbol.getParameters().get(i + firstpara).getType() instanceof ArrayType))
+                    throw new SemanticError(node.getArgs().get(i + firstpara).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
             }
-            else if(!(funcSymbol.getParameters().get(i).getType().equals(node.getArgs().get(i).getType())))
+            else if(!(funcSymbol.getParameters().get(i + firstpara).getType().equals(node.getArgs().get(i).getType())))
                     throw new SemanticError(node.getArgs().get(i).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
         }
-        node.setType(funcSymbol.getType());
+        node.setType(funcSymbol.getReturntype());
         node.setLeftValue(false);
     }
 
@@ -373,19 +380,18 @@ public class SemanticChecker extends SymbolTableBuilder{
                 node.setLeftValue(false);
                 break;
             case EQUAL: case NOT_EQUAL:
-                if(leftType instanceof VoidType || rightType instanceof VoidType)
-                    throw new SemanticError(node.getLocation(), String.format("Operator \"%s\" cannot be applied to different types \"%s\" and \"%s\"", node.getOp().toString(), leftType.toString(), rightType.toString()));
-                else if(!(leftType.equals(rightType)))
-                    throw new SemanticError(node.getLocation(), String.format("Operator \"%s\" cannot be applied to different types \"%s\" and \"%s\"", node.getOp().toString(), leftType.toString(), rightType.toString()));
-                else if(leftType instanceof NullType) {
-                    if (!(rightType instanceof ClassType || rightType instanceof ArrayType))
-                        throw new SemanticError(node.getLocation(), String.format("Operator \"%s\" cannot be applied to different types \"%s\" and \"%s\"", node.getOp().toString(), leftType.toString(), rightType.toString()));
-                }
-                else if(rightType instanceof NullType){
-                    if (!(leftType instanceof ClassType || leftType instanceof ArrayType))
-                        throw new SemanticError(node.getLocation(), String.format("Operator \"%s\" cannot be applied to different types \"%s\" and \"%s\"", node.getOp().toString(), leftType.toString(), rightType.toString()));
-                }
+                boolean invalidCompareType;
+                if (leftType instanceof VoidType ||rightType instanceof VoidType)
+                    invalidCompareType = true;
+                else if (leftType.equals(rightType))
+                    invalidCompareType = false;
+                else if (leftType instanceof NullType)
+                    invalidCompareType = !(rightType instanceof ClassType || rightType instanceof ArrayType);
+                else if (rightType instanceof NullType)
+                    invalidCompareType = !(leftType instanceof ClassType || leftType instanceof ArrayType);
                 else
+                    invalidCompareType = true;
+                if (invalidCompareType)
                     throw new SemanticError(node.getLocation(), String.format("Operator \"%s\" cannot be applied to different types \"%s\" and \"%s\"", node.getOp().toString(), leftType.toString(), rightType.toString()));
                 node.setType(BoolType.getBoolType());
                 node.setLeftValue(false);
@@ -413,7 +419,7 @@ public class SemanticChecker extends SymbolTableBuilder{
             throw new SemanticError(node.getLocation(), "Lhs of assignment statement should be left value");
         if (AssignCheck(leftType, rightType))
             throw new SemanticError(node.getLocation(), String.format("Assignment operator cannot be applied to different types \"%s\" and \"%s\"", node.getLeft().getType().toString(), node.getRight().getType().toString()));
-        node.setType(rightType);
+        node.setType(leftType);
         node.setLeftValue(false);
     }
 
@@ -476,13 +482,13 @@ public class SemanticChecker extends SymbolTableBuilder{
     @Override
     public void visit(StringConstExprNode node) {
         node.setType(StringType.getStringType());
-        node.setLeftValue(true);
+        node.setLeftValue(false);
     }
 
     @Override
     public void visit(NullExprNode node) {
         node.setType(NullType.getNullType());
-        node.setLeftValue(true);
+        node.setLeftValue(false);
     }
 
     @Override

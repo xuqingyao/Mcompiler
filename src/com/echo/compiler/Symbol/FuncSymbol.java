@@ -25,8 +25,8 @@ public class FuncSymbol extends Symbol{
 
     public FuncSymbol(FuncDeclNode node){
         super(node.getName(), new FuncType(node.getName()));
-        if(node.getType() != null)
-            this.returntype = node.getType().getType();
+        if(node.getReturntype() != null)
+            this.returntype = node.getReturntype().getType();
         else
             this.returntype = null;
         this.parameters = new ArrayList<>();

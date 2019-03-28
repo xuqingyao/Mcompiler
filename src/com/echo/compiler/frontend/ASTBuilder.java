@@ -8,7 +8,8 @@ import com.echo.compiler.ast.ProgramNode;
 import com.echo.compiler.ast.StatNode.*;
 import com.echo.compiler.ast.TypeNode.*;
 import com.echo.compiler.error.CompilerError;
-import com.echo.compiler.parser.*;
+import com.echo.compiler.parser.mBaseVisitor;
+import com.echo.compiler.parser.mParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
     //    functionDeclare : typeSpecifier Identifier '(' formalParameters? ')' blockStat
     @Override
     public Node visitFunctionDeclare(mParser.FunctionDeclareContext ctx) {
-        TypeNode type = (TypeNode)visit(ctx.typeSpecifier());
+        TypeNode type = (TypeNode)visit(ctx.functype());
         String name = ctx.Identifier().getText();
         List<VarDeclNode> Parters = new ArrayList<>();
         VarDeclNode Parter;
@@ -63,6 +64,15 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         Location location = new Location(ctx.getStart());
         FuncDeclNode funcDeclNode = new FuncDeclNode(type, name, Parters, body, location);
         return funcDeclNode;
+    }
+
+    @Override
+    public Node visitFunctype(mParser.FunctypeContext ctx) {
+        Location location = new Location(ctx.getStart());
+        if(ctx.typeSpecifier() != null)
+            return visit(ctx.typeSpecifier());
+        else
+            return new TypeNode(VoidType.getVoidType(), location);
     }
 
     //    formalParameters : formalParameter (',' formalParameter)*
@@ -169,7 +179,6 @@ public class ASTBuilder extends mBaseVisitor<Node> {
 //    :   type = 'bool'
 //    |   type = 'int'
 //    |   type = 'string'
-//    |   type = 'void'
 //    |   type = Identifier
     @Override public Node visitNonArrayTypeSpecifier(mParser.NonArrayTypeSpecifierContext ctx) {
         Location location = new Location(ctx.getStart());
@@ -188,9 +197,6 @@ public class ASTBuilder extends mBaseVisitor<Node> {
                 break;
             case "string":
                 typeNode = new TypeNode(StringType.getStringType(), location);
-                break;
-            case "void":
-                typeNode = new TypeNode(VoidType.getVoidType(), location);
                 break;
             default:
                 throw new CompilerError(location, "invalid type");
@@ -589,15 +595,14 @@ public class ASTBuilder extends mBaseVisitor<Node> {
 //     |   type = IntegerConstant
 //     |   type = StringLiteral
 //     |   type = NullLiteral
-//     |   type = CharacterConstant
     @Override
     public Node visitConstant(mParser.ConstantContext ctx) {
         Location location = new Location(ctx.getStart());
         if (ctx.LogicalConstant() != null) {
             boolean value;
-            if (ctx.getText() == "true")
+            if (ctx.getText().equals("true"))
                 value = true;
-            else if(ctx.getText() == "false")
+            else if(ctx.getText().equals("false"))
                 value = false;
             else
                 throw new CompilerError(location, "Invalid bool constant");

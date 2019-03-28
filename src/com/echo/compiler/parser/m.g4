@@ -12,7 +12,12 @@ programBody
     ;
 
 functionDeclare
-    :   typeSpecifier Identifier '(' formalParameters? ')' blockStat
+    :   functype? Identifier '(' formalParameters? ')' blockStat
+    ;
+
+functype
+    :   typeSpecifier
+    |   'void'
     ;
 
 formalParameters
@@ -43,14 +48,13 @@ variableDeclarator
 
 typeSpecifier
     :   typeSpecifier '[' ']'
-    |   nonArrayTypeSpecifier
+    |   nonArrayTypeSpecifier                  
     ;
 
 nonArrayTypeSpecifier
     :   type = 'bool'
     |   type = 'int'
     |   type = 'string'
-    |   type = 'void'
     |   type = Identifier
     ;
 
@@ -76,13 +80,12 @@ expressionStat
     ;
 
 ifStat
-    :   'if' cond = expr  thenbody = stat ('else' elsebody = stat)?
+    :   'if' '(' cond = expr ')' thenbody = stat ('else' elsebody = stat)?
     ;
 
 iterationStat
     :   'while' '(' cond = expr ')' whilebody = stat                                                #while
     |   'for' '(' init = expr? ';' cond = expr?  ';' step = expr? ')' forbody = stat                #for
-    |   'for' '(' declinit = variableDeclare  cond = expr? ';' step = expr? ')' forbody = stat      #for
     ;
 
 jumpStat
@@ -128,7 +131,6 @@ creator
     |   nonArrayTypeSpecifier                                                   # creatorNonArray
     ;
 
-//constant
 constant
     :   type = LogicalConstant
     |   type = IntegerConstant
@@ -208,96 +210,59 @@ Colon : ':';
 Semi : ';';
 Comma : ',';
 
-Identifier
-    :   Letter (Nondigit|Digit)*
-    ;
-
-fragment
-Letter
-    :   [a-zA-Z]
-    ;
-
-fragment
-Nondigit
-    :   [a-zA-Z_]
-    ;
-
-fragment
-Digit
-    :   [0-9]
-    ;
-
-IntegerConstant                             //not set to negative Numbers
-    :   NonzeroDigit Digit*
+//constant
+IntegerConstant
+    :   [1-9] [0-9]*
     |   '0'
     ;
 
-CharacterConstant
-    :   '\'' CCharSequence '\''
+StringLiteral
+    :   '"' StringCharacter* '"'
     ;
 
-StringLiteral
-    :   '"' SCharSequence? '"'
+fragment StringCharacter
+    :   ~["\\\r\n]
+    |   '\\' ["n\\]
     ;
 
 NullLiteral
-    :   'null'
+    :   Null
     ;
 
 LogicalConstant
-    :   'true'
-    |   'false'
+    :   True
+    |   False
     ;
 
-fragment
-NonzeroDigit
-    :   [1-9]
+Identifier
+    :   IdentifierNonDigitUnderline (IdentifierNonDigit | Digit)*
     ;
 
-fragment
-CCharSequence
-    :   CChar+
+fragment IdentifierNonDigitUnderline
+    :   [a-zA-Z]
     ;
 
-fragment
-CChar
-    :   ~['\\\r\n]
-    |   EscapeSequence
+fragment IdentifierNonDigit
+    :   [a-zA-Z_]
     ;
 
-fragment
-EscapeSequence
-    :   SimpleEscapeSequence
+fragment Digit
+    :   [0-9]
     ;
 
-fragment
-SimpleEscapeSequence
-    :   '\\' ['"?abfnrtv\\]
+//skip
+WhiteSpace
+    :   [ \t]+ -> skip
     ;
 
-fragment
-SCharSequence
-    :   SChar+
-    ;
-
-fragment
-SChar
-    :   ~["\\\r\n]
-    |   EscapeSequence
-    ;
-
-Whitespace
-    :   [ \t]+  -> skip
-    ;
-
-Newline
-    :   '\r'?'\n'    -> skip
-    ;
-
-BlockComment
-    :   '/*' .*? '*/'   -> skip
+NewLine
+    :   '\r'? '\n' -> skip
     ;
 
 LineComment
-    :   '//' ~[\r\n]*   -> skip
+    :   '//' ~[\r\n]* -> skip
+    ;
+
+BlockComment
+    :   '/*' .*? '*/' -> skip
     ;

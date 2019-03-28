@@ -52,6 +52,18 @@ public class mBaseListener implements mListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunctype(mParser.FunctypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctype(mParser.FunctypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFormalParameters(mParser.FormalParametersContext ctx) { }
 	/**
 	 * {@inheritDoc}

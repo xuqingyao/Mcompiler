@@ -8,18 +8,18 @@ import com.echo.compiler.ast.TypeNode.TypeNode;
 import java.util.List;
 
 public class FuncDeclNode extends DeclNode{
-    private TypeNode type;
+    private TypeNode returntype;
     private List<VarDeclNode> formalParameters;
     private BlockStatNode body;
     private boolean isConstruct;
 
-    public FuncDeclNode(TypeNode type, String name, List<VarDeclNode> formalParameters, BlockStatNode body, Location location){
-        if(type == null){
-            this.type = null;
+    public FuncDeclNode(TypeNode returntype, String name, List<VarDeclNode> formalParameters, BlockStatNode body, Location location){
+        if(returntype == null){
+            this.returntype = null;
             this.isConstruct = true;
         }
         else{
-            this.type = type;
+            this.returntype = returntype;
             this.isConstruct = false;
         }
         this.name = name;
@@ -28,8 +28,8 @@ public class FuncDeclNode extends DeclNode{
         this.location = location;
     }
 
-    public TypeNode getType(){
-        return type;
+    public TypeNode getReturntype(){
+        return returntype;
     }
 
     public List<VarDeclNode> getFormalParameters(){

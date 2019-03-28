@@ -3,8 +3,7 @@ package com.echo.compiler.frontend;
 import com.echo.compiler.Symbol.SymbolTable;
 import com.echo.compiler.ast.ProgramNode;
 import com.echo.compiler.error.ErrorListener;
-import com.echo.compiler.parser.mLexer;
-import com.echo.compiler.parser.mParser;
+import com.echo.compiler.parser.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -29,13 +28,15 @@ public class Main {
 
     private static void compile() throws Exception {
         buildAST();
-//        printAST();
+        printAST();
         semanticCheck();
     }
 
     private static void buildAST() throws Exception {
-        String inFile = null;
-//        String inFile = "C:/Users/echo/Desktop/M_compiler/src/com/echo/compiler/testcase/testcase_197.txt";
+//        String inFile = null;
+        String inFile = "C:/Users/echo/Desktop/M_compiler/src/com/echo/compiler/testcase/testcase_174.txt";
+//        String inFile = "C:/Users/echo/Desktop/1.txt";
+
         InputStream in;
         if (inFile == null)
             in = System.in;
