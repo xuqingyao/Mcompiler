@@ -28,15 +28,13 @@ public class Main {
 
     private static void compile() throws Exception {
         buildAST();
-        printAST();
+//        printAST();
         semanticCheck();
     }
 
     private static void buildAST() throws Exception {
-//        String inFile = null;
-        String inFile = "C:/Users/echo/Desktop/M_compiler/src/com/echo/compiler/testcase/testcase_174.txt";
-//        String inFile = "C:/Users/echo/Desktop/1.txt";
-
+        String inFile = null;
+//        String inFile = "C:/Users/echo/Desktop/M_compiler/src/com/echo/compiler/testcase/testcase_179.txt";
         InputStream in;
         if (inFile == null)
             in = System.in;
