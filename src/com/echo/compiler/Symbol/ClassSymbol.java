@@ -16,13 +16,11 @@ public class ClassSymbol extends Symbol{
 
     public ClassSymbol(ClassDeclNode node, SymbolTable parent){
         super(node.getName(), new ClassType(node.getName()));
-        String key;
-        FuncSymbol funcSymbol;
         this.symbolTable = new SymbolTable(parent, true);
         for(FuncDeclNode funcDeclNode : node.getFuncMember()){
             String name = funcDeclNode.getName();
             FuncSymbol symbol = new FuncSymbol(funcDeclNode);
-            symbolTable.put(funcDeclNode.getLocation(), name, "$FUNC" + name, symbol);
+            symbolTable.put(funcDeclNode.getLocation(), name, "$FUNC_" + name, symbol);
         }
     }
 

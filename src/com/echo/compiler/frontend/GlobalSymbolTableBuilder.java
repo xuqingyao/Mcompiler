@@ -76,9 +76,8 @@ public class GlobalSymbolTableBuilder extends SymbolTableBuilder{
         addDefaultStringFuncs();
         addDefaultArrayFuncs();
         for (DeclNode declNode : node.getDecls()) {
-            if (declNode instanceof VarDeclNode)
-                continue;
-            declNode.accept(this);
+            if (!(declNode instanceof VarDeclNode))
+                declNode.accept(this);
         }
         checkMainFunc();
     }

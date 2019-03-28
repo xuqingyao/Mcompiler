@@ -50,7 +50,11 @@ public class ASTBuilder extends mBaseVisitor<Node> {
     //    functionDeclare : typeSpecifier Identifier '(' formalParameters? ')' blockStat
     @Override
     public Node visitFunctionDeclare(mParser.FunctionDeclareContext ctx) {
-        TypeNode type = (TypeNode)visit(ctx.functype());
+        TypeNode type;
+        if(ctx.functype() != null)
+            type = (TypeNode)visit(ctx.functype());
+        else
+            type = null;
         String name = ctx.Identifier().getText();
         List<VarDeclNode> Parters = new ArrayList<>();
         VarDeclNode Parter;
@@ -266,7 +270,11 @@ public class ASTBuilder extends mBaseVisitor<Node> {
 
     //    expressionStat : expr? ';'
     @Override public Node visitExpressionStat(mParser.ExpressionStatContext ctx) {
-        ExprNode expr = (ExprNode)visit(ctx.expr());
+        ExprNode expr;
+        if(ctx.expr() != null)
+            expr = (ExprNode)visit(ctx.expr());
+        else
+            return null;
         Location location = new Location(ctx.getStart());
         ExpressionStatNode expressionStatNode = new ExpressionStatNode(expr, location);
         return expressionStatNode;
