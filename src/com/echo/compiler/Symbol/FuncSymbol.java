@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FuncSymbol extends Symbol{
-    private Type type;
+    private Type returntype;
     private List<VarSymbol> parameters;
     private String classname;
     private boolean isConstruct;
@@ -26,9 +26,9 @@ public class FuncSymbol extends Symbol{
     public FuncSymbol(FuncDeclNode node){
         super(node.getName(), new FuncType(node.getName()));
         if(node.getType() != null)
-            this.type = node.getType().getType();
+            this.returntype = node.getType().getType();
         else
-            this.type = null;
+            this.returntype = null;
         this.parameters = new ArrayList<>();
         for(VarDeclNode paramater : node.getFormalParameters()){
             VarSymbol varSymbol = new VarSymbol(paramater);
@@ -59,8 +59,8 @@ public class FuncSymbol extends Symbol{
         this.parameters = parameters;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setReturntype(Type type) {
+        this.returntype = type;
     }
 
     public boolean isBuiltIn() {
@@ -83,7 +83,7 @@ public class FuncSymbol extends Symbol{
         return classname;
     }
 
-    public Type getType(){
-        return type;
+    public Type getReturntype(){
+        return returntype;
     }
 }

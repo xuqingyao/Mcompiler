@@ -18,8 +18,8 @@ public class ClassCheck extends SymbolTableBuilder{
     private String currentClass;
     private SymbolTable currentSymbolTable;
 
-    public ClassCheck(SymbolTable toplevelScope){
-        this.globalSymbolTable = toplevelScope;
+    public ClassCheck(SymbolTable globalSymbolTable){
+        this.globalSymbolTable = globalSymbolTable;
     }
 
     public SymbolTable getGlobalSymbolTable(){

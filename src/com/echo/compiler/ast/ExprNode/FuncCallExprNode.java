@@ -25,7 +25,7 @@ public class FuncCallExprNode extends ExprNode{
         return args;
     }
 
-    public FuncSymbol getFuncEntity() {
+    public FuncSymbol getFuncSymbol() {
         return funcSymbol;
     }
 

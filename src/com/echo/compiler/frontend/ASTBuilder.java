@@ -638,4 +638,10 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         else
             throw new CompilerError("invalid constant");
     }
+
+    @Override
+    public Node visitThisExpr(mParser.ThisExprContext ctx) {
+        Location location = new Location(ctx.getStart());
+        return new ThisExprNode(location);
+    }
 }

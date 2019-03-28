@@ -2075,6 +2075,15 @@ public class mParser extends Parser {
 				match(Identifier);
 				}
 				break;
+			case This:
+				{
+				_localctx = new ThisExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(217);
+				match(This);
+				}
+				break;
 			case IntegerConstant:
 			case StringLiteral:
 			case NullLiteral:
@@ -2083,17 +2092,8 @@ public class mParser extends Parser {
 				_localctx = new ConstantExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(217);
-				constant();
-				}
-				break;
-			case This:
-				{
-				_localctx = new ThisExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
 				setState(218);
-				match(This);
+				constant();
 				}
 				break;
 			case LeftParen:
@@ -2928,8 +2928,8 @@ public class mParser extends Parser {
 		"\2\2\2\u00ce%\3\2\2\2\u00cf\u00d0\b\24\1\2\u00d0\u00d1\t\2\2\2\u00d1\u00e2"+
 		"\5&\24\26\u00d2\u00d3\t\3\2\2\u00d3\u00e2\5&\24\25\u00d4\u00d5\7\36\2"+
 		"\2\u00d5\u00e2\5&\24\24\u00d6\u00d7\7!\2\2\u00d7\u00e2\5&\24\23\u00d8"+
-		"\u00d9\7\16\2\2\u00d9\u00e2\5*\26\2\u00da\u00e2\7\63\2\2\u00db\u00e2\5"+
-		",\27\2\u00dc\u00e2\7\20\2\2\u00dd\u00de\7+\2\2\u00de\u00df\5&\24\2\u00df"+
+		"\u00d9\7\16\2\2\u00d9\u00e2\5*\26\2\u00da\u00e2\7\63\2\2\u00db\u00e2\7"+
+		"\20\2\2\u00dc\u00e2\5,\27\2\u00dd\u00de\7+\2\2\u00de\u00df\5&\24\2\u00df"+
 		"\u00e0\7,\2\2\u00e0\u00e2\3\2\2\2\u00e1\u00cf\3\2\2\2\u00e1\u00d2\3\2"+
 		"\2\2\u00e1\u00d4\3\2\2\2\u00e1\u00d6\3\2\2\2\u00e1\u00d8\3\2\2\2\u00e1"+
 		"\u00da\3\2\2\2\u00e1\u00db\3\2\2\2\u00e1\u00dc\3\2\2\2\u00e1\u00dd\3\2"+

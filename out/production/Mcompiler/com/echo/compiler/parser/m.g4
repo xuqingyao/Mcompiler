@@ -113,8 +113,8 @@ expr
     |   lhs = expr op = '||' rhs = expr                         #binaryExpr
     |   <assoc = right> lhs = expr op = '=' rhs = expr          #assignExpr
     |   Identifier                                              #identifierExpr
-    |   constant                                                #constantExpr
     |   This                                                    #thisExpr
+    |   constant                                                #constantExpr
     |   '(' expr ')'                                            #subExpr
     ;
 

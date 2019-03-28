@@ -27,16 +27,13 @@ public class SemanticChecker extends SymbolTableBuilder{
     }
 
     public void VarCheck(VarDeclNode node){
-        if (node.getInit() != null) {
-            node.getInit().accept(this);
-            if (node.getType().getType() instanceof VoidType || node.getInit().getType() instanceof VoidType)
+        if (node.getType().getType() instanceof VoidType || node.getInit().getType() instanceof VoidType)
+            throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
+        else if (!(node.getType().getType().equals(node.getInit().getType())))
+            throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
+        else if (node.getInit().getType() instanceof NullType) {
+            if (!(node.getType().getType() instanceof ClassType || node.getType().getType() instanceof ArrayType))
                 throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
-            else if (!(node.getType().getType().equals(node.getInit().getType())))
-                throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
-            else if (node.getInit().getType() instanceof NullType) {
-                if (!(node.getType().getType() instanceof ClassType || node.getType().getType() instanceof ArrayType))
-                    throw new SemanticError(node.getLocation(), String.format("Invalid initialization value, expected \"%s\" but got \"%s\"", node.getType().getType().toString(), node.getInit().getType().toString()));
-            }
         }
     }
 
@@ -57,9 +54,9 @@ public class SemanticChecker extends SymbolTableBuilder{
         FuncSymbol funcSymbol = (FuncSymbol)currentSymbolTable.get(node.getLocation(), node.getName(), key);//find the symbol
         currentType = funcSymbol.getType();
         if(currentType instanceof ClassType){
-            String name = ((ClassType)funcSymbol.getType()).getName();
+            String name = ((ClassType)currentType).getName();
             String classkey = "$CLASS_" + name;
-            globalSymbolTable.get(node.getLocation(), name, classkey);
+            currentSymbolTable.get(node.getType().getLocation(), name, classkey);
         }
         node.getBody().setSymbolTable(currentSymbolTable);//go into the block, create a new symbolTable
         currentSymbolTable = node.getBody().getSymbolTable();//renew the current symbolTable
@@ -78,7 +75,7 @@ public class SemanticChecker extends SymbolTableBuilder{
     @Override
     public void visit(ClassDeclNode node) {
         String key = "$CLASS_" + node.getName();
-        ClassSymbol classSymbol = (ClassSymbol)currentSymbolTable.get(node.getLocation(), node.getName(), key);
+        ClassSymbol classSymbol = (ClassSymbol)globalSymbolTable.get(node.getLocation(), node.getName(), key);
         currentSymbolTable = classSymbol.getSymbolTable();
         currentClassType = (ClassType) classSymbol.getType();
         for(FuncDeclNode funcDeclNode : node.getFuncMember())
@@ -100,7 +97,10 @@ public class SemanticChecker extends SymbolTableBuilder{
             String key = "$CLASS_" + classname;
             currentSymbolTable.get(node.getLocation(), classname, key);
         }
-        VarCheck(node);
+        if(node.getInit() != null){
+            node.getInit().accept(this);
+            VarCheck(node);
+        }
         VarSymbol varSymbol = new VarSymbol(node);
         if(currentSymbolTable == globalSymbolTable)
             varSymbol.setGlobal(true);
@@ -411,22 +411,23 @@ public class SemanticChecker extends SymbolTableBuilder{
         Type rightType = node.getRight().getType();
         if(!(node.getLeft().isLeftValue()))
             throw new SemanticError(node.getLocation(), "Lhs of assignment statement should be left value");
-        if(leftType instanceof VoidType || rightType instanceof VoidType)
-            throw new SemanticError(node.getLocation(), String.format("Assignment operator cannot be applied to different types \"%s\" and \"%s\"", leftType.toString(), rightType.toString()));
-        else if(!(leftType.equals(rightType)))
-            throw new SemanticError(node.getLocation(), String.format("Assignment operator cannot be applied to different types \"%s\" and \"%s\"", leftType.toString(), rightType.toString()));
-        else if(leftType instanceof NullType) {
-            if (!(rightType instanceof ClassType || rightType instanceof ArrayType))
-                throw new SemanticError(node.getLocation(), String.format("Assignment operator cannot be applied to different types \"%s\" and \"%s\"", leftType.toString(), rightType.toString()));
-        }
-        else if(rightType instanceof NullType){
-            if (!(leftType instanceof ClassType || leftType instanceof ArrayType))
-                throw new SemanticError(node.getLocation(), String.format("Assignment operator cannot be applied to different types \"%s\" and \"%s\"", leftType.toString(), rightType.toString()));
-        }
-        else
-            throw new SemanticError(node.getLocation(), String.format("Assignment operator cannot be applied to different types \"%s\" and \"%s\"", leftType.toString(), rightType.toString()));
+        if (AssignCheck(leftType, rightType))
+            throw new SemanticError(node.getLocation(), String.format("Assignment operator cannot be applied to different types \"%s\" and \"%s\"", node.getLeft().getType().toString(), node.getRight().getType().toString()));
         node.setType(rightType);
         node.setLeftValue(false);
+    }
+
+    private boolean AssignCheck(Type leftType, Type rightType){
+        boolean assignCheck;
+        if (leftType instanceof VoidType || rightType instanceof VoidType)
+            assignCheck = true;
+        else if (leftType.equals(rightType))
+            assignCheck = false;
+        else if (rightType instanceof NullType)
+            assignCheck = !(leftType instanceof ClassType || leftType instanceof ArrayType);
+        else
+            assignCheck = true;
+        return assignCheck;
     }
 
     @Override
@@ -463,7 +464,7 @@ public class SemanticChecker extends SymbolTableBuilder{
     @Override
     public void visit(BoolConstExprNode node) {
         node.setType(BoolType.getBoolType());
-        node.setLeftValue(true);
+        node.setLeftValue(false);
     }
 
     @Override
