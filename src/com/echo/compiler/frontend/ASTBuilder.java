@@ -22,12 +22,12 @@ public class ASTBuilder extends mBaseVisitor<Node> {
     @Override
     public Node visitProgram(mParser.ProgramContext ctx) {
         List<DeclNode> Decls = new ArrayList<>();
-        for(ParserRuleContext programBody : ctx.programBody()){
+        for (ParserRuleContext programBody : ctx.programBody()) {
             Node Decl = visit(programBody);
-            if(Decl instanceof VarDeclListNode)
-                Decls.addAll(((VarDeclListNode)Decl).getDecls());
+            if (Decl instanceof VarDeclListNode)
+                Decls.addAll(((VarDeclListNode) Decl).getDecls());
             else
-                Decls.add((DeclNode)Decl);
+                Decls.add((DeclNode) Decl);
         }
         Location location = new Location(ctx.getStart());
         ProgramNode programNode = new ProgramNode(Decls, location);
@@ -119,10 +119,6 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         }
         ClassDeclNode classDeclNode = new ClassDeclNode(name, varmember, funcmember, location);
         return classDeclNode;
-    }
-
-    private void printf(String var) {
-        printf(var);
     }
 
     //    classBody : functionDeclare | variableDeclare
@@ -239,7 +235,8 @@ public class ASTBuilder extends mBaseVisitor<Node> {
     }
 
     //    BlockStat : '{' blockItemList* '}'
-    @Override public Node visitBlockStat(mParser.BlockStatContext ctx) {
+    @Override
+    public Node visitBlockStat(mParser.BlockStatContext ctx) {
         List<Node> stats = new ArrayList<>();
         Node node;
         if(ctx.blockItemList() != null){
@@ -283,7 +280,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
     //    ifStat : 'if' cond = expr  thenbody = stat ('else' elsebody = stat)?
     @Override
     public Node visitIfStat(mParser.IfStatContext ctx) {
-        ExprNode cond = (ExprNode)visit(ctx.cond);
+        ExprNode cond = (ExprNode)visit(ctx.expr());
         StatNode thenbody = (StatNode)visit(ctx.thenbody);
         StatNode elsebody;
         if(ctx.elsebody != null)
@@ -592,11 +589,32 @@ public class ASTBuilder extends mBaseVisitor<Node> {
     //|   nonArrayTypeSpecifier                                                   # creatorNonArray
     @Override
     public Node visitCreatorNonArray(mParser.CreatorNonArrayContext ctx) {
-        TypeNode type = (TypeNode)visit(ctx.nonArrayTypeSpecifier());
+        TypeNode type = (TypeNode)visit(ctx.nonArrayTypeCreator());
         Location location = new Location(ctx.getStart());
         NewExprNode newExprNode = new NewExprNode(type, null, 0, location);
         return newExprNode;
     }
+
+    @Override
+    public Node visitNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx) {
+        Location location = new Location(ctx.getStart());
+        if(ctx.Identifier() != null){
+            ClassType classType = new ClassType(ctx.Identifier().getText());
+            TypeNode typeNode = new TypeNode(classType, location);
+            return typeNode;
+        }
+        TypeNode typeNode;
+        if(ctx.Bool() != null)
+            typeNode = new TypeNode(BoolType.getBoolType(), location);
+        else if(ctx.Int() != null)
+            typeNode = new TypeNode(IntType.getIntType(), location);
+        else if(ctx.String() != null)
+            typeNode = new TypeNode(StringType.getStringType(), location);
+        else
+            throw new CompilerError(location, "invalid type");
+        return typeNode;
+    }
+
 
     //     constant
 //     :   type = LogicalConstant

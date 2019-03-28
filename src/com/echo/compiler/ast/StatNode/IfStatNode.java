@@ -25,7 +25,7 @@ public class IfStatNode extends StatNode{
     }
 
     public StatNode getElsebody(){
-        return thenbody;
+        return elsebody;
     }
     
     @Override

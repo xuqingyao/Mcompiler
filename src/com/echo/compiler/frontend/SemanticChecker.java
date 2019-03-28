@@ -137,18 +137,21 @@ public class SemanticChecker extends SymbolTableBuilder{
 
     @Override
     public void visit(ExpressionStatNode node) {
-        node.getExpr().accept(this);
+        if(node.getExpr() != null)
+            node.getExpr().accept(this);
     }
 
     @Override
     public void visit(IfStatNode node) {
         node.getCond().accept(this);
-        if(!(node.getCond().getType() instanceof BoolType))
-            throw new SemanticError(node.getCond().getLocation(),  "Condition expression of condition statement should have type \"bool\"");
-        if(node.getThenbody() != null)
+        if (!(node.getCond().getType() instanceof BoolType))
+            throw new SemanticError(node.getCond().getLocation(), "Condition expression of condition statement should have type \"bool\"");
+        if (node.getThenbody() != null) {
             node.getThenbody().accept(this);
-        if(node.getElsebody() != null)
+        }
+        if (node.getElsebody() != null) {
             node.getElsebody().accept(this);
+        }
     }
 
     @Override

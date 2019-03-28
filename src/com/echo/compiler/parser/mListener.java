@@ -492,6 +492,16 @@ public interface mListener extends ParseTreeListener {
 	 */
 	void exitCreatorNonArray(mParser.CreatorNonArrayContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link mParser#nonArrayTypeCreator}.
+	 * @param ctx the parse tree
+	 */
+	void enterNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mParser#nonArrayTypeCreator}.
+	 * @param ctx the parse tree
+	 */
+	void exitNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link mParser#constant}.
 	 * @param ctx the parse tree
 	 */

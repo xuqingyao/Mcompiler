@@ -296,6 +296,12 @@ public interface mVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCreatorNonArray(mParser.CreatorNonArrayContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link mParser#nonArrayTypeCreator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link mParser#constant}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

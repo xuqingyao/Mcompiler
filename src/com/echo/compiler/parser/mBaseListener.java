@@ -532,6 +532,18 @@ public class mBaseListener implements mListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterConstant(mParser.ConstantContext ctx) { }
 	/**
 	 * {@inheritDoc}

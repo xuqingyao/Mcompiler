@@ -128,7 +128,14 @@ exprs
 creator
     :   nonArrayTypeSpecifier ('[' expr ']') + ('[' ']') + ('[' expr ']')+      # creatorError
     |   nonArrayTypeSpecifier ('[' expr ']') + ('[' ']')*                       # creatorArray
-    |   nonArrayTypeSpecifier                                                   # creatorNonArray
+    |   nonArrayTypeCreator                                                     # creatorNonArray
+    ;
+
+nonArrayTypeCreator
+    :   'int'
+    |   'bool'
+    |   'string'
+    |   Identifier ('(' ')')?
     ;
 
 constant

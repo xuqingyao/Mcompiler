@@ -318,5 +318,12 @@ public class mBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements mVis
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitConstant(mParser.ConstantContext ctx) { return visitChildren(ctx); }
 }
