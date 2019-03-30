@@ -24,8 +24,8 @@ public class GlobalSymbolTableBuilder extends SymbolTableBuilder{
     private void addDefaultFunc(SymbolTable symbolTable, String name, List<VarSymbol> parameters, Type returnType) {
         String key = "$FUNC_" + name;
         FuncSymbol funcSymbol = new FuncSymbol(name, new FuncType(name));
-        funcSymbol.setParameters(parameters);
         funcSymbol.setReturntype(returnType);
+        funcSymbol.setParameters(parameters);
         funcSymbol.setBuiltIn(true);
         if (!symbolTable.isTop())
             funcSymbol.setMember(true);
@@ -62,11 +62,11 @@ public class GlobalSymbolTableBuilder extends SymbolTableBuilder{
     private void checkMainFunc() {
         FuncSymbol mainFunc = (FuncSymbol)symbolTable.get("$FUNC_main");
         if (mainFunc == null)
-            throw new SemanticError("\"main\" function not found");
+            throw new SemanticError("main function not found");
         if (!(mainFunc.getReturntype() instanceof IntType))
-            throw new SemanticError("\"main\" function's return type should be \"int\"");
+            throw new SemanticError("main function's return type should be int");
         if (!mainFunc.getParameters().isEmpty())
-            throw new SemanticError("\"main\" function should have no parameter");
+            throw new SemanticError("main function should have no parameters");
     }
 
     @Override

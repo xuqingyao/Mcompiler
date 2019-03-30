@@ -18,7 +18,8 @@ import java.util.List;
 
 public class ASTBuilder extends mBaseVisitor<Node> {
     TypeNode TYPE;
-    //    program : programBody*EOF
+
+//    program : programBody*EOF
     @Override
     public Node visitProgram(mParser.ProgramContext ctx) {
         List<DeclNode> Decls = new ArrayList<>();
@@ -34,6 +35,10 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return programNode;
     }
 
+//    programBody
+//    :   functionDeclare
+//    |   classDeclare
+//    |   variableDeclare
     @Override
     public Node visitProgramBody(mParser.ProgramBodyContext ctx) {
         Location location = new Location(ctx.getStart());
@@ -44,10 +49,10 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         else if(ctx.variableDeclare() != null)
             return visit(ctx.variableDeclare());
         else
-            throw new CompilerError(location, "invalid declaration");
+            throw new CompilerError(location, "Invalid declaration");
     }
 
-    //    functionDeclare : typeSpecifier Identifier '(' formalParameters? ')' blockStat
+//    functionDeclare : functype? Identifier '(' formalParameters? ')' blockStat
     @Override
     public Node visitFunctionDeclare(mParser.FunctionDeclareContext ctx) {
         TypeNode type;
@@ -70,6 +75,9 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return funcDeclNode;
     }
 
+//    functype
+//    :   typeSpecifier
+//    |   'void'
     @Override
     public Node visitFunctype(mParser.FunctypeContext ctx) {
         Location location = new Location(ctx.getStart());
@@ -79,13 +87,13 @@ public class ASTBuilder extends mBaseVisitor<Node> {
             return new TypeNode(VoidType.getVoidType(), location);
     }
 
-    //    formalParameters : formalParameter (',' formalParameter)*
+//    formalParameters : formalParameter (',' formalParameter)*
     @Override
     public Node visitFormalParameters(mParser.FormalParametersContext ctx) {
         return super.visitFormalParameters(ctx);
     }
 
-    //    formalParameter : typeSpecifier Identifier
+//    formalParameter : typeSpecifier Identifier
     @Override
     public Node visitFormalParameter(mParser.FormalParameterContext ctx) {
         TypeNode type = (TypeNode)visit(ctx.typeSpecifier());
@@ -95,7 +103,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return varDeclNode;
     }
 
-    //    classDeclare : 'class' Identifier '{' classBody* '}'
+//    classDeclare : 'class' Identifier '{' classBody* '}'
     @Override
     public Node visitClassDeclare(mParser.ClassDeclareContext ctx) {
         String name = ctx.Identifier().getText();
@@ -106,36 +114,33 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         if(ctx.classBody() != null){
             for(ParserRuleContext classBody : ctx.classBody()){
                 member = visit(classBody);
-                if(member instanceof VarDeclListNode) {
+                if(member instanceof VarDeclListNode)
                     varmember.addAll(((VarDeclListNode)member).getDecls());
-                }
-                else if(member instanceof FuncDeclNode) {
+                else if(member instanceof FuncDeclNode)
                     funcmember.add((FuncDeclNode) member);
-                }
-                else{
-                    throw new CompilerError(location, "invalid class member");
-                }
+                else
+                    throw new CompilerError(location, "Invalid class member");
             }
         }
         ClassDeclNode classDeclNode = new ClassDeclNode(name, varmember, funcmember, location);
         return classDeclNode;
     }
 
-    //    classBody : functionDeclare | variableDeclare
+//    classBody
+//    :     functionDeclare
+//    |     variableDeclare
     @Override
     public Node visitClassBody(mParser.ClassBodyContext ctx) {
         Location location = new Location(ctx.getStart());
-        if(ctx.functionDeclare() != null) {
+        if(ctx.functionDeclare() != null)
             return visit(ctx.functionDeclare());
-        }
-        else if(ctx.variableDeclare() != null) {
+        else if(ctx.variableDeclare() != null)
             return visit(ctx.variableDeclare());
-        }
         else
             throw new CompilerError(location, "Invalid member declaration");
     }
 
-    //    variableDeclare : typeSpecifier variableDeclarator (',' variableDeclarator)* ';'
+//    variableDeclare : typeSpecifier variableDeclarator (',' variableDeclarator)* ';'
     @Override
     public Node visitVariableDeclare(mParser.VariableDeclareContext ctx) {
         TYPE = (TypeNode)visit(ctx.typeSpecifier());
@@ -148,7 +153,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return varDeclListNode;
     }
 
-    //    variableDeclarator : Identifier ('=' expr)?
+//    variableDeclarator : Identifier ('=' expr)?
     @Override
     public Node visitVariableDeclarator(mParser.VariableDeclaratorContext ctx) {
         String name = ctx.Identifier().getText();
@@ -162,7 +167,9 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return varDeclNode;
     }
 
-    //    typeSpecifier : typeSpecifier '[' ']'| nonArrayTypeSpecifier
+//    typeSpecifier
+//    :     typeSpecifier '[' ']'
+//    |     nonArrayTypeSpecifier
     @Override public Node visitTypeSpecifier(mParser.TypeSpecifierContext ctx) {
         if(ctx.nonArrayTypeSpecifier() != null)
             return visit(ctx.nonArrayTypeSpecifier());
@@ -175,7 +182,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         }
     }
 
-    //    nonArrayTypeSpecifier
+//    nonArrayTypeSpecifier
 //    :   type = 'bool'
 //    |   type = 'int'
 //    |   type = 'string'
@@ -199,36 +206,36 @@ public class ASTBuilder extends mBaseVisitor<Node> {
                 typeNode = new TypeNode(StringType.getStringType(), location);
                 break;
             default:
-                throw new CompilerError(location, "invalid type");
+                throw new CompilerError(location, "Invalid type");
         }
         return typeNode;
     }
 
-    //    stat : blockStat
+//    stat : blockStat
     @Override
     public Node visitBlock(mParser.BlockContext ctx) {
         return visit(ctx.blockStat());
     }
 
-    //    stat : expressionStat
+//    stat : expressionStat
     @Override
     public Node visitExpression(mParser.ExpressionContext ctx) {
         return visit(ctx.expressionStat());
     }
 
-    //    stat : ifStat
+//    stat : ifStat
     @Override
     public Node visitIf(mParser.IfContext ctx) {
         return visit(ctx.ifStat());
     }
 
-    //    stat : iterStat
+//    stat : iterStat
     @Override
     public Node visitIter(mParser.IterContext ctx) {
         return visit(ctx.iterationStat());
     }
 
-    //    stat : jumpStat
+//    stat : jumpStat
     @Override
     public Node visitJump(mParser.JumpContext ctx) {
         return visit(ctx.jumpStat());
@@ -255,17 +262,17 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return blockStatNode;
     }
 
-    //    blockItemList : stat
+//    blockItemList : stat
     @Override public Node visitStatement(mParser.StatementContext ctx) {
         return visit(ctx.stat());
     }
 
-    //    blockItemList : variableDeclare
+//    blockItemList : variableDeclare
     @Override public Node visitVariableDec(mParser.VariableDecContext ctx) {
         return visit(ctx.variableDeclare());
     }
 
-    //    expressionStat : expr? ';'
+//    expressionStat : expr? ';'
     @Override public Node visitExpressionStat(mParser.ExpressionStatContext ctx) {
         ExprNode expr;
         if(ctx.expr() != null)
@@ -277,7 +284,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return expressionStatNode;
     }
 
-    //    ifStat : 'if' cond = expr  thenbody = stat ('else' elsebody = stat)?
+//    ifStat : 'if' '(' cond = expr ')' thenbody = stat ('else' elsebody = stat)?
     @Override
     public Node visitIfStat(mParser.IfStatContext ctx) {
         ExprNode cond = (ExprNode)visit(ctx.expr());
@@ -292,7 +299,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return  ifStatNode;
     }
 
-    //    iterationStat : 'while' '(' cond = expr ')' whilebody = stat
+//    iterationStat : 'while' '(' cond = expr ')' whilebody = stat      #while
     @Override
     public Node visitWhile(mParser.WhileContext ctx) {
         ExprNode cond = (ExprNode)visit(ctx.cond);
@@ -302,7 +309,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return  whileStatNode;
     }
 
-    //    iterationStat : 'for' '(' init = expr? ';' cond = expr?  ';' step = expr? ')' forbody = stat    #for
+//    iterationStat : 'for' '(' init = expr? ';' cond = expr?  ';' step = expr? ')' forbody = stat    #for
     @Override public Node visitFor(mParser.ForContext ctx) {
         ExprNode init, cond, step;
         StatNode forbody = (StatNode)visit(ctx.forbody);
@@ -323,7 +330,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return forStatNode;
     }
 
-    //    jumpStat : 'continue' ';'
+//    jumpStat : 'continue' ';'
     @Override
     public Node visitContinue(mParser.ContinueContext ctx) {
         Location location = new Location(ctx.getStart());
@@ -331,7 +338,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return continueStatNode;
     }
 
-    //    jumpStat : 'break' ';'
+//    jumpStat : 'break' ';'
     @Override
     public Node visitBreak(mParser.BreakContext ctx) {
         Location location = new Location(ctx.getStart());
@@ -339,7 +346,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return breakStatNode;
     }
 
-    //    jumpStat : 'return' expr? ';'
+//    jumpStat : 'return' expr? ';'
     @Override
     public Node visitReturn(mParser.ReturnContext ctx) {
         ExprNode expr;
@@ -352,13 +359,14 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return returnStatNode;
     }
 
-    //    expr : <assoc = right> 'new' creator
+//    expr : <assoc = right> 'new' creator
     @Override
     public Node visitNewExpr(mParser.NewExprContext ctx) {
         return visit(ctx.creator());
     }
 
-    //     expr :   <assoc = right> op = ('++'|'--') expr
+//    expr
+//     :   <assoc = right> op = ('++'|'--') expr
 //     |   <assoc = right> op = ('+'|'-') expr
 //     |   <assoc = right> op = '!' expr
 //     |   <assoc = right> op = '~' expr
@@ -393,7 +401,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return prefixExprNode;
     }
 
-    //    expr :   expr '[' expr ']'
+//    expr :   expr '[' expr ']'
     @Override
     public Node visitSubscriptExpr(mParser.SubscriptExprContext ctx) {
         ExprNode array = (ExprNode)visit(ctx.array);
@@ -403,7 +411,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return subscriptExprNode;
     }
 
-    //    expr :   expr '(' exprs? ')'
+//    expr :   expr '(' exprs? ')'
     @Override
     public Node visitFunccallExpr(mParser.FunccallExprContext ctx) {
         ExprNode func = (ExprNode)visit(ctx.expr());
@@ -419,7 +427,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return funcCallExprNode;
     }
 
-    //    expr :   expr '.' Identifier
+//    expr :   expr '.' Identifier
     @Override
     public Node visitMemAccessExpr(mParser.MemAccessExprContext ctx) {
         ExprNode expr = (ExprNode)visit(ctx.expr());
@@ -429,7 +437,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return memAccessExprNode;
     }
 
-    //    expr :   expr op = ('++'|'--')
+//    expr :   expr op = ('++'|'--')
     @Override
     public Node visitSuffixExpr(mParser.SuffixExprContext ctx) {
         SuffixExprNode.SuffixOp op;
@@ -442,14 +450,15 @@ public class ASTBuilder extends mBaseVisitor<Node> {
                 op = SuffixExprNode.SuffixOp.MINUS_MINUS;
                 break;
             default:
-                throw new CompilerError(location, "invalid suffix operator");
+                throw new CompilerError(location, "Invalid suffix operator");
         }
         ExprNode expr = (ExprNode)visit(ctx.expr());
         SuffixExprNode suffixExprNode =  new SuffixExprNode(expr, op, location);
         return suffixExprNode;
     }
 
-    //     expr :   expr op = ('*'|'/'|'%') expr
+//    expr
+//     :   expr op = ('*'|'/'|'%') expr
 //     |   expr op = ('+'|'-') expr
 //     |   expr op = ('<<'|'>>') expr
 //     |   expr op = ('>'|'>='|'<'|'<=') expr
@@ -527,13 +536,13 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return binaryExprNode;
     }
 
-    //    expr :   '(' expr ')'
+//    expr :   '(' expr ')'
     @Override
     public Node visitSubExpr(mParser.SubExprContext ctx) {
         return visit(ctx.expr());
     }
 
-    //    expr :   <assoc = right> lhs = expr op = '=' rhd = expr
+//    expr :   <assoc = right> lhs = expr op = '=' rhd = expr
     @Override
     public Node visitAssignExpr(mParser.AssignExprContext ctx) {
         ExprNode lhs = (ExprNode)visit(ctx.lhs);
@@ -543,7 +552,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return assignExprNode;
     }
 
-    //    expr :   Identifier
+//    expr :   Identifier
     @Override
     public Node visitIdentifierExpr(mParser.IdentifierExprContext ctx) {
         String identifier = ctx.Identifier().getText();
@@ -552,26 +561,33 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return identifierExprNode;
     }
 
-    //    expr : constant
+//    expr : constant
+    @Override
+    public Node visitThisExpr(mParser.ThisExprContext ctx) {
+        Location location = new Location(ctx.getStart());
+        return new ThisExprNode(location);
+    }
+
+//    expr : constant
     @Override
     public Node visitConstantExpr(mParser.ConstantExprContext ctx) {
         return visit(ctx.constant());
     }
 
-
+//    exprs : expr (',' expr)*
     @Override
     public Node visitExprs(mParser.ExprsContext ctx) {
         return super.visitExprs(ctx);
     }
 
-
+//    creator : nonArrayTypeSpecifier ('[' expr ']') + ('[' ']') + ('[' expr ']')+      # creatorError
     @Override
     public Node visitCreatorError(mParser.CreatorErrorContext ctx) {
         Location location = new Location(ctx.getStart());
         throw new CompilerError(location, "Invalid creator");
     }
 
-    //    creator : nonArrayTypeSpecifier ('[' expr ']') + ('[' ']')*                       # creatorArray
+ //    creator : nonArrayTypeSpecifier ('[' expr ']') + ('[' ']')*                       # creatorArray
     @Override
     public Node visitCreatorArray(mParser.CreatorArrayContext ctx) {
         TypeNode type = (TypeNode) visit(ctx.nonArrayTypeSpecifier());
@@ -586,7 +602,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return newExprNode;
     }
 
-    //|   nonArrayTypeSpecifier                                                   # creatorNonArray
+//    creator :   nonArrayTypeCreator                                                     # creatorNonArray
     @Override
     public Node visitCreatorNonArray(mParser.CreatorNonArrayContext ctx) {
         TypeNode type = (TypeNode)visit(ctx.nonArrayTypeCreator());
@@ -595,6 +611,12 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         return newExprNode;
     }
 
+//    nonArrayTypeCreator
+//    :   'int'
+//    |   'bool'
+//    |   'string'
+//    |   Identifier ('(' ')')?
+//    ;
     @Override
     public Node visitNonArrayTypeCreator(mParser.NonArrayTypeCreatorContext ctx) {
         Location location = new Location(ctx.getStart());
@@ -611,12 +633,11 @@ public class ASTBuilder extends mBaseVisitor<Node> {
         else if(ctx.String() != null)
             typeNode = new TypeNode(StringType.getStringType(), location);
         else
-            throw new CompilerError(location, "invalid type");
+            throw new CompilerError(location, "Invalid type");
         return typeNode;
     }
 
-
-    //     constant
+//     constant
 //     :   type = LogicalConstant
 //     |   type = IntegerConstant
 //     |   type = StringLiteral
@@ -653,7 +674,7 @@ public class ASTBuilder extends mBaseVisitor<Node> {
                     else if(value.charAt(i + 1) == '\"')
                         stringBuffer.append('\"');
                     else
-                        throw new CompilerError("invalid escaped string");
+                        throw new CompilerError("Invalid escaped string");
                     i++;
                 }
                 else
@@ -667,12 +688,6 @@ public class ASTBuilder extends mBaseVisitor<Node> {
             return nullExprNode;
         }
         else
-            throw new CompilerError("invalid constant");
-    }
-
-    @Override
-    public Node visitThisExpr(mParser.ThisExprContext ctx) {
-        Location location = new Location(ctx.getStart());
-        return new ThisExprNode(location);
+            throw new CompilerError("Invalid constant");
     }
 }

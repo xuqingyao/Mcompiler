@@ -26,7 +26,7 @@ public class SemanticChecker extends SymbolTableBuilder{
         return globalSymbolTable;
     }
 
-    void VarCheck(VarDeclNode node) {
+    private void VarCheck(VarDeclNode node) {
         if (node.getInit() != null) {
             node.getInit().accept(this);
             boolean invalidInitType;
@@ -146,12 +146,10 @@ public class SemanticChecker extends SymbolTableBuilder{
         node.getCond().accept(this);
         if (!(node.getCond().getType() instanceof BoolType))
             throw new SemanticError(node.getCond().getLocation(), "Condition expression of condition statement should have type \"bool\"");
-        if (node.getThenbody() != null) {
+        if (node.getThenbody() != null)
             node.getThenbody().accept(this);
-        }
-        if (node.getElsebody() != null) {
+        if (node.getElsebody() != null)
             node.getElsebody().accept(this);
-        }
     }
 
     @Override

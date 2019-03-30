@@ -20,23 +20,19 @@ public class Main {
         try {
             compile();
         }
-        catch (Error e) {
-            System.err.println(e.getMessage());
+        catch (Error error) {
+            System.err.println(error.getMessage());
             System.exit(1);
         }
     }
 
     private static void compile() throws Exception {
         buildAST();
-//        printAST();
         semanticCheck();
     }
 
     private static void buildAST() throws Exception {
         String inFile = null;
-//        String inFile = "C:/Users/echo/Desktop/M_compiler/src/com/echo/compiler/testcase/testcase_128.txt";
-
-//        String inFile = "C:/Users/echo/Desktop/1.txt";
         InputStream in;
         if (inFile == null)
             in = System.in;
@@ -60,7 +56,7 @@ public class Main {
         GlobalSymbolTableBuilder globalSymbolTableBuilder= new GlobalSymbolTableBuilder();
         globalSymbolTableBuilder.visit(ast);
         globalSymbolTable = globalSymbolTableBuilder.getSymbolTable();
-        new ClassCheck(globalSymbolTable).visit(ast);
+        new ClassVarAdder(globalSymbolTable).visit(ast);
         new SemanticChecker(globalSymbolTable).visit(ast);
     }
 }

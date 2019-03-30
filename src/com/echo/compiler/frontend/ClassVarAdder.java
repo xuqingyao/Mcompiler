@@ -13,12 +13,12 @@ import com.echo.compiler.ast.TypeNode.NullType;
 import com.echo.compiler.ast.TypeNode.VoidType;
 import com.echo.compiler.error.SemanticError;
 
-public class ClassCheck extends SymbolTableBuilder{
+public class ClassVarAdder extends SymbolTableBuilder{
     private SymbolTable globalSymbolTable;
     private String currentClass;
     private SymbolTable currentSymbolTable;
 
-    public ClassCheck(SymbolTable globalSymbolTable){
+    public ClassVarAdder(SymbolTable globalSymbolTable){
         this.globalSymbolTable = globalSymbolTable;
     }
 
@@ -53,8 +53,8 @@ public class ClassCheck extends SymbolTableBuilder{
         ClassSymbol classSymbol = (ClassSymbol)globalSymbolTable.get(node.getLocation(), node.getName(), "$CLASS_" + node.getName());
         currentSymbolTable = classSymbol.getSymbolTable();
         currentClass = classSymbol.getName();
-        for(VarDeclNode var : node.getVarMember())
-            var.accept(this);
+        for(VarDeclNode varDeclNode : node.getVarMember())
+            varDeclNode.accept(this);
         classSymbol.setMemorySize(0);
     }
 
