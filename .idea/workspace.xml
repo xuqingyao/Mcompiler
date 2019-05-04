@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/Symbol/VarSymbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/Symbol/VarSymbol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/ExprNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/ExprNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/IdentifierExprNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/IdentifierExprNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/SymbolTableBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/SymbolTableBuilder.java" afterDir="false" />
-    </list>
+    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -170,7 +163,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
+            <state relative-caret-position="248">
               <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
             </state>
           </provider>
@@ -430,7 +423,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556982532219" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556984696255" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -579,12 +572,12 @@
       <workItem from="1556715239527" duration="1089000" />
       <workItem from="1556761127604" duration="6980000" />
       <workItem from="1556846350969" duration="15346000" />
-      <workItem from="1556937659602" duration="11826000" />
+      <workItem from="1556937659602" duration="13046000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402502000" />
+    <option name="totallyTimeSpent" value="403722000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -596,7 +589,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.505291" side_tool="true" weight="0.26434922" />
@@ -1120,7 +1113,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
+        <state relative-caret-position="248">
           <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
         </state>
       </provider>
