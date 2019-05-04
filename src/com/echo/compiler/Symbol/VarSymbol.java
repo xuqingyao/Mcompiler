@@ -1,13 +1,16 @@
 package com.echo.compiler.Symbol;
 
+import com.echo.compiler.IR.Register.Register;
 import com.echo.compiler.ast.DeclNode.VarDeclNode;
 import com.echo.compiler.ast.TypeNode.Type;
 
 public class VarSymbol extends Symbol{
     private int addrOffset;
-    private boolean isMember;
+    private boolean isMember = false;
     private String classname;
-    private boolean isGlobal;
+    private boolean isGlobal = false;
+    public Register register;
+    public boolean unused = false;
 
     public VarSymbol(String name, Type type){
         super(name, type);

@@ -7,7 +7,7 @@ import com.echo.compiler.ast.ProgramNode;
 import com.echo.compiler.ast.StatNode.*;
 import com.echo.compiler.ast.TypeNode.TypeNode;
 
-public class SymbolTableBuilder implements ASTVisitor {
+abstract public class SymbolTableBuilder implements ASTVisitor {
     @Override
     public void visit(ProgramNode node){
 
