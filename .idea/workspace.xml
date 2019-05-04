@@ -163,8 +163,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+            <state relative-caret-position="31">
+              <caret line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -345,24 +345,6 @@
               <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
               <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
             </path>
-            <path>
-              <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
-              <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
-              <item name="backend" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
-              <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
-              <item name="frontend" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
-              <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
-              <item name="IR" type="1f31426a:PackageElementNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -423,7 +405,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556984696255" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556984723991" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -572,12 +554,12 @@
       <workItem from="1556715239527" duration="1089000" />
       <workItem from="1556761127604" duration="6980000" />
       <workItem from="1556846350969" duration="15346000" />
-      <workItem from="1556937659602" duration="13046000" />
+      <workItem from="1556937659602" duration="13661000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="403722000" />
+    <option name="totallyTimeSpent" value="404337000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -589,8 +571,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.505291" side_tool="true" weight="0.26434922" />
       <window_info id="Designer" order="1" />
@@ -598,7 +579,7 @@
       <window_info id="Capture Tool" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.5035461" side_tool="true" weight="0.26434922" />
-      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.45189977" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" sideWeight="0.49470899" visible="true" weight="0.45189977" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3250444" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4987874" weight="0.8206039" />
@@ -1113,8 +1094,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        <state relative-caret-position="31">
+          <caret line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
