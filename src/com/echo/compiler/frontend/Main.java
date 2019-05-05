@@ -97,7 +97,7 @@ public class Main {
             outS = System.out;
         else
             outS = new PrintStream(new FileOutputStream(outFile));
-//        new FuncInlineprocess(irRoot).process();
+        new FuncInlineprocess(irRoot).process();
         new GlobalVariableProcess(irRoot).processs();
         new Registerprocess(irRoot).process();
         new LiveAnalysis(irRoot).process();

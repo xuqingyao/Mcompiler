@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="" />
+    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6042">
-              <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+            <state relative-caret-position="357">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#processFunc#0;class#NASMTransformer#0" />
@@ -135,11 +137,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegisterSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+            <state relative-caret-position="279">
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,11 +161,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="1" selection-end-line="1" />
+            <state relative-caret-position="79">
+              <caret line="100" column="48" lean-forward="true" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="48" />
               <folding>
                 <element signature="e#1875#1876#0" expanded="true" />
                 <element signature="e#1918#1919#0" expanded="true" />
@@ -267,7 +269,6 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegister.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Register/PhysicalRegister.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegisterSet.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncArgsprocess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/Registerprocess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" />
@@ -275,9 +276,10 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Compiler.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegisterSet.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
       </list>
     </option>
   </component>
@@ -394,18 +396,6 @@
               <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
               <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
             </path>
-            <path>
-              <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
-              <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
-              <item name="backend" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
-              <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
-              <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
-              <item name="NASM" type="1f31426a:PackageElementNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -420,7 +410,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557020526412" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557022348545" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -570,12 +560,12 @@
       <workItem from="1556761127604" duration="6980000" />
       <workItem from="1556846350969" duration="15346000" />
       <workItem from="1556937659602" duration="13661000" />
-      <workItem from="1557018059230" duration="1321000" />
+      <workItem from="1557018059230" duration="2258000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405658000" />
+    <option name="totallyTimeSpent" value="406595000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -587,7 +577,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.505291" side_tool="true" weight="0.26434922" />
@@ -1030,33 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#1875#1876#0" expanded="true" />
-            <element signature="e#1918#1919#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6042">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#processFunc#0;class#NASMTransformer#0" />
-            <element signature="method#processBody#0;class#NASMTransformer#0" />
-            <element signature="method#processReturn#0;class#NASMTransformer#0" />
-            <element signature="method#processLoad#0;class#NASMTransformer#0" />
-            <element signature="method#processStore#0;class#NASMTransformer#0" />
-            <element signature="method#processMove#0;class#NASMTransformer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1953">
@@ -1114,10 +1077,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegisterSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="279">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#processFunc#0;class#NASMTransformer#0" />
+            <element signature="method#processBody#0;class#NASMTransformer#0" />
+            <element signature="method#processReturn#0;class#NASMTransformer#0" />
+            <element signature="method#processLoad#0;class#NASMTransformer#0" />
+            <element signature="method#processStore#0;class#NASMTransformer#0" />
+            <element signature="method#processMove#0;class#NASMTransformer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="100" column="48" lean-forward="true" selection-start-line="100" selection-start-column="48" selection-end-line="100" selection-end-column="48" />
+          <folding>
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#1918#1919#0" expanded="true" />
           </folding>
         </state>
       </provider>
