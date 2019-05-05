@@ -10,11 +10,11 @@ import java.util.*;
 
 import static com.echo.compiler.NASM.NASMRegisterSet.*;
 
-//1、将caller save寄存器和参数压入栈中
-//2、rbp压入栈中，将rsp的值转给rbp，将callee save压入栈中
-//3、减少rsp，给函数分配栈帧
-//4、完成调用后恢复callee，将rsp置为rbp，rbp恢复为原rbp
-//5、清除栈中参数
+//push caller save register and argument into the stack
+//push rbp into the stack, move the value of rsp to rbp, push callee save into the stack
+//reduce rbp, alloc stack frame of function
+//recover callee after the call, set rsp as rbp, recover rbp to the old value
+//clear the argument in the stack
 
 public class NASMTransformer {
     private class FuncInfo{
