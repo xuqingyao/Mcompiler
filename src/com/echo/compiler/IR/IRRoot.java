@@ -22,9 +22,9 @@ public class IRRoot {
     public void insertBuildInFuncs(){
         insertBuildInFunc("_builtIn_string_concat", "_builtin_string_concat");
         insertBuildInFunc("_builtIn_string_equal", "_builtin_string_equal");
-        insertBuildInFunc("_buildIn_string_not_equal", "_builtin_string_not_equal");
-        insertBuildInFunc("_buildIn_string_less", "_builtin_string_less");
-        insertBuildInFunc("_buildIn_string_less_equal", "_builtin_string_less_equal");
+        insertBuildInFunc("_builtIn_string_not_equal", "_builtin_string_not_equal");
+        insertBuildInFunc("_builtIn_string_less", "_builtin_string_less");
+        insertBuildInFunc("_builtIn_string_less_equal", "_builtin_string_less_equal");
         insertBuildInFunc("print", "_print");
         insertBuildInFunc("println", "_println");
         insertBuildInFunc("printInt", "_printInt");
