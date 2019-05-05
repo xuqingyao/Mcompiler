@@ -92,4 +92,8 @@ public class SymbolTable {
             throw new SemanticError(location, String.format("Symbol \"%s\" not found", name));
         return parent.getVarOrFunc(location, name);
     }
+
+    public Symbol selfGet(String key){
+        return member.get(key);
+    }
 }

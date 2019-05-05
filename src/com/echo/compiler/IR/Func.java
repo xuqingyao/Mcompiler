@@ -17,7 +17,7 @@ public class Func {
     public List<VirtualRegister> argVRegList = new ArrayList<>();
 
     //control flow graph
-    public List<BasicBlock> reversePostOrder = null, reversePreOrder = null;
+    private List<BasicBlock> reversePostOrder = null, reversePreOrder = null;
     public List<ReturnJumpInst> returnList = new ArrayList<>();
     public Set<BasicBlock> dfsVisited = null;
     public Set<Func> calleeSet = new HashSet<>();
@@ -74,19 +74,12 @@ public class Func {
         }
     }
 
-    public void setNewBBGraph(BasicBlock newStartBB, BasicBlock newEndBB){
-        startBB = newStartBB;
-        endBB = newEndBB;
-        reversePostOrder = null;
-        reversePreOrder = null;
-    }
-
     public void addArgVReg(VirtualRegister reg){
         argVRegList.add(reg);
     }
 
     public BasicBlock genFirstBB(){
-        startBB = new BasicBlock(this, funcSymbol.getName() + "_symbol");
+        startBB = new BasicBlock(this, funcSymbol.getName() + "_start");
         return startBB;
     }
 
@@ -112,20 +105,20 @@ public class Func {
         reversePostOrder = new ArrayList<>();
         dfsVisited = new HashSet<>();
         dfsPostOrder(startBB);
+        dfsVisited = null;
         for(int i = 0; i < reversePostOrder.size(); ++ i)
             reversePostOrder.get(i).postOrderIdx = i;
         Collections.reverse(reversePostOrder);
-        dfsVisited = null;
     }
 
     public void calcReversePreOrder(){
         reversePreOrder = new ArrayList<>();
         dfsVisited = new HashSet<>();
         dfsPreOrder(startBB);
+        dfsVisited = null;
         for(int i = 0; i < reversePreOrder.size(); ++ i)
             reversePreOrder.get(i).preOrderIdx = i;
         Collections.reverse(reversePreOrder);
-        dfsVisited = null;
     }
 
     public void accept(IRVisitor visitor){

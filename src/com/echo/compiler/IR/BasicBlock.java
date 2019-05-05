@@ -19,12 +19,6 @@ public class BasicBlock {
         this.name = name;
     }
 
-    public void Init(){
-        firstInst = null;
-        lastInst = null;
-        hasJumpInit = false;
-    }
-
     public void addInst(Inst inst){
         if(hasJumpInit)
             throw new CompilerError("can not add an instruction into a finished block");

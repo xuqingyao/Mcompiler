@@ -35,7 +35,7 @@ public class FuncInlineprocess {
     private Inst InlineProcess(FuncCallInst funcCallInst){
         Func callerFunc = funcCallInst.parentBB.func;
         Func calleeFunc = funcCallInst.func;
-        List<BasicBlock> reversePostOrder = calleeFunc.reversePostOrder;
+        List<BasicBlock> reversePostOrder = calleeFunc.getReversePostOrder();
 
         Map<Object, Object> renameMap = new HashMap<>();
 
@@ -133,7 +133,7 @@ public class FuncInlineprocess {
             for(Func func : ir.funcs.values()){
                 FuncInfo funcInfo = funcFuncInfoMap.get(func);
                 reversePostOrder.clear();
-                reversePostOrder.addAll(func.reversePostOrder);
+                reversePostOrder.addAll(func.getReversePostOrder());
                 thisFuncchanged = false;
                 for(BasicBlock BB : reversePostOrder){
                     for(Inst inst = BB.firstInst, nextInst; inst != null; inst = nextInst){

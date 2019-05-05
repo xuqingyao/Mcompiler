@@ -19,7 +19,7 @@ public class NASMPrinter implements IRVisitor{
     public PrintStream out;
     public Map<String, Integer> IDCounter = new HashMap<>();
     public Map<Object, Object> IDMap = new HashMap<>();
-    public PhysicalRegister reg0, reg1;
+    public PhysicalRegister reg0;
     private boolean isBssSection, isDataSection;
 
     public NASMPrinter(PrintStream out){
@@ -54,7 +54,6 @@ public class NASMPrinter implements IRVisitor{
     public void visit(IRRoot node) {
         //some pre job
         reg0 = node.reg0;
-        reg1 = node.reg1;
         IDMap.put(node.funcs.get("main").startBB, "main");
         out.println("\t\tglobal\tmain\n");
         out.println("\t\textern\tmalloc\n");
@@ -241,7 +240,7 @@ public class NASMPrinter implements IRVisitor{
     public void visit(CompareInst node) {
         if(node.getLhs() instanceof PhysicalRegister){
             out.print("\t\tand\t\t");
-            node.getRhs().accept(this);
+            node.getLhs().accept(this);
             out.println(", -1");
         }
         if(node.getRhs() instanceof PhysicalRegister){
@@ -279,7 +278,7 @@ public class NASMPrinter implements IRVisitor{
         out.println("\t\t" + op + "\tal");
         out.print("\t\tmov\t\t");
         node.dest.accept(this);
-        out.print(", rax");
+        out.println(", rax");
     }
 
     @Override

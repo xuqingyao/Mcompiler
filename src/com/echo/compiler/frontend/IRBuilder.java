@@ -537,7 +537,7 @@ public class IRBuilder extends SymbolTableBuilder{
         Value classAddr = node.getExpr().regValue;
         String classname = ((ClassType)(node.getExpr().getType())).getName();
         ClassSymbol classSymbol = (ClassSymbol)currentSymbolTable.get("$CLASS_" + classname);
-        VarSymbol memberSymbol = (VarSymbol)classSymbol.getSymbolTable().selfGetVarOrFunc(null, "$VAR_" + node.getMember());
+        VarSymbol memberSymbol = (VarSymbol)classSymbol.getSymbolTable().selfGet("$VAR_" + node.getMember());
 
         if(wantAddr){
             node.setAddrValue(classAddr);

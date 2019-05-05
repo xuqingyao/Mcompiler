@@ -7,25 +7,64 @@
 # function main
 
 main:
+		push	r13
+		push	r12
 		push	rbx
 		mov		rbp, rsp
-		call	Block_init_func_symbol_1
-		mov		r10, 5
-		mov		r9, 0
-		mov		r11, 0
-		mov		r9, r10
-		inc		r10
-		mov		r11, r9
-		mov		r9, r11
-		add		r9, r11
-		add		r9, r10
-		mov		rax, r9
+		call	Block_init_func_start_1
+		mov		r11, 5
+		mov		r10, 0
+		mov		r13, 0
+		mov		r12, 0
+		mov		r13, 1
+
+Block_for_cond_1:
+		and		r13, -1
+		and		r11, -1
+		xor		rax, rax
+		cmp		r13, r11
+		setle	al
+		mov		r9, rax
+		cmp		r9, 1
+		je		Block_for_body_1
+
+Block_for_after_1:
+		mov		rax, r10
 		pop		rbx
+		pop		r12
+		pop		r13
 		ret
+
+Block_for_body_1:
+		mov		r12, 1
+
+Block_for_cond_2:
+		and		r12, -1
+		and		r11, -1
+		xor		rax, rax
+		cmp		r12, r11
+		setle	al
+		mov		r9, rax
+		cmp		r9, 1
+		je		Block_for_body_2
+		jmp		Block_for_after_2
+
+Block_for_body_2:
+		add		r10, r13
+
+Block_for_step_1:
+		inc		r12
+		jmp		Block_for_cond_2
+
+Block_for_after_2:
+
+Block_for_step_2:
+		inc		r13
+		jmp		Block_for_cond_1
 
 # function init_func
 
-Block_init_func_symbol_1:
+Block_init_func_start_1:
 		push	rbx
 		mov		rbp, rsp
 		pop		rbx
