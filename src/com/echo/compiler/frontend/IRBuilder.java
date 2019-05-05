@@ -462,32 +462,32 @@ public class IRBuilder extends SymbolTableBuilder{
         if (funcname == "print" || funcname == "println")
             processPrintFuncCall(node.getArgs().get(0), funcname);
         else if (funcname == "getString") {
-            calleeFunc = ir.getBuiltInFunc("getString");
+            calleeFunc = ir.getBuiltInFunc(funcname);
             List<Value> args = new ArrayList<>();
-            reg = new VirtualRegister("get_string");
+            reg = new VirtualRegister("getString");
             currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
             node.regValue = reg;
         }
         else if (funcname == "getInt") {
-            calleeFunc = ir.getBuiltInFunc("getInt");
+            calleeFunc = ir.getBuiltInFunc(funcname);
             List<Value> args = new ArrayList<>();
-            reg = new VirtualRegister("get_int");
+            reg = new VirtualRegister("getInt");
             currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
             node.regValue = reg;
         }
         else if (funcname == "toString") {
             node.getArgs().get(0).accept(this);
-            calleeFunc = ir.getBuiltInFunc("toString");
+            calleeFunc = ir.getBuiltInFunc(funcname);
             List<Value> args = new ArrayList<>();
             args.add(node.getArgs().get(0).regValue);
-            reg = new VirtualRegister("to_string");
+            reg = new VirtualRegister("toString");
             currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
             node.regValue = reg;
         }
         else if (funcname == "_member_string_substring") {
             node.getArgs().get(0).accept(this);
             node.getArgs().get(1).accept(this);
-            calleeFunc = ir.getBuiltInFunc("_member_string_substring");
+            calleeFunc = ir.getBuiltInFunc(funcname);
             List<Value> args = new ArrayList<>();
             args.add(thisExpr.regValue);
             args.add(node.getArgs().get(0).regValue);
@@ -497,7 +497,7 @@ public class IRBuilder extends SymbolTableBuilder{
             node.regValue = reg;
         }
         else if (funcname == "_member_string_parseInt") {
-            calleeFunc = ir.getBuiltInFunc("_member_string_parseInt");
+            calleeFunc = ir.getBuiltInFunc(funcname);
             List<Value> args = new ArrayList<>();
             args.add(thisExpr.regValue);
             reg = new VirtualRegister("parseInt");
@@ -506,7 +506,7 @@ public class IRBuilder extends SymbolTableBuilder{
         }
         else if (funcname == "_member_string_ord"){
             node.getArgs().get(0).accept(this);
-            calleeFunc = ir.getBuiltInFunc("_member_string_ord");
+            calleeFunc = ir.getBuiltInFunc(funcname);
             List<Value> args = new ArrayList<>();
             args.add(thisExpr.regValue);
             args.add(node.getArgs().get(0).regValue);
@@ -868,31 +868,31 @@ public class IRBuilder extends SymbolTableBuilder{
         ExprNode tmp;
         switch (node.getOp()) {
             case ADD:
-                calleeFunc = ir.getBuiltInFunc("builtin_string_concat");
+                calleeFunc = ir.getBuiltInFunc("_builtin_string_concat");
                 break;
             case EQUAL:
-                calleeFunc = ir.getBuiltInFunc("builtin_string_equal");
+                calleeFunc = ir.getBuiltInFunc("_builtin_string_equal");
                 break;
             case NOT_EQUAL:
-                calleeFunc = ir.getBuiltInFunc("builtin_string_not_equal");
+                calleeFunc = ir.getBuiltInFunc("_builtin_string_not_equal");
                 break;
             case LESS:
-                calleeFunc = ir.getBuiltInFunc("builtin_string_less");
+                calleeFunc = ir.getBuiltInFunc("_builtin_string_less");
                 break;
             case LESS_EQUAL:
-                calleeFunc = ir.getBuiltInFunc("builtin_string_less_equal");
+                calleeFunc = ir.getBuiltInFunc("_builtin_string_less_equal");
                 break;
             case GREATER:
                 tmp = node.getLeft();
                 node.setLeft(node.getRight());
                 node.setRight(tmp);
-                calleeFunc = ir.getBuiltInFunc("builtin_string_less");
+                calleeFunc = ir.getBuiltInFunc("_builtin_string_less");
                 break;
             case GREATER_EQUAL:
                 tmp = node.getLeft();
                 node.setLeft(node.getRight());
                 node.setRight(tmp);
-                calleeFunc = ir.getBuiltInFunc("builtin_string_less_equal");
+                calleeFunc = ir.getBuiltInFunc("_builtin_string_less_equal");
                 break;
         }
         List<Value> args = new ArrayList<>();
