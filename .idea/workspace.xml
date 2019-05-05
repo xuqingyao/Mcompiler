@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/IR/BasicBlock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/IR/BasicBlock.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/IR/Func.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/IR/Func.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/FuncInlineprocess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/FuncInlineprocess.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/NASMPrinter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/NASMPrinter$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/NASMPrinter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/NASMPrinter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/Registerprocess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/backend/Registerprocess.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/Symbol/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/Symbol/SymbolTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/Registerprocess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/Registerprocess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" afterDir="false" />
-    </list>
+    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,8 +82,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+            <state relative-caret-position="81">
+              <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -268,7 +247,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-11" />
     <option name="width" value="980" />
     <option name="height" value="1031" />
@@ -396,7 +375,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557068133804" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557068549034" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -546,12 +525,12 @@
       <workItem from="1556761127604" duration="6980000" />
       <workItem from="1556846350969" duration="15346000" />
       <workItem from="1556937659602" duration="13661000" />
-      <workItem from="1557018059230" duration="31812000" />
+      <workItem from="1557018059230" duration="32250000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="436149000" />
+    <option name="totallyTimeSpent" value="436587000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1105,8 +1084,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+        <state relative-caret-position="81">
+          <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
         </state>
       </provider>
     </entry>
