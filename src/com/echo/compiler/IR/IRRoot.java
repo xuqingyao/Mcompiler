@@ -32,9 +32,9 @@ public class IRRoot {
         insertBuildInFunc("getString", "_getString");
         insertBuildInFunc("getInt", "_getInt");
         insertBuildInFunc("toString", "_toString");
-        insertBuildInFunc("string_substring", "_member_string_substring");
-        insertBuildInFunc("string_pareInt", "_member_string_parseInt");
-        insertBuildInFunc("string_ord", "_member_string_ord");
+        insertBuildInFunc("_member_string_substring", "_member_string_substring");
+        insertBuildInFunc("_member_string_pareInt", "_member_string_parseInt");
+        insertBuildInFunc("_member_string_ord", "_member_string_ord");
     }
 
     public void insertBuildInFunc(String name, String label) {

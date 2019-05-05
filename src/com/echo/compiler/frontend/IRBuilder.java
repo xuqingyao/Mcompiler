@@ -431,9 +431,9 @@ public class IRBuilder extends SymbolTableBuilder{
             if(thisExpr.getType() instanceof ClassType)
                 classname = ((ClassType) thisExpr.getType()).getName();
             else if(thisExpr.getType() instanceof ArrayType)
-                classname = "$CLASS_array";
+                classname = "array";
             else
-                classname = "$CLASS_string";
+                classname = "string";
             funcname = "_member_" + classname + "_" + funcname;
             args.add(thisExpr.regValue);
         }
@@ -484,10 +484,10 @@ public class IRBuilder extends SymbolTableBuilder{
             currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
             node.regValue = reg;
         }
-        else if (funcname == "_member_$CLASS_string_substring") {
+        else if (funcname == "_member_string_substring") {
             node.getArgs().get(0).accept(this);
             node.getArgs().get(1).accept(this);
-            calleeFunc = ir.getBuiltInFunc("_member_$CLASS_string_substring");
+            calleeFunc = ir.getBuiltInFunc("_member_string_substring");
             List<Value> args = new ArrayList<>();
             args.add(thisExpr.regValue);
             args.add(node.getArgs().get(0).regValue);
@@ -496,17 +496,17 @@ public class IRBuilder extends SymbolTableBuilder{
             currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
             node.regValue = reg;
         }
-        else if (funcname == "_member_$CLASS_string_parseInt") {
-            calleeFunc = ir.getBuiltInFunc("_member_$CLASS_string_parseInt");
+        else if (funcname == "_member_string_parseInt") {
+            calleeFunc = ir.getBuiltInFunc("_member_string_parseInt");
             List<Value> args = new ArrayList<>();
             args.add(thisExpr.regValue);
             reg = new VirtualRegister("parseInt");
             currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
             node.regValue = reg;
         }
-        else if (funcname == "_member_$CLASS_string_ord"){
+        else if (funcname == "_member_string_ord"){
             node.getArgs().get(0).accept(this);
-            calleeFunc = ir.getBuiltInFunc("_member_$CLASS_string_ord");
+            calleeFunc = ir.getBuiltInFunc("_member_string_ord");
             List<Value> args = new ArrayList<>();
             args.add(thisExpr.regValue);
             args.add(node.getArgs().get(0).regValue);
@@ -514,7 +514,7 @@ public class IRBuilder extends SymbolTableBuilder{
             currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
             node.regValue = reg;
         }
-        else if(funcname == "_member_$CLASS_string_length" || funcname == "_member_$CLASS_array_size") {
+        else if(funcname == "_member_string_length" || funcname == "_member_array_size") {
             reg = new VirtualRegister("size");
             currentBB.addInst(new LoadInst(currentBB, reg, thisExpr.regValue, 8, 0));
             node.regValue = reg;

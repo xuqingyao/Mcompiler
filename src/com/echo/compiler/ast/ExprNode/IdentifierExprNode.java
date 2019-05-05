@@ -6,7 +6,7 @@ import com.echo.compiler.ast.Location;
 
 public class IdentifierExprNode extends ExprNode{
     private String identifier;
-    private VarSymbol varSymbol;
+    private VarSymbol varSymbol = null;
     public boolean needMemOp = false;
     public boolean checked = false;
 
