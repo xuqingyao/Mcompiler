@@ -56,10 +56,8 @@ public class NASMPrinter implements IRVisitor{
         reg0 = node.reg0;
         reg1 = node.reg1;
         IDMap.put(node.funcs.get("main").startBB, "main");
-        out.println("\t\tglobal\tmain");
-        out.println();
-        out.println("\t\textern\tmalloc");
-        out.println();
+        out.println("\t\tglobal\tmain\n");
+        out.println("\t\textern\tmalloc\n");
 
         //process the data
         if(node.staticDataList.size() > 0){
@@ -84,11 +82,12 @@ public class NASMPrinter implements IRVisitor{
         out.println("\t\tsection\t.text\n");
         for(Func func : node.funcs.values())
             func.accept(this);
+        out.println();
 
         try{
             BufferedReader bufferedReader = new BufferedReader(new FileReader("lib/builtin_function.asm"));
-            String line = bufferedReader.readLine();
-            while(line != null)
+            String line;
+            while((line = bufferedReader.readLine()) != null)
                 out.println(line);
         }
         catch (IOException exception) {
@@ -98,12 +97,9 @@ public class NASMPrinter implements IRVisitor{
 
     @Override
     public void visit(Func node) {
-        out.printf("# function %\n\n", node.name);
-        int BBidx = 0;
-        for(BasicBlock BB : node.getReversePostOrder()){
+        out.println("# function \n" + node.name);
+        for(BasicBlock BB : node.getReversePostOrder())
             BB.accept(this);
-            BBidx++;
-        }
     }
 
     @Override
@@ -139,7 +135,7 @@ public class NASMPrinter implements IRVisitor{
 
     @Override
     public void visit(ReturnJumpInst node) {
-        out.println("\t\tret");
+        out.println("\t\tret\n");
     }
 
     @Override
@@ -340,18 +336,18 @@ public class NASMPrinter implements IRVisitor{
         if(node.addr instanceof StaticStringData){
             out.print("\t\tmov\t\t" + StringSize(node.size) + " ");
             node.addr.accept(this);
-            out.print(" ");
+            out.print(", ");
             node.value.accept(this);
             out.println();
             return;
         }
-        out.print("\t\t" + StringSize(node.size) + " [");
+        out.print("\t\tmov\t\t" + StringSize(node.size) + " [");
         node.addr.accept(this);
         if(node.addrOffset < 0)
             out.print(node.addrOffset);
         else if(node.addrOffset > 0)
             out.print("+" + node.addrOffset);
-        out.print("]");
+        out.print("], ");
         node.value.accept(this);
         out.println();
     }

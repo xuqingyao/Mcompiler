@@ -51,7 +51,7 @@ public class NASMTransformer {
             if((funcInfo.usedCalleeSaveReg.size() + funcInfo.StackSlotNum) % 2 == 0) // align rsp
                 funcInfo.StackSlotNum ++;
 
-            funcInfo.ExtraArgNum = (func.argVRegList.size() - 6) <= 0 ? 0 : func.argVRegList.size() - 6;
+            funcInfo.ExtraArgNum = func.argVRegList.size() <= 6 ? 0 : func.argVRegList.size() - 6;
 
             int extraArgOffset = (funcInfo.usedCalleeSaveReg.size() + funcInfo.StackSlotNum + 1) * 8;
             for(int i = 6; i < func.argVRegList.size(); ++ i, extraArgOffset += 8){
@@ -78,15 +78,15 @@ public class NASMTransformer {
     private void processFunc(){
         for(Func func : ir.funcs.values()){
             FuncInfo funcInfo = funcFuncInfoMap.get(func);
-            BasicBlock entryBB = func.startBB;
-            processEntry(funcInfo, entryBB);
+            BasicBlock startBB = func.startBB;
+            processStart(funcInfo, startBB);
             processBody(func, funcInfo);
             processReturn(func);
-            processExit(func, funcInfo, entryBB);
+            processEnd(func, funcInfo);
         }
     }
 
-    private void processEntry(FuncInfo funcInfo, BasicBlock entryBB){
+    private void processStart(FuncInfo funcInfo, BasicBlock entryBB){
         Inst firstInst = entryBB.firstInst;
         for(PhysicalRegister physicalRegister : funcInfo.usedCalleeSaveReg)
             firstInst.prependInst(new PushInst(entryBB, physicalRegister));
@@ -118,13 +118,13 @@ public class NASMTransformer {
             returnJumpInst.prependInst(new MoveInst(returnJumpInst.parentBB, rax, returnJumpInst.returnvalue));
     }
 
-    private void processExit(Func func, FuncInfo funcInfo, BasicBlock entryBB){
-        BasicBlock exitBB = func.endBB;
-        Inst lastInst = exitBB.lastInst;
+    private void processEnd(Func func, FuncInfo funcInfo){
+        BasicBlock endBB = func.endBB;
+        Inst lastInst = endBB.lastInst;
         if(funcInfo.StackSlotNum > 0)
-            lastInst.prependInst(new BinaryOpInst(entryBB, rsp, BinaryOpInst.BinaryOps.ADD, rsp, new IntImmValue(funcInfo.StackSlotNum * 8)));
+            lastInst.prependInst(new BinaryOpInst(endBB, rsp, BinaryOpInst.BinaryOps.ADD, rsp, new IntImmValue(funcInfo.StackSlotNum * 8)));
         for(int i = funcInfo.usedCalleeSaveReg.size() - 1; i >= 0; --i)
-            lastInst.prependInst(new PopInst(entryBB, funcInfo.usedCalleeSaveReg.get(i)));
+            lastInst.prependInst(new PopInst(endBB, funcInfo.usedCalleeSaveReg.get(i)));
     }
 
     private void processFuncCall(FuncCallInst inst, Func func, FuncInfo funcInfo){
@@ -164,9 +164,8 @@ public class NASMTransformer {
         }
 
         int Offset = 0;
-        for(int i = 0; i < 6; ++i){
-            if(arg.size() <= i)
-                break;
+        int tmp = arg.size() > 6 ? 6 : arg.size();
+        for(int i = 0; i < tmp; ++i){
             if (arg.get(i) instanceof PhysicalRegister && ((PhysicalRegister) arg.get(i)).isFuncArg() && ((PhysicalRegister) arg.get(i)).getArgIdx() < arg.size()) {
                 PhysicalRegister physicalRegister = (PhysicalRegister)arg.get(i);
                 if(funcArgOffsetMap.containsKey(physicalRegister))
@@ -182,9 +181,7 @@ public class NASMTransformer {
                 funcArgOffset.add(-1);
         }
 
-        for(int i = 0; i < 6; ++ i){
-            if(arg.size() <= i)
-                break;
+        for(int i = 0; i < tmp; ++ i){
             if(funcArgOffset.get(i) == -1){
                 if(arg.get(i) instanceof StackSlot){
                     inst.prependInst(new LoadInst(inst.parentBB, rax, rbp, 8, funcInfo.stackSlotOffsetMap.get(arg.get(i))));
@@ -225,11 +222,11 @@ public class NASMTransformer {
             PushCallerSaveNum ++;
             inst.prependInst(new PushInst(inst.parentBB, physicalRegister)); }
         // set argument
-        inst.prependInst(new MoveInst(inst.parentBB, rdi, ((HeapAllocInst)inst).allocSize));
+        inst.prependInst(new MoveInst(inst.parentBB, rdi, inst.allocSize));
         if(PushCallerSaveNum  % 2 == 1)//align rsp
             inst.prependInst(new PushInst(inst.parentBB, new IntImmValue(0)));
         // get return value
-        inst.appendInst(new MoveInst(inst.parentBB, ((HeapAllocInst)inst).dest, rax));
+        inst.appendInst(new MoveInst(inst.parentBB, inst.dest, rax));
         // restore caller save registers
         for(PhysicalRegister physicalRegister : funcInfo.usedCallerSaveReg)
             inst.appendInst(new PopInst(inst.parentBB, physicalRegister));

@@ -58,9 +58,12 @@ public class LiveAnalysis {
                         if(usedRegisters instanceof VirtualRegister)
                             in.add((VirtualRegister)usedRegisters);
                     }
-                    if(!inst.liveIn.equals(in) || !inst.liveout.equals(out)){
+                    if(!inst.liveIn.equals(in)) {
                         changed = true;
                         inst.liveIn = new HashSet<>(in);
+                    }
+                    if(!inst.liveout.equals(out)){
+                        changed = true;
                         inst.liveout = new HashSet<>(out);
                     }
                 }

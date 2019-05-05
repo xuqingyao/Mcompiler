@@ -31,18 +31,14 @@ public class IRBuilder extends SymbolTableBuilder{
         this.globalSymbolTable = globalSymbolTable;
     }
 
-    private FuncDeclNode AddVarFunc(ProgramNode node){
+    private void AddVarFunc(ProgramNode node) {
         for (DeclNode declNode : node.getDecls()) {
-            if (declNode instanceof FuncDeclNode) {
+            if(declNode instanceof VarDeclNode)
+                declNode.accept(this);
+            else if (declNode instanceof FuncDeclNode) {
                 FuncSymbol funcSymbol = (FuncSymbol) currentSymbolTable.get("$FUNC_" + declNode.getName());
                 Func func = new Func(funcSymbol);
                 ir.addFunc(func);
-            }
-            else if (declNode instanceof VarDeclNode){
-                if(((VarDeclNode) declNode).getInit() != null){
-                    IRGlobalVar var = new IRGlobalVar(declNode.getName(), ((VarDeclNode)declNode).getInit());
-                    globalVarInitList.add(var);
-                }
             }
             else {
                 ClassSymbol classSymbol = (ClassSymbol) currentSymbolTable.get("$CLASS_" + declNode.getName());
@@ -55,6 +51,9 @@ public class IRBuilder extends SymbolTableBuilder{
                 currentSymbolTable = currentSymbolTable.getParent();
             }
         }
+    }
+
+    private FuncDeclNode AddInitVar(){
         List<Node> stats = new ArrayList<>();
         for(IRGlobalVar var : globalVarInitList){
             IdentifierExprNode lhs = new IdentifierExprNode(var.name, null);
@@ -78,31 +77,12 @@ public class IRBuilder extends SymbolTableBuilder{
     @Override
     public void visit(ProgramNode node) {
         currentSymbolTable = globalSymbolTable;
-//        for (DeclNode declNode : node.getDecls()) {
-//            if (declNode instanceof FuncDeclNode) {
-//                FuncSymbol funcSymbol = (FuncSymbol) currentSymbolTable.get("$FUNC_" + declNode.getName());
-//                Func func = new Func(funcSymbol);
-//                ir.addFunc(func);
-//            }
-//            else if (declNode instanceof VarDeclNode)
-//                declNode.accept(this);
-//            else {
-//                ClassSymbol classSymbol = (ClassSymbol) currentSymbolTable.get("$CLASS_" + declNode.getName());
-//                currentSymbolTable = classSymbol.getSymbolTable();
-//                for (FuncDeclNode funcmember : ((ClassDeclNode) declNode).getFuncMember()) {
-//                    FuncSymbol funcSymbol = (FuncSymbol) currentSymbolTable.get("$FUNC_" + funcmember.getName());
-//                    Func func = new Func(funcSymbol);
-//                    ir.addFunc(func);
-//                }
-//                currentSymbolTable = currentSymbolTable.getParent();
-//            }
-//        }
-
-        FuncDeclNode initFunc = AddVarFunc(node);
+        AddVarFunc(node);
+        FuncDeclNode initFunc = AddInitVar();
         initFunc.accept(this);
 
         for (DeclNode declNode : node.getDecls()){
-            if(declNode instanceof ClassDeclNode || declNode instanceof VarDeclNode || declNode instanceof FuncDeclNode)
+            if(declNode instanceof ClassDeclNode || declNode instanceof FuncDeclNode)
                 declNode.accept(this);
         }
         for(Func func : ir.funcs.values())
@@ -162,6 +142,7 @@ public class IRBuilder extends SymbolTableBuilder{
                 BB.setJumpInst(new JumpJumpInst(BB, mergeEndBB));
             }
             mergeEndBB.setJumpInst(new ReturnJumpInst(mergeEndBB, returnReg));
+            currentFunction.endBB = mergeEndBB;
         }
         else
             currentFunction.endBB = currentFunction.returnList.get(0).parentBB;
@@ -187,10 +168,10 @@ public class IRBuilder extends SymbolTableBuilder{
             StaticData data = new StaticVarData(node.getName(), 8);
             ir.addIRStaticData(data);
             varSymbol.register = data;
-//            if(node.getInit() != null){
-//                IRGlobalVar var = new IRGlobalVar(node.getName(), node.getInit());
-//                globalVarInitList.add(var);
-//            }
+            if(node.getInit() != null){
+                IRGlobalVar var = new IRGlobalVar(node.getName(), node.getInit());
+                globalVarInitList.add(var);
+            }
         }
         else{
             VirtualRegister reg = new VirtualRegister(node.getName());
@@ -198,7 +179,7 @@ public class IRBuilder extends SymbolTableBuilder{
             if(isFuncArgDecl)
                 currentFunction.addArgVReg(reg);
             if(node.getInit() != null) {
-                if (node.getInit().getType() instanceof BoolType) {
+                if (node.getInit().getType() instanceof BoolType && !(node.getInit() instanceof BoolConstExprNode)) {
                     node.getInit().trueBB = new BasicBlock(currentFunction, null);
                     node.getInit().falseBB = new BasicBlock(currentFunction, null);
                 }
@@ -463,16 +444,14 @@ public class IRBuilder extends SymbolTableBuilder{
             processPrintFuncCall(node.getArgs().get(0), funcname);
         else if (funcname == "getString") {
             calleeFunc = ir.getBuiltInFunc(funcname);
-            List<Value> args = new ArrayList<>();
             reg = new VirtualRegister("getString");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
+            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, new ArrayList<>(), reg));
             node.regValue = reg;
         }
         else if (funcname == "getInt") {
             calleeFunc = ir.getBuiltInFunc(funcname);
-            List<Value> args = new ArrayList<>();
             reg = new VirtualRegister("getInt");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
+            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, new ArrayList<>(), reg));
             node.regValue = reg;
         }
         else if (funcname == "toString") {

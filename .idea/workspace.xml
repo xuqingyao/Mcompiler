@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,20 +39,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-524">
-              <caret line="485" column="9" lean-forward="true" selection-start-line="485" selection-start-column="9" selection-end-line="485" selection-end-column="9" />
+            <state relative-caret-position="467">
+              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#getReversePostOrder#0;class#Func#0" />
+                <element signature="method#getReversePreOrder#0;class#Func#0" />
+                <element signature="method#updateCalleeSet#0;class#Func#0" />
+                <element signature="method#setNewBBGraph#0;class#Func#0" />
+                <element signature="method#genFirstBB#0;class#Func#0" />
+                <element signature="method#dfsPostOrder#0;class#Func#0" />
+                <element signature="method#dfsPreOrder#0;class#Func#0" />
+                <element signature="method#calcReversePostOrder#0;class#Func#0" />
+                <element signature="method#calcReversePreOrder#0;class#Func#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-403">
-              <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+            <state relative-caret-position="25451">
+              <caret line="916" column="22" lean-forward="true" selection-start-line="916" selection-start-column="22" selection-end-line="916" selection-end-column="22" />
+              <folding>
+                <element signature="e#11322#11323#0" expanded="true" />
+                <element signature="e#11365#11366#0" expanded="true" />
+                <element signature="e#15482#15483#0" expanded="true" />
+                <element signature="e#15567#15568#0" expanded="true" />
+                <element signature="e#15625#15626#0" expanded="true" />
+                <element signature="e#15711#15712#0" expanded="true" />
+                <element signature="e#44738#44739#0" expanded="true" />
+                <element signature="e#44802#44803#0" expanded="true" />
+                <element signature="e#45220#45221#0" expanded="true" />
+                <element signature="e#45292#45293#0" expanded="true" />
+                <element signature="e#45350#45351#0" expanded="true" />
+                <element signature="e#45400#45401#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,7 +86,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-31">
+            <state relative-caret-position="-310">
               <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,72 +96,80 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/Symbol/ClassSymbol.java">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+            <state relative-caret-position="172">
+              <caret line="97" column="12" lean-forward="true" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
               <folding>
-                <element signature="e#1004#1005#0" expanded="true" />
-                <element signature="e#1038#1039#0" expanded="true" />
-                <element signature="e#1072#1073#0" expanded="true" />
-                <element signature="e#1105#1106#0" expanded="true" />
-                <element signature="e#1154#1155#0" expanded="true" />
-                <element signature="e#1198#1199#0" expanded="true" />
+                <element signature="e#1875#1876#0" expanded="true" />
+                <element signature="e#1918#1919#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7683">
+              <caret line="351" column="22" lean-forward="true" selection-start-line="351" selection-start-column="22" selection-end-line="351" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4324#4325#0" expanded="true" />
+                <element signature="e#11560#11561#0" expanded="true" />
+                <element signature="e#12025#12026#0" expanded="true" />
+                <element signature="e#12119#12120#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/ExprNode.java">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-377">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state relative-caret-position="6913">
+              <caret line="238" column="68" selection-start-line="238" selection-start-column="68" selection-end-line="238" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#addEdge#0;class#GraphColoring#0" />
+                <element signature="method#removeNode#0;class#GraphColoring#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/ast/StatNode/ForStatNode.java">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="1173">
+              <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/FuncCallExprNode.java">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="31" />
+            <state relative-caret-position="1953">
+              <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/IdentifierExprNode.java">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/Registerprocess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/BinaryExprNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-620">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/Symbol/FuncSymbol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1085">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="-5">
+              <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,11 +185,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>BUILTIN_STRING_LESS_EQUAL_FUNC_NAME</find>
-      <find>IRFunction</find>
-      <find>private</find>
-      <find>processStringBinaryOp</find>
-      <find>isMemberFuncName</find>
       <find>SmallDegreeNodes</find>
       <find>stack.pu</find>
       <find>remove</find>
@@ -158,7 +193,6 @@
       <find>globalVarList</find>
       <find>unused</find>
       <find>processArrayNew</find>
-      <find>processAssign</find>
       <find>uselessStatic</find>
       <find>&quot;_member_&quot;</find>
       <find>newBB</find>
@@ -175,6 +209,12 @@
       <find>$CLASS</find>
       <find>built</find>
       <find>member</find>
+      <find>init_func</find>
+      <find>size</find>
+      <find>processAssign</find>
+      <find>virtualRegister</find>
+      <find>mergeEndBB</find>
+      <find>currentFunc</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -189,7 +229,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/IRInst/ReturnInst.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/IRInst/BranchInst.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/IRInst/BranchJumoInst.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/IRRegister/VirtualReg.java" />
@@ -224,22 +263,23 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/FuncCallInst.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegister.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Register/PhysicalRegister.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncArgsprocess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/Registerprocess.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Compiler.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegisterSet.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Symbol/ClassSymbol.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/IdentifierExprNode.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" />
       </list>
     </option>
   </component>
@@ -249,7 +289,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-11" />
     <option name="width" value="980" />
     <option name="height" value="1031" />
@@ -360,7 +400,7 @@
               <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
               <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
               <item name="com.echo.compiler" type="1f31426a:PackageElementNode" />
-              <item name="frontend" type="1f31426a:PackageElementNode" />
+              <item name="backend" type="1f31426a:PackageElementNode" />
             </path>
             <path>
               <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
@@ -388,7 +428,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557026872047" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557051385478" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -538,12 +578,12 @@
       <workItem from="1556761127604" duration="6980000" />
       <workItem from="1556846350969" duration="15346000" />
       <workItem from="1556937659602" duration="13661000" />
-      <workItem from="1557018059230" duration="6520000" />
+      <workItem from="1557018059230" duration="17668000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="410857000" />
+    <option name="totallyTimeSpent" value="422005000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -555,7 +595,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="653" height="687" extended-state="0" />
+    <frame x="-7" y="0" width="653" height="687" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.505291" side_tool="true" weight="0.26434922" />
@@ -564,9 +604,9 @@
       <window_info id="Capture Tool" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.5035461" side_tool="true" weight="0.26434922" />
-      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.46890756" />
+      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.4672269" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3250444" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32252252" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4987874" weight="0.8206039" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -755,34 +795,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/FuncCallInst.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-479">
           <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-992">
-          <caret line="16" column="46" lean-forward="true" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2647#2648#0" expanded="true" />
-            <element signature="e#2682#2683#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -858,83 +876,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="992">
-          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getReversePostOrder#0;class#Func#0" />
-            <element signature="method#getReversePreOrder#0;class#Func#0" />
-            <element signature="method#updateCalleeSet#0;class#Func#0" />
-            <element signature="method#setNewBBGraph#0;class#Func#0" />
-            <element signature="method#genFirstBB#0;class#Func#0" />
-            <element signature="method#dfsPostOrder#0;class#Func#0" />
-            <element signature="method#dfsPreOrder#0;class#Func#0" />
-            <element signature="method#calcReversePostOrder#0;class#Func#0" />
-            <element signature="method#calcReversePreOrder#0;class#Func#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2077">
-          <caret line="78" column="54" selection-start-line="78" selection-start-column="54" selection-end-line="78" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getVirtualRegister#0;class#GlobalVariableProcess#0" />
-            <element signature="method#isLoadStore#0;class#GlobalVariableProcess#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/Compiler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1953">
-          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4357#4358#0" expanded="true" />
-            <element signature="e#4395#4396#0" expanded="true" />
-            <element signature="e#11574#11575#0" expanded="true" />
-            <element signature="e#11621#11622#0" expanded="true" />
-            <element signature="e#12045#12046#0" expanded="true" />
-            <element signature="e#12086#12087#0" expanded="true" />
-            <element signature="e#12143#12144#0" expanded="true" />
-            <element signature="e#12180#12181#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/Registerprocess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2077">
-          <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#BuildGraph#0;class#GraphColoring#0" />
-            <element signature="method#getVRInfo#0;class#GraphColoring#0" />
-            <element signature="method#addEdge#0;class#GraphColoring#0" />
-            <element signature="method#removeNode#0;class#GraphColoring#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -961,37 +906,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#processFunc#0;class#NASMTransformer#0" />
-            <element signature="method#processBody#0;class#NASMTransformer#0" />
-            <element signature="method#processReturn#0;class#NASMTransformer#0" />
-            <element signature="method#processLoad#0;class#NASMTransformer#0" />
-            <element signature="method#processStore#0;class#NASMTransformer#0" />
-            <element signature="method#processMove#0;class#NASMTransformer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/ASTBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-19124">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
-          <folding>
-            <element signature="e#1875#1876#0" expanded="true" />
-            <element signature="e#1918#1919#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1059,16 +977,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-403">
-          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
+        <state relative-caret-position="-310">
           <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1076,10 +987,142 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-171">
+          <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1021#1022#0" expanded="true" />
+            <element signature="e#1054#1055#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="e#1265#1266#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="97" column="12" lean-forward="true" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+          <folding>
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#1918#1919#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getReversePostOrder#0;class#Func#0" />
+            <element signature="method#getReversePreOrder#0;class#Func#0" />
+            <element signature="method#updateCalleeSet#0;class#Func#0" />
+            <element signature="method#setNewBBGraph#0;class#Func#0" />
+            <element signature="method#genFirstBB#0;class#Func#0" />
+            <element signature="method#dfsPostOrder#0;class#Func#0" />
+            <element signature="method#dfsPreOrder#0;class#Func#0" />
+            <element signature="method#calcReversePostOrder#0;class#Func#0" />
+            <element signature="method#calcReversePreOrder#0;class#Func#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3379">
+          <caret line="113" column="129" selection-start-line="113" selection-start-column="129" selection-end-line="113" selection-end-column="129" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#isLoadStore#0;class#GlobalVariableProcess#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-403">
+          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-524">
-          <caret line="485" column="9" lean-forward="true" selection-start-line="485" selection-start-column="9" selection-end-line="485" selection-end-column="9" />
+        <state relative-caret-position="25451">
+          <caret line="916" column="22" lean-forward="true" selection-start-line="916" selection-start-column="22" selection-end-line="916" selection-end-column="22" />
+          <folding>
+            <element signature="e#11322#11323#0" expanded="true" />
+            <element signature="e#11365#11366#0" expanded="true" />
+            <element signature="e#15482#15483#0" expanded="true" />
+            <element signature="e#15567#15568#0" expanded="true" />
+            <element signature="e#15625#15626#0" expanded="true" />
+            <element signature="e#15711#15712#0" expanded="true" />
+            <element signature="e#44738#44739#0" expanded="true" />
+            <element signature="e#44802#44803#0" expanded="true" />
+            <element signature="e#45220#45221#0" expanded="true" />
+            <element signature="e#45292#45293#0" expanded="true" />
+            <element signature="e#45350#45351#0" expanded="true" />
+            <element signature="e#45400#45401#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1953">
+          <caret line="65" column="39" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6913">
+          <caret line="238" column="68" selection-start-line="238" selection-start-column="68" selection-end-line="238" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#addEdge#0;class#GraphColoring#0" />
+            <element signature="method#removeNode#0;class#GraphColoring#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/Registerprocess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7683">
+          <caret line="351" column="22" lean-forward="true" selection-start-line="351" selection-start-column="22" selection-end-line="351" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4324#4325#0" expanded="true" />
+            <element signature="e#11560#11561#0" expanded="true" />
+            <element signature="e#12025#12026#0" expanded="true" />
+            <element signature="e#12119#12120#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

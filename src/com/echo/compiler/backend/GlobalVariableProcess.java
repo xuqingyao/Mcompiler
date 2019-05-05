@@ -68,8 +68,9 @@ public class GlobalVariableProcess {
         }
         //load the static at the beginning  of the function
         BasicBlock bb = func.startBB;
-        Inst i = bb.firstInst;
-        funcInfo.staticMap.forEach(((staticData, virtualRegister) -> i.prependInst(new LoadInst(bb, virtualRegister, staticData, 8, staticData instanceof StaticStringData))));
+        Inst firstInst = bb.firstInst;
+        for(StaticData staticData : funcInfo.staticMap.keySet())
+            firstInst.prependInst(new LoadInst(bb, funcInfo.staticMap.get(staticData), staticData, 8, staticData instanceof StaticStringData));
     }
 
     public void processs(){
@@ -80,6 +81,7 @@ public class GlobalVariableProcess {
         for(Func func : ir.funcs.values()){
             FuncInfo funcInfo = funcFuncInfoMap.get(func);
             funcInfo.recursiveStaticUed.addAll(funcInfo.staticMap.keySet());
+            funcInfo.recursiveStaticDefined.addAll(funcInfo.definedStaticData);
             for(Func calleeFunc : func.recursiveCalleeSet){
                 FuncInfo calleeFuncInfo = funcFuncInfoMap.get(calleeFunc);
                 funcInfo.recursiveStaticUed.addAll(calleeFuncInfo.staticMap.keySet());
@@ -109,7 +111,7 @@ public class GlobalVariableProcess {
                                 loadStaticSet.retainAll(used);
                                 for(StaticData staticData : loadStaticSet){
                                     if(!(staticData instanceof StaticStringData))
-                                        inst.appendInst(new LoadInst(BB, funcInfo.staticMap.get(staticData), staticData, 8, staticData instanceof StaticStringData));
+                                        inst.appendInst(new LoadInst(BB, funcInfo.staticMap.get(staticData), staticData, 8, false));
                                 }
                             }
                         }
