@@ -12,11 +12,11 @@ public class NASMRegisterSet {
     public static NASMRegister rax, rcx, rdx, rbx, rsi, rdi, rsp, rbp, r8, r9, r10, r11, r12, r13, r14, r15;
     public static List<PhysicalRegister> funcArg;
 //      Calling convention
-//          Function Arguments：
+//          Function Arguments:
 //              rdi, rsi, rdx, rcx, r8, r9, then put to stack
 //          Return value:
 //              rax
-//          Callee save register
+//          Callee save register:
 //              rbx, rbp, r12, r13, r14, r15.
 
     static {
