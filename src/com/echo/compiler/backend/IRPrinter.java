@@ -190,9 +190,9 @@ public class IRPrinter implements IRVisitor {
             }
             node.dest.accept(this);
             out.printf(" = %s ", op);
-            node.lhs.accept(this);
+            node.getLhs().accept(this);
             out.printf(" ");
-            node.rhs.accept(this);
+            node.getRhs().accept(this);
             out.println();
         }
 
@@ -222,9 +222,9 @@ public class IRPrinter implements IRVisitor {
             }
             node.dest.accept(this);
             out.printf(" = %s ", op);
-            node.lhs.accept(this);
+            node.getLhs().accept(this);
             out.printf(" ");
-            node.rhs.accept(this);
+            node.getRhs().accept(this);
             out.println();
         }
 

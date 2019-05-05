@@ -85,7 +85,7 @@ public class NASMPrinter implements IRVisitor{
         out.println();
 
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("lib/builtin_function.asm"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("lib/builtin_functions.asm"));
             String line;
             while((line = bufferedReader.readLine()) != null)
                 out.println(line);
@@ -97,14 +97,14 @@ public class NASMPrinter implements IRVisitor{
 
     @Override
     public void visit(Func node) {
-        out.println("# function \n" + node.name);
+        out.println("# function " + node.name + "\n");
         for(BasicBlock BB : node.getReversePostOrder())
             BB.accept(this);
     }
 
     @Override
     public void visit(BasicBlock node) {
-        out.println(BlockID(node));
+        out.println(BlockID(node) + ":");
         for(Inst inst = node.firstInst; inst != null; inst = inst.nextInst)
             inst.accept(this);
         out.println();
@@ -135,7 +135,7 @@ public class NASMPrinter implements IRVisitor{
 
     @Override
     public void visit(ReturnJumpInst node) {
-        out.println("\t\tret\n");
+        out.println("\t\tret");
     }
 
     @Override
@@ -162,9 +162,9 @@ public class NASMPrinter implements IRVisitor{
     public void visit(BinaryOpInst node) {
         if(node.op == BinaryOpInst.BinaryOps.DIV || node.op == BinaryOpInst.BinaryOps.MOD){
             out.print("\t\tmov\t\trbx, ");
-            node.rhs.accept(this);
+            node.getRhs().accept(this);
             out.print("\n\t\tmov\t\trax, ");
-            node.lhs.accept(this);
+            node.getLhs().accept(this);
             out.println("\n\t\tmov\t\t" + reg0.getName() + ", rdx");//restore the value of rdx
             out.println("\t\tcdq");//Convert Double to Quad
             out.println("\t\tidiv\trbx");
@@ -179,43 +179,43 @@ public class NASMPrinter implements IRVisitor{
         else if(node.op == BinaryOpInst.BinaryOps.LEFT_SHIFT || node.op == BinaryOpInst.BinaryOps.RIGHT_SHIFT){
             out.println("\t\tmov\t\trbx, rcx");
             out.print("\t\tmov\t\trcx, ");
-            node.rhs.accept(this);
+            node.getRhs().accept(this);
             if(node.op == BinaryOpInst.BinaryOps.LEFT_SHIFT)
                 out.print("\n\t\tsal\t\t");
             else
                 out.print("\n\t\tsar\t\t");
-            node.lhs.accept(this);
+            node.getLhs().accept(this);
             out.println(", cl");
             out.println("\t\tmov\t\trcx, rbx");
             out.print("\t\tand\t\t");
-            node.lhs.accept(this);
+            node.getLhs().accept(this);
             out.println(", -1");
         }
         else{
-            if(node.dest != node.lhs)
+            if(node.dest != node.getLhs())
                 throw new CompilerError("binary operation should have same dest and lhs");
             String op = null;
             switch (node.op){
                 case ADD:
-                    if(node.rhs instanceof IntImmValue && ((IntImmValue) node.rhs).value == 1){//some optimization
+                    if(node.getRhs() instanceof IntImmValue && ((IntImmValue) node.getRhs()).value == 1){//some optimization
                         out.print("\t\tinc\t\t");
-                        node.lhs.accept(this);
+                        node.getLhs().accept(this);
                         out.println();
                         return;
                     }
                     op = "add";
                     break;
                 case SUB:
-                    if(node.rhs instanceof IntImmValue && ((IntImmValue) node.rhs).value == 1){
+                    if(node.getRhs() instanceof IntImmValue && ((IntImmValue) node.getRhs()).value == 1){
                         out.print("\t\tdec\t\t");
-                        node.lhs.accept(this);
+                        node.getLhs().accept(this);
                         out.println();
                         return;
                     }
                     op = "sub";
                     break;
                 case MUL:
-                    if (node.rhs instanceof IntImmValue && ((IntImmValue) node.rhs).value == 1)
+                    if (node.getRhs() instanceof IntImmValue && ((IntImmValue) node.getRhs()).value == 1)
                         return;
                     op = "imul";
                     break;
@@ -230,30 +230,30 @@ public class NASMPrinter implements IRVisitor{
                     break;
             }
             out.print("\t\t" + op + "\t\t");
-            node.lhs.accept(this);
+            node.getLhs().accept(this);
             out.print(", ");
-            node.rhs.accept(this);
+            node.getRhs().accept(this);
             out.println();
         }
     }
 
     @Override
     public void visit(CompareInst node) {
-        if(node.lhs instanceof PhysicalRegister){
+        if(node.getLhs() instanceof PhysicalRegister){
             out.print("\t\tand\t\t");
-            node.lhs.accept(this);
+            node.getRhs().accept(this);
             out.println(", -1");
         }
-        if(node.rhs instanceof PhysicalRegister){
+        if(node.getRhs() instanceof PhysicalRegister){
             out.print("\t\tand\t\t");
-            node.rhs.accept(this);
+            node.getRhs().accept(this);
             out.println(", -1");
         }
         out.println("\t\txor\t\trax, rax");
         out.print("\t\tcmp\t\t");
-        node.lhs.accept(this);
+        node.getLhs().accept(this);
         out.print(", ");
-        node.rhs.accept(this);
+        node.getRhs().accept(this);
         out.println();
         String op = null;
         switch (node.op){
@@ -367,7 +367,7 @@ public class NASMPrinter implements IRVisitor{
 
     @Override
     public void visit(PopInst node) {
-        out.print("\t\tpop\t");
+        out.print("\t\tpop\t\t");
         node.preg.accept(this);
         out.println();
     }
@@ -433,7 +433,7 @@ public class NASMPrinter implements IRVisitor{
     @Override
     public void visit(StaticStringData node) {
         if(isDataSection){
-            out.println(dataID(node));
+            out.println(dataID(node) + ":");
             out.println("\t\tdq\t\t" + node.value.length());
             out.println("\t\tdb\t\t" + staticStringDataSection(node.value));
         }

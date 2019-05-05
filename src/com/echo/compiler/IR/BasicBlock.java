@@ -29,7 +29,7 @@ public class BasicBlock {
         if(hasJumpInit)
             throw new CompilerError("can not add an instruction into a finished block");
         if(firstInst == null)
-            firstInst = inst;
+            firstInst = lastInst = inst;
         else{
             lastInst.linkNextInst(inst);
             lastInst = inst;

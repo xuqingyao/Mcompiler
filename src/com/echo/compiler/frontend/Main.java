@@ -41,7 +41,7 @@ public class Main {
     }
 
     private static void buildAST() throws Exception {
-        String inFile = null;
+        String inFile = "C:\\Users\\echo\\Downloads\\testcase\\testcase_7.txt";
         InputStream in;
         if (inFile == null)
             in = System.in;
@@ -91,7 +91,7 @@ public class Main {
 
 
     private static void generateCode() throws Exception{
-        String outFile = null;
+        String outFile = "C:\\Users\\echo\\Desktop\\Mcompiler\\src\\com\\echo\\compiler\\prog.asm";
         PrintStream outS;
         if (outFile == null)
             outS = System.out;

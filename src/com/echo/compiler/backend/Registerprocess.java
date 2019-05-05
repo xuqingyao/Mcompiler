@@ -30,14 +30,16 @@ public class Registerprocess {
                             if (((BinaryOpInst) inst).isCommutativeOp()) {
                                 ((BinaryOpInst) inst).setRhs(((BinaryOpInst) inst).getLhs());
                                 ((BinaryOpInst) inst).setLhs(((BinaryOpInst) inst).dest);
-                            } else {
+                            }
+                            else {
                                 VirtualRegister virtualRegister = new VirtualRegister("rhstmp");
                                 inst.prependInst(new MoveInst(inst.parentBB, virtualRegister, ((BinaryOpInst) inst).getRhs()));
                                 inst.prependInst(new MoveInst(inst.parentBB, ((BinaryOpInst) inst).dest, ((BinaryOpInst) inst).getLhs()));
                                 ((BinaryOpInst) inst).setLhs(((BinaryOpInst) inst).dest);
                                 ((BinaryOpInst) inst).setRhs(virtualRegister);
                             }
-                        } else if (((BinaryOpInst) inst).op != BinaryOpInst.BinaryOps.DIV && ((BinaryOpInst) inst).op != BinaryOpInst.BinaryOps.MOD) {
+                        }
+                        else if (((BinaryOpInst) inst).op != BinaryOpInst.BinaryOps.DIV && ((BinaryOpInst) inst).op != BinaryOpInst.BinaryOps.MOD) {
                             inst.prependInst(new MoveInst(inst.parentBB, ((BinaryOpInst) inst).dest, ((BinaryOpInst) inst).getLhs()));
                             ((BinaryOpInst) inst).setLhs(((BinaryOpInst) inst).dest);
                         }
