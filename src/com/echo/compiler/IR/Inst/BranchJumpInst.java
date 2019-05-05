@@ -28,7 +28,9 @@ public class BranchJumpInst extends JumpInst{
 
     @Override
     public void setUsedRegisters(Map<Register, Register> renameMap) {
-
+        if(cond instanceof Register)
+            cond = renameMap.get(cond);
+        reloadUsedRegistersRegValues();
     }
 
     @Override

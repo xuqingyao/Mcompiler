@@ -23,7 +23,9 @@ public class ReturnJumpInst extends JumpInst{
 
     @Override
     public void setUsedRegisters(Map<Register, Register> renameMap) {
-
+        if(returnvalue != null && returnvalue instanceof Register)
+            returnvalue = renameMap.get(returnvalue);
+        reloadUsedRegistersRegValues();
     }
 
     @Override

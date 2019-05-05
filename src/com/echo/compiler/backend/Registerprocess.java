@@ -24,22 +24,22 @@ public class Registerprocess {
                 for (Inst inst = BB.firstInst, nextInst; inst != null; inst = nextInst) {
                     nextInst = inst.nextInst;
                     if (inst instanceof BinaryOpInst) {
-                        if (((BinaryOpInst) inst).dest == ((BinaryOpInst) inst).lhs)
+                        if (((BinaryOpInst) inst).dest == ((BinaryOpInst) inst).getLhs())
                             continue;
-                        if (((BinaryOpInst) inst).dest == ((BinaryOpInst) inst).rhs) {
+                        if (((BinaryOpInst) inst).dest == ((BinaryOpInst) inst).getRhs()) {
                             if (((BinaryOpInst) inst).isCommutativeOp()) {
-                                ((BinaryOpInst) inst).rhs = ((BinaryOpInst) inst).lhs;
-                                ((BinaryOpInst) inst).lhs = ((BinaryOpInst) inst).dest;
+                                ((BinaryOpInst) inst).setRhs(((BinaryOpInst) inst).getLhs());
+                                ((BinaryOpInst) inst).setLhs(((BinaryOpInst) inst).dest);
                             } else {
                                 VirtualRegister virtualRegister = new VirtualRegister("rhstmp");
-                                inst.prependInst(new MoveInst(inst.parentBB, virtualRegister, ((BinaryOpInst) inst).rhs));
-                                inst.prependInst(new MoveInst(inst.parentBB, ((BinaryOpInst) inst).dest, ((BinaryOpInst) inst).lhs));
-                                ((BinaryOpInst) inst).lhs = ((BinaryOpInst) inst).dest;
-                                ((BinaryOpInst) inst).rhs = virtualRegister;
+                                inst.prependInst(new MoveInst(inst.parentBB, virtualRegister, ((BinaryOpInst) inst).getRhs()));
+                                inst.prependInst(new MoveInst(inst.parentBB, ((BinaryOpInst) inst).dest, ((BinaryOpInst) inst).getLhs()));
+                                ((BinaryOpInst) inst).setLhs(((BinaryOpInst) inst).dest);
+                                ((BinaryOpInst) inst).setRhs(virtualRegister);
                             }
                         } else if (((BinaryOpInst) inst).op != BinaryOpInst.BinaryOps.DIV && ((BinaryOpInst) inst).op != BinaryOpInst.BinaryOps.MOD) {
-                            inst.prependInst(new MoveInst(inst.parentBB, ((BinaryOpInst) inst).dest, ((BinaryOpInst) inst).lhs));
-                            ((BinaryOpInst) inst).lhs = ((BinaryOpInst) inst).dest;
+                            inst.prependInst(new MoveInst(inst.parentBB, ((BinaryOpInst) inst).dest, ((BinaryOpInst) inst).getLhs()));
+                            ((BinaryOpInst) inst).setLhs(((BinaryOpInst) inst).dest);
                         }
                     }
                 }
@@ -50,7 +50,7 @@ public class Registerprocess {
     private void processFuncArgs(){
         for(Func func : ir.funcs.values()) {
             Inst inst = func.startBB.firstInst;
-            for (int i = 0; i < func.argVRegList.size(); ++i) {
+            for (int i = 6; i < func.argVRegList.size(); ++i) {
                 VirtualRegister argreg = func.argVRegList.get(i);
                 StackSlot argslot = new StackSlot(func, "arg_" + i, true);
                 func.argsStaticSlotMap.put(argreg, argslot);

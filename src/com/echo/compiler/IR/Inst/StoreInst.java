@@ -30,8 +30,6 @@ public class StoreInst extends Inst {
 
     public StoreInst(BasicBlock parentBB, Value value, StaticData addr, int size){
         this(parentBB, value, addr, size, 0);
-        if(size == 0)
-            System.err.println("size is 0");
         this.isStatic = true;
     }
 

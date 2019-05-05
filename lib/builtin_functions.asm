@@ -16,7 +16,7 @@ global _getInt
 global _toString
 global _member_string_substring
 global _member_string_parseInt
-global _member_string_ordPci
+global _member_string_ord
 
 extern getchar
 extern strlen

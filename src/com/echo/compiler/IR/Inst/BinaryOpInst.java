@@ -16,7 +16,7 @@ public class BinaryOpInst extends Inst {
 
     public Register dest;
     public BinaryOps op;
-    public Value lhs, rhs;
+    private Value lhs, rhs;
 
     public BinaryOpInst(BasicBlock parentBB, Register dest, BinaryOps op, Value lhs, Value rhs){
         super(parentBB);
@@ -25,6 +25,14 @@ public class BinaryOpInst extends Inst {
         this.lhs = lhs;
         this.rhs = rhs;
         reloadUsedRegistersRegValues();
+    }
+
+    public Value getLhs() {
+        return lhs;
+    }
+
+    public Value getRhs() {
+        return rhs;
     }
 
     public void setLhs(Value lhs) {

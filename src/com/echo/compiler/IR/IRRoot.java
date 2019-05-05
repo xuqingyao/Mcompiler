@@ -33,7 +33,7 @@ public class IRRoot {
         insertBuildInFunc("getInt", "_getInt");
         insertBuildInFunc("toString", "_toString");
         insertBuildInFunc("_member_string_substring", "_member_string_substring");
-        insertBuildInFunc("_member_string_pareInt", "_member_string_parseInt");
+        insertBuildInFunc("_member_string_parseInt", "_member_string_parseInt");
         insertBuildInFunc("_member_string_ord", "_member_string_ord");
     }
 

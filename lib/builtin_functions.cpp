@@ -2,7 +2,7 @@
 #include <cstring>
 #include <malloc.h>
 
-char* _builtin_string_concat(char *str1, char *str2) {
+char* _builtIn_string_concat(char *str1, char *str2) {
     int len1 = *((long*) str1), len2 = *((long*) str2);
     char *catStr = (char*) malloc(9 + len1 + len2);
     *((long*) catStr) = len1 + len2;
@@ -18,19 +18,19 @@ char* _builtin_string_concat(char *str1, char *str2) {
     return catStr - 8;
 }
 
-int _builtin_string_equal(char *str1, char *str2) {
+int _builtIn_string_equal(char *str1, char *str2) {
     return strcmp(str1 + 8, str2 + 8) == 0;
 }
 
-int _builtin_string_inequal(char *str1, char *str2) {
+int _builtIn_string_not_equal(char *str1, char *str2) {
     return strcmp(str1 + 8, str2 + 8) != 0;
 }
 
-int _builtin_string_less(char *str1, char *str2) {
+int _builtIn_string_not_less(char *str1, char *str2) {
     return strcmp(str1 + 8, str2 + 8) < 0;
 }
 
-int _builtin_string_less_equal(char *str1, char *str2) {
+int _builtIn_string_not_less_equal(char *str1, char *str2) {
     return strcmp(str1 + 8, str2 + 8) <= 0;
 }
 
@@ -136,7 +136,7 @@ char* _member_string_substring(char *str, int l, int r) {
     return subStr - 8;
 }
 
-int _member_string_parseInt(char *str) {
+int _member_string_pareInt(char *str) {
     str += 8;
     bool neg = false;
     int i = 0;

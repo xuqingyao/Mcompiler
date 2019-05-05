@@ -14,7 +14,7 @@ public class CompareInst extends Inst {
 
     public Register dest;
     public CompareOp op;
-    public Value lhs, rhs;
+    private Value lhs, rhs;
 
     public CompareInst(BasicBlock parentBB, Register dest, CompareOp op, Value lhs, Value rhs){
         super(parentBB);
@@ -23,6 +23,14 @@ public class CompareInst extends Inst {
         this.lhs = lhs;
         this.rhs = rhs;
         reloadUsedRegistersRegValues();
+    }
+
+    public Value getLhs() {
+        return lhs;
+    }
+
+    public Value getRhs() {
+        return rhs;
     }
 
     public void setLhs(Value lhs){
