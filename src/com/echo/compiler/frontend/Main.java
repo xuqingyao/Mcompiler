@@ -20,7 +20,7 @@ import java.io.PrintStream;
 public class Main {
     private static ProgramNode ast;
     private static SymbolTable globalSymbolTable;
-    private static IRRoot ir;
+    private static IRRoot irRoot;
 
     public static void main(String[] args) throws Exception {
         try {
@@ -45,7 +45,8 @@ public class Main {
         InputStream in;
         if (inFile == null)
             in = System.in;
-        else in = new FileInputStream(inFile);
+        else
+            in = new FileInputStream(inFile);
         CharStream input = CharStreams.fromStream(in);
         mLexer lexer = new mLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -72,7 +73,7 @@ public class Main {
     private static void buildIR(){
         IRBuilder irBuilder = new IRBuilder(globalSymbolTable);
         irBuilder.visit(ast);
-        ir = irBuilder.ir;
+        irRoot = irBuilder.ir;
     }
 
 
@@ -84,7 +85,7 @@ public class Main {
             outS = System.out;
         else
             outS = new PrintStream(new FileOutputStream(outFile));
-        new IRPrinter(outS).visit(ir);
+        new IRPrinter(outS).visit(irRoot);
     }
 
 
@@ -96,12 +97,12 @@ public class Main {
             outS = System.out;
         else
             outS = new PrintStream(new FileOutputStream(outFile));
-//        new FuncInlineprocess(ir).process();
-        new GlobalVariableProcess(ir).processs();
-        new Registerprocess(ir).process();
-        new LiveAnalysis(ir).process();
-        new GraphColoring(ir).process();
-        new NASMTransformer(ir).process();
-        new NASMPrinter(outS).visit(ir);
+//        new FuncInlineprocess(irRoot).process();
+        new GlobalVariableProcess(irRoot).processs();
+        new Registerprocess(irRoot).process();
+        new LiveAnalysis(irRoot).process();
+        new GraphColoring(irRoot).process();
+        new NASMTransformer(irRoot).process();
+        new NASMPrinter(outS).visit(irRoot);
     }
 }
