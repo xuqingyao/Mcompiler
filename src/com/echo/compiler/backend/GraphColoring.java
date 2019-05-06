@@ -7,7 +7,6 @@ import com.echo.compiler.IR.Inst.*;
 import com.echo.compiler.IR.Register.*;
 import com.echo.compiler.NASM.NASMRegisterSet;
 import com.echo.compiler.error.CompilerError;
-import jdk.nashorn.internal.ir.FunctionCall;
 
 import java.util.*;
 
@@ -290,7 +289,7 @@ public class GraphColoring {
             for (BasicBlock bb : func.getReversePostOrder()) {
                 for (Inst inst = bb.firstInst; inst != null; inst = inst.nextInst) {
                     int cnt = 0;
-                    if (inst instanceof FunctionCall) {
+                    if (inst instanceof FuncCallInst) {
                         List<Value> argsList = ((FuncCallInst)inst).args;
                         for (int i = 0; i < argsList.size(); ++i) {
                             Value regValue = argsList.get(i);

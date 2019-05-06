@@ -20,6 +20,7 @@ public class ClassSymbol extends Symbol{
         for(FuncDeclNode funcDeclNode : node.getFuncMember()){
             String name = funcDeclNode.getName();
             FuncSymbol symbol = new FuncSymbol(funcDeclNode);
+            symbol.setClassname(node.getName());
             symbol.setMember(true);
             symbolTable.put(funcDeclNode.getLocation(), name, "$FUNC_" + name, symbol);
         }

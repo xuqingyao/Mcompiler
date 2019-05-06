@@ -419,7 +419,7 @@ public class NASMPrinter implements IRVisitor{
 
     private String staticStringDataSection(String string){
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < string.length(); ++ i){
+        for(int i = 1; i < string.length() - 1; ++ i){
             char c = string.charAt(i);
             stringBuilder.append((int)c);
             stringBuilder.append(", ");
@@ -433,7 +433,7 @@ public class NASMPrinter implements IRVisitor{
     public void visit(StaticStringData node) {
         if(isDataSection){
             out.println(dataID(node) + ":");
-            out.println("\t\tdq\t\t" + node.value.length());
+            out.println("\t\tdq\t\t" + (node.value.length() - 2));
             out.println("\t\tdb\t\t" + staticStringDataSection(node.value));
         }
         else

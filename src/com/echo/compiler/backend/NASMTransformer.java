@@ -43,7 +43,7 @@ public class NASMTransformer {
                     funcInfo.usedCallerSaveReg.add(physicalRegister);
             }
             funcInfo.usedCalleeSaveReg.add(rbx);
-            funcInfo.usedCallerSaveReg.add(rbp);
+            funcInfo.usedCalleeSaveReg.add(rbp);
 
             funcInfo.StackSlotNum = func.stackSlots.size();
             for(int i = 0; i < funcInfo.StackSlotNum; ++ i)

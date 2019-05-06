@@ -252,22 +252,17 @@ public class SemanticChecker extends SymbolTableBuilder{
         FuncSymbol funcSymbol = currentFuncSymbol;
         node.setFuncSymbol(funcSymbol);
         int paranum = funcSymbol.getParameters().size();
-        int firstpara;
-        if(funcSymbol.isMember())
-            firstpara = 1;
-        else
-            firstpara = 0;
-        if (paranum - firstpara != node.getArgs().size())
+        if (paranum != node.getArgs().size())
             throw new SemanticError(node.getLocation(), String.format("Function call has inconsistent number of arguments, expected %d but got %d", paranum, node.getArgs().size()));
-        for (int i = 0; i < paranum - firstpara; i++) {
+        for (int i = 0; i < paranum; i++) {
             node.getArgs().get(i).accept(this);
             if (node.getArgs().get(i).getType() instanceof VoidType)
-                throw new SemanticError(node.getArgs().get(i + firstpara).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
+                throw new SemanticError(node.getArgs().get(i).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
             else if (node.getArgs().get(i).getType() instanceof NullType){
-                if(!(funcSymbol.getParameters().get(i).getType() instanceof ClassType || funcSymbol.getParameters().get(i + firstpara).getType() instanceof ArrayType))
-                    throw new SemanticError(node.getArgs().get(i + firstpara).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
+                if(!(funcSymbol.getParameters().get(i).getType() instanceof ClassType || funcSymbol.getParameters().get(i).getType() instanceof ArrayType))
+                    throw new SemanticError(node.getArgs().get(i).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
             }
-            else if(!(funcSymbol.getParameters().get(i + firstpara).getType().equals(node.getArgs().get(i).getType())))
+            else if(!(funcSymbol.getParameters().get(i).getType().equals(node.getArgs().get(i).getType())))
                     throw new SemanticError(node.getArgs().get(i).getLocation(), String.format("Function call has inconsistent type of arguments, expected %s but got %s", funcSymbol.getParameters().get(i).getType().toString(), node.getArgs().get(i).getType().toString()));
         }
         node.setType(funcSymbol.getReturntype());

@@ -11,16 +11,13 @@ import java.util.List;
 public class FuncSymbol extends Symbol{
     private Type returntype;
     private List<VarSymbol> parameters;
-    private String classname;
-    private boolean isConstruct;
-    private boolean isMember;
-    private boolean isBuiltIn;
+    private String classname = null;
+    private boolean isConstruct = false;
+    private boolean isMember = false;
+    private boolean isBuiltIn = false;
 
     public FuncSymbol(String name, Type type) {
         super(name, type);
-        this.isConstruct = false;
-        this.isMember = false;
-        this.isBuiltIn = false;
     }
 
     public FuncSymbol(FuncDeclNode node){
@@ -34,9 +31,7 @@ public class FuncSymbol extends Symbol{
             VarSymbol varSymbol = new VarSymbol(paramater);
             parameters.add(varSymbol);
         }
-        this.classname = null;
         this.isConstruct = node.isConstruct();
-        this.isMember = false;
     }
 
     public void setBuiltIn(boolean builtIn) {
