@@ -294,10 +294,10 @@ public class IRBuilder extends SymbolTableBuilder{
 
     @Override
     public void visit(ForStatNode node){
-        BasicBlock condBB = node.getCond() != null ? new BasicBlock(currentFunction, "for_cond") : null;
-        BasicBlock stepBB = node.getStep() != null ? new BasicBlock(currentFunction, "for_step") : null;
         BasicBlock bodyBB = new BasicBlock(currentFunction, "for_body");
         BasicBlock afterBB = new BasicBlock(currentFunction, "for_after");
+        BasicBlock condBB = node.getCond() != null ? new BasicBlock(currentFunction, "for_cond") : bodyBB;
+        BasicBlock stepBB = node.getStep() != null ? new BasicBlock(currentFunction, "for_step") : condBB;
 
         BasicBlock oldLoopStepBB = currentLoopStepBB;
         BasicBlock oldLoopAfterBB = currentLoopAfterBB;
