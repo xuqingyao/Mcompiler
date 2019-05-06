@@ -17,7 +17,8 @@ public class Func {
     public List<VirtualRegister> argVRegList = new ArrayList<>();
 
     //control flow graph
-    private List<BasicBlock> reversePostOrder = new ArrayList<>(), reversePreOrder = new ArrayList<>();
+//    private List<BasicBlock> reversePostOrder = new ArrayList<>(), reversePreOrder = new ArrayList<>();
+    private List<BasicBlock> reversePostOrder = null, reversePreOrder = null;
     public List<ReturnJumpInst> returnList = new ArrayList<>();
     public Set<BasicBlock> dfsVisited = new HashSet<>();
     public Set<Func> calleeSet = new HashSet<>();
