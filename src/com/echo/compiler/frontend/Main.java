@@ -41,7 +41,7 @@ public class Main {
     }
 
     private static void buildAST() throws Exception {
-        String inFile = "C:\\Users\\echo\\Downloads\\testcase\\testcase_35.txt";
+        String inFile = "C:\\Users\\echo\\Downloads\\testcase\\testcase_24.txt";
 //        String inFile = null;
         InputStream in;
         if (inFile == null)
@@ -102,8 +102,10 @@ public class Main {
 //        new FuncInlineprocess(irRoot).process();
         new Registerprocess(irRoot).process();
         new GlobalVariableProcess(irRoot).processs();
+        new FuncArgprocess(irRoot).process();
+        new naiveallocate(irRoot).process();
 //        new LiveAnalysis(irRoot).process();
-        new GraphColoring(irRoot).process();
+//        new GraphColoring(irRoot).process();
         new NASMTransformer(irRoot).process();
         new NASMPrinter(outS).visit(irRoot);
     }
