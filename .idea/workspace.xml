@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.o" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -78,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="96" column="25" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
+            <state relative-caret-position="310">
+              <caret line="96" column="25" lean-forward="true" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -87,7 +81,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/prog.asm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23392" />
+            <state relative-caret-position="4663">
+              <caret line="1232" column="19" lean-forward="true" selection-start-line="1232" selection-start-column="19" selection-end-line="1232" selection-end-column="19" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -258,8 +254,8 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncArgprocess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/naiveallocate.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
       </list>
     </option>
   </component>
@@ -415,7 +411,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557108487361" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557108611430" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -566,12 +562,12 @@
       <workItem from="1556846350969" duration="15346000" />
       <workItem from="1556937659602" duration="13661000" />
       <workItem from="1557018059230" duration="39573000" />
-      <workItem from="1557100628894" duration="7186000" />
+      <workItem from="1557100628894" duration="7445000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="451096000" />
+    <option name="totallyTimeSpent" value="451355000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1002,11 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/prog.asm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23392" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -1047,10 +1038,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/prog.asm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4663">
+          <caret line="1232" column="19" lean-forward="true" selection-start-line="1232" selection-start-column="19" selection-end-line="1232" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="96" column="25" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
+        <state relative-caret-position="310">
+          <caret line="96" column="25" lean-forward="true" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
         </state>
       </provider>
     </entry>
