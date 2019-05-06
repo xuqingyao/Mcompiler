@@ -55,7 +55,8 @@ public class GlobalSymbolTableBuilder extends SymbolTableBuilder{
         String arrayKey = "$CLASS_array";
         ClassSymbol arraySymbol = new ClassSymbol("array", new ClassType("array"), symbolTable);
         SymbolTable arraySymbolTable = arraySymbol.getSymbolTable();
-        addDefaultFunc(arraySymbolTable, "size", Arrays.asList(new VarSymbol("this", new ArrayType(null))), IntType.getIntType());
+//        addDefaultFunc(arraySymbolTable, "size", Arrays.asList(new VarSymbol("this", new ArrayType(null))), IntType.getIntType());
+        addDefaultFunc(arraySymbolTable, "size", new ArrayList<>(), IntType.getIntType());
         symbolTable.put("array", arrayKey, arraySymbol);
     }
 

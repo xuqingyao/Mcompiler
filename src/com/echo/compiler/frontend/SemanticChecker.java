@@ -472,7 +472,7 @@ public class SemanticChecker extends SymbolTableBuilder{
     @Override
     public void visit(IntConstExprNode node) {
         node.setType(IntType.getIntType());
-        node.setLeftValue(true);
+        node.setLeftValue(false);
     }
 
     @Override
