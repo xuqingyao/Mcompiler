@@ -4,8 +4,8 @@ public class StringType extends Type{
     static private StringType instance = new StringType();
 
     public StringType() {
-        type = TYPE.STRING;
-        size = 8;
+        this.type = TYPE.STRING;
+        this.size = 8;
     }
 
     public static StringType getStringType() {

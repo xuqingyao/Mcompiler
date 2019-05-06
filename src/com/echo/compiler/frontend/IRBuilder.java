@@ -198,8 +198,8 @@ public class IRBuilder extends SymbolTableBuilder{
             // for short-circuit evaluation
             BasicBlock mergeBB = new BasicBlock(currentFunction, null);
             if(needMemop){
-                rhs.trueBB.addInst(new StoreInst(rhs.trueBB, new IntImmValue(1), dest, size, addrOffset));
-                rhs.falseBB.addInst(new StoreInst(rhs.falseBB, new IntImmValue(0), dest, size, addrOffset));
+                rhs.trueBB.addInst(new StoreInst(rhs.trueBB, new IntImmValue(1), dest, 8, addrOffset));
+                rhs.falseBB.addInst(new StoreInst(rhs.falseBB, new IntImmValue(0), dest, 8, addrOffset));
             }
             else{
                 rhs.trueBB.addInst(new MoveInst(rhs.trueBB, (VirtualRegister)dest, new IntImmValue(1)));
@@ -211,7 +211,7 @@ public class IRBuilder extends SymbolTableBuilder{
         }
         else{
             if(needMemop)
-                currentBB.addInst(new StoreInst(currentBB, rhs.regValue, dest, size, addrOffset));
+                currentBB.addInst(new StoreInst(currentBB, rhs.regValue, dest, 8, addrOffset));
             else
                 currentBB.addInst(new MoveInst(currentBB, (Register)dest, rhs.regValue));
         }
@@ -580,6 +580,7 @@ public class IRBuilder extends SymbolTableBuilder{
         BinaryOpInst.BinaryOps op = isInc ? BinaryOpInst.BinaryOps.ADD : BinaryOpInst.BinaryOps.SUB;
         if(needMemop){
             wantAddr = true;
+            expr.accept(this);
             VirtualRegister reg = new VirtualRegister(null);
             currentBB.addInst(new BinaryOpInst(currentBB, reg, op, expr.regValue, one));
             currentBB.addInst(new StoreInst(currentBB, reg, expr.addrValue, 8, expr.getAddrOffset()));
@@ -897,11 +898,6 @@ public class IRBuilder extends SymbolTableBuilder{
         boolean bothConst = lhs instanceof IntImmValue && rhs instanceof IntImmValue;
         int lhsImm = lhs instanceof IntImmValue ? ((IntImmValue)lhs).value : 0;
         int rhsImm = rhs instanceof IntImmValue ? ((IntImmValue)rhs).value : 0;
-        if(lhs instanceof IntImmValue){
-            Value tmp = rhs;
-            rhs = lhs;
-            lhs = tmp;
-        }
 
         CompareInst.CompareOp op = null;
         switch (node.getOp()) {
@@ -911,8 +907,12 @@ public class IRBuilder extends SymbolTableBuilder{
                     node.regValue = lhsImm > rhsImm ? new IntImmValue(1) : new IntImmValue(0);
                     return;
                 }
-                if (lhs instanceof IntImmValue)
+                if (lhs instanceof IntImmValue) {
+                    Value tmp = rhs;
+                    rhs = lhs;
+                    lhs = tmp;
                     op = CompareInst.CompareOp.LESS;
+                }
                 break;
             case LESS:
                 op = CompareInst.CompareOp.LESS;
@@ -920,8 +920,12 @@ public class IRBuilder extends SymbolTableBuilder{
                     node.regValue = lhsImm < rhsImm ? new IntImmValue(1) : new IntImmValue(0);
                     return;
                 }
-                if (lhs instanceof IntImmValue)
+                if (lhs instanceof IntImmValue) {
+                    Value tmp = rhs;
+                    rhs = lhs;
+                    lhs = tmp;
                     op = CompareInst.CompareOp.GREATER;
+                }
                 break;
             case GREATER_EQUAL:
                 op = CompareInst.CompareOp.GREATER_EQUAL;
@@ -929,8 +933,12 @@ public class IRBuilder extends SymbolTableBuilder{
                     node.regValue = lhsImm >= rhsImm ? new IntImmValue(1) : new IntImmValue(0);
                     return;
                 }
-                if (lhs instanceof IntImmValue)
+                if (lhs instanceof IntImmValue){
+                    Value tmp = rhs;
+                    rhs = lhs;
+                    lhs = tmp;
                     op = CompareInst.CompareOp.LESS_EQUAL;
+                }
                 break;
             case LESS_EQUAL:
                 op = CompareInst.CompareOp.LESS_EQUAL;
@@ -938,8 +946,12 @@ public class IRBuilder extends SymbolTableBuilder{
                     node.regValue = lhsImm <= rhsImm ? new IntImmValue(1) : new IntImmValue(0);
                     return;
                 }
-                if (lhs instanceof IntImmValue)
+                if (lhs instanceof IntImmValue) {
+                    Value tmp = rhs;
+                    rhs = lhs;
+                    lhs = tmp;
                     op = CompareInst.CompareOp.GREATER_EQUAL;
+                }
                 break;
             case EQUAL:
                 op = CompareInst.CompareOp.EQUAL;
@@ -947,12 +959,22 @@ public class IRBuilder extends SymbolTableBuilder{
                     node.regValue = lhsImm == rhsImm ? new IntImmValue(1) : new IntImmValue(0);
                     return;
                 }
+                if (lhs instanceof IntImmValue) {
+                    Value tmp = rhs;
+                    rhs = lhs;
+                    lhs = tmp;
+                }
                 break;
             case NOT_EQUAL:
                 op = CompareInst.CompareOp.NOT_EQUAL;
                 if (bothConst) {
                     node.regValue = lhsImm != rhsImm ? new IntImmValue(1) : new IntImmValue(0);
                     return;
+                }
+                if (lhs instanceof IntImmValue) {
+                    Value tmp = rhs;
+                    rhs = lhs;
+                    lhs = tmp;
                 }
                 break;
         }

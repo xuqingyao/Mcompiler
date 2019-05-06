@@ -78,21 +78,21 @@ public class NASMTransformer {
     private void processFunc(){
         for(Func func : ir.funcs.values()){
             FuncInfo funcInfo = funcFuncInfoMap.get(func);
-            BasicBlock startBB = func.startBB;
-            processStart(funcInfo, startBB);
+            processStart(func, funcInfo);
             processBody(func, funcInfo);
             processReturn(func);
             processEnd(func, funcInfo);
         }
     }
 
-    private void processStart(FuncInfo funcInfo, BasicBlock entryBB){
-        Inst firstInst = entryBB.firstInst;
+    private void processStart(Func func, FuncInfo funcInfo){
+        BasicBlock startBB = func.startBB;
+        Inst firstInst = startBB.firstInst;
         for(PhysicalRegister physicalRegister : funcInfo.usedCalleeSaveReg)
-            firstInst.prependInst(new PushInst(entryBB, physicalRegister));
+            firstInst.prependInst(new PushInst(startBB, physicalRegister));
         if(funcInfo.StackSlotNum > 0)
-            firstInst.prependInst(new BinaryOpInst(entryBB, rsp, BinaryOpInst.BinaryOps.SUB, rsp, new IntImmValue(funcInfo.StackSlotNum * 8)));
-        firstInst.prependInst(new MoveInst(entryBB, rbp, rsp));
+            firstInst.prependInst(new BinaryOpInst(startBB, rsp, BinaryOpInst.BinaryOps.SUB, rsp, new IntImmValue(funcInfo.StackSlotNum * 8)));
+        firstInst.prependInst(new MoveInst(startBB, rbp, rsp));
     }
 
     private void processBody(Func func, FuncInfo funcInfo){

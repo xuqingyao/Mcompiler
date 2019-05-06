@@ -54,12 +54,12 @@ public abstract class Inst {
         if(removed)
             throw new CompilerError("can not remove an instruction which is already removed");
         removed = true;
-        if(this instanceof JumpInst)
-            parentBB.removeJumpInst();
         if(prevInst != null)
             prevInst.nextInst = nextInst;
         if(nextInst != null)
             nextInst.prevInst = prevInst;
+        if(this instanceof JumpInst)
+            parentBB.removeJumpInst();
         if(this == parentBB.firstInst)
             parentBB.firstInst = nextInst;
         if(this == parentBB.lastInst)

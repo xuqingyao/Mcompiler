@@ -41,8 +41,8 @@ public class Main {
     }
 
     private static void buildAST() throws Exception {
-//        String inFile = "C:\\Users\\echo\\Downloads\\testcase\\testcase_48.txt";
-        String inFile = null;
+        String inFile = "C:\\Users\\echo\\Downloads\\testcase\\testcase_35.txt";
+//        String inFile = null;
         InputStream in;
         if (inFile == null)
             in = System.in;
@@ -92,17 +92,17 @@ public class Main {
 
 
     private static void generateCode() throws Exception{
-//        String outFile = "C:\\Users\\echo\\Desktop\\Mcompiler\\src\\com\\echo\\compiler\\prog.asm";
-        String outFile = null;
+        String outFile = "C:\\Users\\echo\\Desktop\\Mcompiler\\src\\com\\echo\\compiler\\prog.asm";
+//        String outFile = null;
         PrintStream outS;
         if (outFile == null)
             outS = System.out;
         else
             outS = new PrintStream(new FileOutputStream(outFile));
 //        new FuncInlineprocess(irRoot).process();
-        new GlobalVariableProcess(irRoot).processs();
         new Registerprocess(irRoot).process();
-        new LiveAnalysis(irRoot).process();
+        new GlobalVariableProcess(irRoot).processs();
+//        new LiveAnalysis(irRoot).process();
         new GraphColoring(irRoot).process();
         new NASMTransformer(irRoot).process();
         new NASMPrinter(outS).visit(irRoot);

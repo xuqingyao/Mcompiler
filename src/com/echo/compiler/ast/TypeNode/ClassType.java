@@ -6,6 +6,7 @@ public class ClassType extends Type{
     public ClassType(String name){
         this.type = TYPE.CLASS;
         this.name = name;
+        this.size = 8;
     }
 
     public String getName(){

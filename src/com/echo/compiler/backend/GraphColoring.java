@@ -7,6 +7,7 @@ import com.echo.compiler.IR.Inst.*;
 import com.echo.compiler.IR.Register.*;
 import com.echo.compiler.NASM.NASMRegisterSet;
 import com.echo.compiler.error.CompilerError;
+import jdk.nashorn.internal.ir.FunctionCall;
 
 import java.util.*;
 
@@ -33,13 +34,36 @@ public class GraphColoring {
     public Map<Register, Register> renameMap = new HashMap<>();
     public Set<PhysicalRegister> UsedColor = new HashSet<>();
 
+    private void processFuncArgs(){
+        for(Func func : ir.funcs.values()) {
+            Inst inst = func.startBB.firstInst;
+            for (int i = 6; i < func.argVRegList.size(); ++i) {
+                VirtualRegister argreg = func.argVRegList.get(i);
+                StackSlot argslot = new StackSlot(func, "arg_" + i, true);
+                func.argsStaticSlotMap.put(argreg, argslot);
+                inst.prependInst(new LoadInst(inst.parentBB, argreg, argslot, 8, 0));
+            }
+            //set forced register
+            if (func.argVRegList.size() > 0)
+                func.argVRegList.get(0).forcedPhysicalRegister = NASMRegisterSet.rdi;
+            if (func.argVRegList.size() > 1)
+                func.argVRegList.get(1).forcedPhysicalRegister = NASMRegisterSet.rsi;
+            if (func.argVRegList.size() > 2)
+                func.argVRegList.get(2).forcedPhysicalRegister = NASMRegisterSet.rdx;
+            if (func.argVRegList.size() > 3)
+                func.argVRegList.get(3).forcedPhysicalRegister = NASMRegisterSet.rcx;
+            if (func.argVRegList.size() > 4)
+                func.argVRegList.get(4).forcedPhysicalRegister = NASMRegisterSet.r8;
+            if (func.argVRegList.size() > 5)
+                func.argVRegList.get(5).forcedPhysicalRegister = NASMRegisterSet.r9;
+        }
+    }
+
     public GraphColoring(IRRoot ir){
         this.ir = ir;
         this.physicalRegisters = new ArrayList<>(NASMRegisterSet.generalRegs);
-        for (Func func : ir.funcs.values()) {
-            if (func.argVRegList.size() > ir.maxFuncArgNum)
-                ir.maxFuncArgNum = func.argVRegList.size();
-        }
+        for (Func func : ir.funcs.values())
+            ir.maxFuncArgNum = func.argVRegList.size() > ir.maxFuncArgNum ? func.argVRegList.size() : ir.maxFuncArgNum;
         if (ir.maxFuncArgNum >= 5)
             physicalRegisters.remove(r8);
         if (ir.maxFuncArgNum >= 6)
@@ -248,17 +272,95 @@ public class GraphColoring {
         }
     }
 
-    public void process(){
-        for(Func func : ir.funcs.values()){
-            currentFunc = func;
-            vrInfoMap.clear();
-            stack.clear();
-            nodes.clear();
-            SmallDegreeNodes.clear();
+    private Map<VirtualRegister, StackSlot> StackSlotMap = new HashMap<>();
 
-            BuildGraph();
-            coloring();
-            UpdateInst();
+    private StackSlot getStackSlot(VirtualRegister reg, Func func) {
+        StackSlot stackSlot = StackSlotMap.get(reg);
+        if (stackSlot == null) {
+            stackSlot = new StackSlot(func, reg.name, false);
+            StackSlotMap.put(reg, stackSlot);
         }
+        return stackSlot;
+    }
+
+    private void naiveAllocate() {
+        for (Func func : ir.funcs.values()) {
+            StackSlotMap.clear();
+            StackSlotMap.putAll(func.argsStaticSlotMap);
+            for (BasicBlock bb : func.getReversePostOrder()) {
+                for (Inst inst = bb.firstInst; inst != null; inst = inst.nextInst) {
+                    int cnt = 0;
+                    if (inst instanceof FunctionCall) {
+                        List<Value> argsList = ((FuncCallInst)inst).args;
+                        for (int i = 0; i < argsList.size(); ++i) {
+                            Value regValue = argsList.get(i);
+                            if (regValue instanceof VirtualRegister) {
+                                PhysicalRegister physicalRegister = ((VirtualRegister) regValue).forcedPhysicalRegister;
+                                if (physicalRegister != null)
+                                    argsList.set(i, physicalRegister);
+                                else
+                                    argsList.set(i, getStackSlot((VirtualRegister) regValue, func));
+                            }
+                        }
+                    }
+                    else {
+                        Collection<Register> usedRegisters = inst.usedRegisters;
+                        if (!usedRegisters.isEmpty()) {
+                            renameMap.clear();
+                            for (Register register : usedRegisters) {
+                                if (register instanceof VirtualRegister) {
+                                    PhysicalRegister physicalRegister = ((VirtualRegister) register).forcedPhysicalRegister;
+                                    boolean isFuncArg = false;
+                                    if (physicalRegister == null)
+                                        physicalRegister = physicalRegisters.get(cnt++);
+                                    else
+                                        isFuncArg = true;
+                                    renameMap.put(register, physicalRegister);
+                                    func.usedPhysicalGeneralRegs.add(physicalRegister);
+                                    if (isFuncArg)
+                                        continue;
+                                    inst.prependInst(new LoadInst(bb, physicalRegister, getStackSlot((VirtualRegister) register, func), 8, 0));
+                                }
+                                else
+                                    renameMap.put(register, register);
+                            }
+                            inst.setUsedRegisters(renameMap);
+                        }
+                    }
+                    Register definedRegister = inst.getDefinedRegister();
+                    if (inst instanceof BinaryOpInst && !(((BinaryOpInst) inst).op == BinaryOpInst.BinaryOps.DIV || ((BinaryOpInst) inst).op == BinaryOpInst.BinaryOps.MOD)) {
+                        if (definedRegister instanceof  VirtualRegister)
+                            inst.appendInst(new StoreInst(bb, ((BinaryOpInst) inst).getLhs(), getStackSlot((VirtualRegister) definedRegister, func), 8, 0));
+                        inst.setDefinedRegister((Register) ((BinaryOpInst) inst).getLhs());
+                        continue;
+                    }
+                    if (definedRegister instanceof VirtualRegister) {
+                        PhysicalRegister physicalRegister = ((VirtualRegister) definedRegister).forcedPhysicalRegister;
+                        if (physicalRegister == null)
+                            physicalRegister = physicalRegisters.get(cnt++);
+                        func.usedPhysicalGeneralRegs.add(physicalRegister);
+                        inst.setDefinedRegister(physicalRegister);
+                        inst.appendInst(new StoreInst(bb, physicalRegister,  getStackSlot((VirtualRegister) definedRegister, func), 8,0));
+                    }
+                }
+            }
+        }
+    }
+
+    public void process(){
+        processFuncArgs();
+        naiveAllocate();
+//        new LiveAnalysis(ir).process();
+//        for(Func func : ir.funcs.values()){
+//            currentFunc = func;
+//            vrInfoMap.clear();
+//            stack.clear();
+//            nodes.clear();
+//            SmallDegreeNodes.clear();
+//
+//            BuildGraph();
+//            coloring();
+//            UpdateInst();
+//        }
     }
 }

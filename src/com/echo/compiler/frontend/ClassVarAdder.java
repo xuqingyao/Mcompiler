@@ -17,6 +17,7 @@ public class ClassVarAdder extends SymbolTableBuilder{
     private SymbolTable globalSymbolTable;
     private String currentClass;
     private SymbolTable currentSymbolTable;
+    private int offset;
 
     public ClassVarAdder(SymbolTable globalSymbolTable){
         this.globalSymbolTable = globalSymbolTable;
@@ -53,9 +54,10 @@ public class ClassVarAdder extends SymbolTableBuilder{
         ClassSymbol classSymbol = (ClassSymbol)globalSymbolTable.get(node.getLocation(), node.getName(), "$CLASS_" + node.getName());
         currentSymbolTable = classSymbol.getSymbolTable();
         currentClass = classSymbol.getName();
+        offset = 0;
         for(VarDeclNode varDeclNode : node.getVarMember())
             varDeclNode.accept(this);
-        classSymbol.setMemorySize(0);
+        classSymbol.setMemorySize(offset);
     }
 
     @Override
@@ -67,6 +69,8 @@ public class ClassVarAdder extends SymbolTableBuilder{
         }
         VarCheck(node);
         VarSymbol varSymbol = new VarSymbol(node.getName(), node.getType().getType(), currentClass);
+        varSymbol.setAddrOffset(offset);
+        offset += node.getType().getType().getSize();
         String varkey = "$VAR_" + node.getName();
         currentSymbolTable.put(node.getLocation(), node.getName(), varkey, varSymbol);
     }
