@@ -440,63 +440,65 @@ public class IRBuilder extends SymbolTableBuilder{
         wantAddr = false;
         VirtualRegister reg;
         Func calleeFunc;
-        if (funcname == "print" || funcname == "println")
-            processPrintFuncCall(node.getArgs().get(0), funcname);
-        else if (funcname == "getString") {
-            calleeFunc = ir.getBuiltInFunc(funcname);
-            reg = new VirtualRegister("getString");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, new ArrayList<>(), reg));
-            node.regValue = reg;
-        }
-        else if (funcname == "getInt") {
-            calleeFunc = ir.getBuiltInFunc(funcname);
-            reg = new VirtualRegister("getInt");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, new ArrayList<>(), reg));
-            node.regValue = reg;
-        }
-        else if (funcname == "toString") {
-            node.getArgs().get(0).accept(this);
-            calleeFunc = ir.getBuiltInFunc(funcname);
-            List<Value> args = new ArrayList<>();
-            args.add(node.getArgs().get(0).regValue);
-            reg = new VirtualRegister("toString");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
-            node.regValue = reg;
-        }
-        else if (funcname == "_member_string_substring") {
-            node.getArgs().get(0).accept(this);
-            node.getArgs().get(1).accept(this);
-            calleeFunc = ir.getBuiltInFunc(funcname);
-            List<Value> args = new ArrayList<>();
-            args.add(thisExpr.regValue);
-            args.add(node.getArgs().get(0).regValue);
-            args.add(node.getArgs().get(1).regValue);
-            reg = new VirtualRegister("substring");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
-            node.regValue = reg;
-        }
-        else if (funcname == "_member_string_parseInt") {
-            calleeFunc = ir.getBuiltInFunc(funcname);
-            List<Value> args = new ArrayList<>();
-            args.add(thisExpr.regValue);
-            reg = new VirtualRegister("parseInt");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
-            node.regValue = reg;
-        }
-        else if (funcname == "_member_string_ord"){
-            node.getArgs().get(0).accept(this);
-            calleeFunc = ir.getBuiltInFunc(funcname);
-            List<Value> args = new ArrayList<>();
-            args.add(thisExpr.regValue);
-            args.add(node.getArgs().get(0).regValue);
-            reg = new VirtualRegister("ord");
-            currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
-            node.regValue = reg;
-        }
-        else if(funcname == "_member_string_length" || funcname == "_member_array_size") {
-            reg = new VirtualRegister("size");
-            currentBB.addInst(new LoadInst(currentBB, reg, thisExpr.regValue, 8, 0));
-            node.regValue = reg;
+        List<Value> args = new ArrayList<>();
+        switch (funcname) {
+            case "print":
+            case "println":
+                processPrintFuncCall(node.getArgs().get(0), funcname);
+                break;
+            case "getString":
+                calleeFunc = ir.getBuiltInFunc(funcname);
+                reg = new VirtualRegister("getString");
+                currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, new ArrayList<>(), reg));
+                node.regValue = reg;
+                break;
+            case "getInt":
+                calleeFunc = ir.getBuiltInFunc(funcname);
+                reg = new VirtualRegister("getInt");
+                currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, new ArrayList<>(), reg));
+                node.regValue = reg;
+                break;
+            case "toString":
+                node.getArgs().get(0).accept(this);
+                calleeFunc = ir.getBuiltInFunc(funcname);
+                args.add(node.getArgs().get(0).regValue);
+                reg = new VirtualRegister("toString");
+                currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
+                node.regValue = reg;
+                break;
+            case "_member_string_substring":
+                node.getArgs().get(0).accept(this);
+                node.getArgs().get(1).accept(this);
+                calleeFunc = ir.getBuiltInFunc(funcname);
+                args.add(thisExpr.regValue);
+                args.add(node.getArgs().get(0).regValue);
+                args.add(node.getArgs().get(1).regValue);
+                reg = new VirtualRegister("substring");
+                currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
+                node.regValue = reg;
+                break;
+            case "_member_string_parseInt":
+                calleeFunc = ir.getBuiltInFunc(funcname);
+                args.add(thisExpr.regValue);
+                reg = new VirtualRegister("parseInt");
+                currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
+                node.regValue = reg;
+                break;
+            case "_member_string_ord":
+                node.getArgs().get(0).accept(this);
+                calleeFunc = ir.getBuiltInFunc(funcname);
+                args.add(thisExpr.regValue);
+                args.add(node.getArgs().get(0).regValue);
+                reg = new VirtualRegister("ord");
+                currentBB.addInst(new FuncCallInst(currentBB, calleeFunc, args, reg));
+                node.regValue = reg;
+                break;
+            case "_member_string_length":
+            case "_member_array_size":
+                reg = new VirtualRegister("size");
+                currentBB.addInst(new LoadInst(currentBB, reg, thisExpr.regValue, 8, 0));
+                node.regValue = reg;
+                break;
         }
         wantAddr = wantAddrtemp;
     }
