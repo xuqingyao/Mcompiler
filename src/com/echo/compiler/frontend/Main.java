@@ -41,7 +41,7 @@ public class Main {
     }
 
     private static void buildAST() throws Exception {
-//         String inFile = "C:\\Users\\echo\\Downloads\\testcase\\testcase_232.txt";
+//         String inFile = "C:\\Users\\echo\\Downloads\\testcase\\testcase_10.txt";
        String inFile = null;
         InputStream in;
         if (inFile == null)

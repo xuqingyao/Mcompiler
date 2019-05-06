@@ -44,10 +44,10 @@ public class GlobalSymbolTableBuilder extends SymbolTableBuilder{
         String stringKey = "$CLASS_string";
         ClassSymbol stringSymbol = new ClassSymbol("string", new ClassType("string"), symbolTable);
         SymbolTable stringSymbolTable = stringSymbol.getSymbolTable();
-        addDefaultFunc(stringSymbolTable, "length", Arrays.asList(new VarSymbol("this", StringType.getStringType())), IntType.getIntType());
-        addDefaultFunc(stringSymbolTable, "substring", Arrays.asList(new VarSymbol("this", StringType.getStringType()), new VarSymbol("left", IntType.getIntType()), new VarSymbol("right", IntType.getIntType())), StringType.getStringType());
-        addDefaultFunc(stringSymbolTable, "parseInt", Arrays.asList(new VarSymbol("this", StringType.getStringType())), IntType.getIntType());
-        addDefaultFunc(stringSymbolTable, "ord", Arrays.asList(new VarSymbol("this", StringType.getStringType()), new VarSymbol("pos", IntType.getIntType())), IntType.getIntType());
+        addDefaultFunc(stringSymbolTable, "length", new ArrayList<>(), IntType.getIntType());
+        addDefaultFunc(stringSymbolTable, "substring", Arrays.asList(new VarSymbol("left", IntType.getIntType()), new VarSymbol("right", IntType.getIntType())), StringType.getStringType());
+        addDefaultFunc(stringSymbolTable, "parseInt", new ArrayList<>(), IntType.getIntType());
+        addDefaultFunc(stringSymbolTable, "ord", Arrays.asList(new VarSymbol("pos", IntType.getIntType())), IntType.getIntType());
         symbolTable.put("string", stringKey, stringSymbol);
     }
 

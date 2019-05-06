@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/SemanticChecker$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/SemanticChecker$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/SemanticChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/SemanticChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7068">
-              <caret line="474" column="31" selection-start-line="474" selection-start-column="31" selection-end-line="474" selection-end-column="31" />
+            <state relative-caret-position="217">
+              <caret line="253" column="56" selection-start-line="253" selection-start-column="56" selection-end-line="253" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -104,8 +100,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="43" column="73" lean-forward="true" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
+            <state relative-caret-position="234">
+              <caret line="96" column="25" lean-forward="true" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
+              <folding>
+                <element signature="e#2142#2143#0" expanded="true" />
+                <element signature="e#2185#2186#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-32">
+              <caret line="46" column="69" selection-start-line="46" selection-start-column="69" selection-end-line="46" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -252,9 +261,9 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Symbol/ClassSymbol.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Symbol/FuncSymbol.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
       </list>
     </option>
   </component>
@@ -264,10 +273,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-12" />
-    <option name="width" value="981" />
-    <option name="height" value="1032" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="949" />
+    <option name="width" value="980" />
+    <option name="height" value="1031" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -425,7 +434,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557163960301" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557165002218" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -578,12 +587,12 @@
       <workItem from="1557018059230" duration="39573000" />
       <workItem from="1557100628894" duration="13340000" />
       <workItem from="1557127994483" duration="2542000" />
-      <workItem from="1557130601270" duration="16078000" />
+      <workItem from="1557130601270" duration="17195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="475870000" />
+    <option name="totallyTimeSpent" value="476987000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -604,7 +613,7 @@
       <window_info id="Capture Tool" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.5035461" side_tool="true" weight="0.26434922" />
-      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.9327731" />
+      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.9320938" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.31711712" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.497979" weight="0.58018017" />
@@ -1134,20 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-966">
-          <caret line="58" column="65" selection-start-line="58" selection-start-column="65" selection-end-line="58" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7068">
-          <caret line="474" column="31" selection-start-line="474" selection-start-column="31" selection-end-line="474" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/ClassVarAdder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1155,10 +1150,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="253" column="56" selection-start-line="253" selection-start-column="56" selection-end-line="253" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-32">
+          <caret line="46" column="69" selection-start-line="46" selection-start-column="69" selection-end-line="46" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="43" column="73" lean-forward="true" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
+        <state relative-caret-position="234">
+          <caret line="96" column="25" lean-forward="true" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
+          <folding>
+            <element signature="e#2142#2143#0" expanded="true" />
+            <element signature="e#2185#2186#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
