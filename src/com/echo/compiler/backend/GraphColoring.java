@@ -149,7 +149,6 @@ public class GraphColoring {
             if(vrInfoMap.get(register).degree < colornumber)
                 SmallDegreeNodes.add(register);
         }
-        stack.clear();
         while(!nodes.isEmpty()){
             //    Until there are nodes with degree < k:
             //        choose such node and push it into the stack;
@@ -175,10 +174,10 @@ public class GraphColoring {
         }
         //      Pop a node from the stack and color it by the least free color.
         //          If there is no free colors, then choose an uncolored node, spill it into the memory, and go to the step 1.
-        while (!stack.empty()) {
+        while (!stack.isEmpty()) {
             VirtualRegister register = stack.pop();
             VRInfo vrInfo = vrInfoMap.get(register);
-            UsedColor = new HashSet<>();
+            UsedColor.clear();
             for(VirtualRegister neighbour : vrInfo.neighbour){
                 VRInfo neighbourInfo = vrInfoMap.get(neighbour);
                 if(!neighbourInfo.removed && neighbourInfo.color instanceof PhysicalRegister)
@@ -215,7 +214,7 @@ public class GraphColoring {
             vrInfo.removed = false;
         }
     }
-//remain to understand
+
     private void UpdateInst(){
         for(BasicBlock BB : currentFunc.getReversePreOrder()){
             for(Inst inst = BB.firstInst; inst != null; inst = inst.nextInst){
@@ -231,12 +230,12 @@ public class GraphColoring {
                 else{
                     if (!used.isEmpty()) {
                         boolean tmp0Used = false;
-                        renameMap = new HashMap<>();
+                        renameMap.clear();
                         for(Register register : used){
                             if(register instanceof VirtualRegister){
                                 Register color = vrInfoMap.get(register).color;
                                 if(color instanceof StackSlot){
-                                    PhysicalRegister reg = tmp0Used ? tmp0 : tmp1;
+                                    PhysicalRegister reg = tmp0Used ? tmp1 : tmp0;
                                     inst.prependInst(new LoadInst(BB, reg, color, 8, 0));
                                     tmp0Used = true;
                                     renameMap.put(register, reg);
@@ -250,8 +249,8 @@ public class GraphColoring {
                             else
                                 renameMap.put(register, register);
                         }
+                        inst.setUsedRegisters(renameMap);
                     }
-                    inst.setUsedRegisters(renameMap);
                 }
                 Register defined = inst.getDefinedRegister();
                 if (defined instanceof VirtualRegister) {
@@ -348,18 +347,18 @@ public class GraphColoring {
 
     public void process(){
         processFuncArgs();
-        naiveAllocate();
-//        new LiveAnalysis(ir).process();
-//        for(Func func : ir.funcs.values()){
-//            currentFunc = func;
-//            vrInfoMap.clear();
-//            stack.clear();
-//            nodes.clear();
-//            SmallDegreeNodes.clear();
-//
-//            BuildGraph();
-//            coloring();
-//            UpdateInst();
-//        }
+//        naiveAllocate();
+        new LiveAnalysis(ir).process();
+        for(Func func : ir.funcs.values()){
+            currentFunc = func;
+            vrInfoMap.clear();
+            stack.clear();
+            nodes.clear();
+            SmallDegreeNodes.clear();
+
+            BuildGraph();
+            coloring();
+            UpdateInst();
+        }
     }
 }

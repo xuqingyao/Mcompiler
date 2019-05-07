@@ -23,23 +23,26 @@ public class LiveAnalysis {
 
     public void init(BasicBlock BB){
         for (Inst inst = BB.firstInst; inst != null; inst = inst.nextInst){
-            inst.liveIn = new HashSet<>();
-            inst.liveout = new HashSet<>();
+            inst.liveIn.clear();
+            inst.liveout.clear();
         }
     }
 
     public void processFunc(Func func){
         //initialize
         List<BasicBlock> reversePreOrder = func.getReversePreOrder();
-        reversePreOrder.forEach(this::init);
+        for(BasicBlock BB : reversePreOrder)
+            init(BB);
 
+        Set<VirtualRegister> in = new HashSet<>();
+        Set<VirtualRegister> out = new HashSet<>();
         boolean changed = true;
         while(changed){
             changed = false;
             for(BasicBlock BB : reversePreOrder){
                 for(Inst inst = BB.lastInst; inst != null; inst = inst.prevInst){
-                    Set<VirtualRegister> in = new HashSet<>();
-                    Set<VirtualRegister> out = new HashSet<>();
+                    in.clear();
+                    out.clear();
                     if(inst instanceof JumpInst){
                         if(inst instanceof JumpJumpInst)
                             out.addAll(((JumpJumpInst) inst).targetBB.firstInst.liveIn);

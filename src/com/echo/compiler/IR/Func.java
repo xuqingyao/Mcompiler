@@ -107,7 +107,6 @@ public class Func {
 //        dfsVisited = new HashSet<>();
         dfsVisited.clear();
         dfsPostOrder(startBB);
-        dfsVisited = null;
         for(int i = 0; i < reversePostOrder.size(); ++ i)
             reversePostOrder.get(i).postOrderIdx = i;
         Collections.reverse(reversePostOrder);
@@ -118,7 +117,6 @@ public class Func {
 //        dfsVisited = new HashSet<>();
         dfsVisited.clear();
         dfsPreOrder(startBB);
-        dfsVisited = null;
         for(int i = 0; i < reversePreOrder.size(); ++ i)
             reversePreOrder.get(i).preOrderIdx = i;
         Collections.reverse(reversePreOrder);

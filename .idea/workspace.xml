@@ -3,8 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,11 +49,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-19063">
-              <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
+            <state relative-caret-position="623">
+              <caret line="1073" column="35" selection-start-line="1073" selection-start-column="31" selection-end-line="1073" selection-end-column="35" />
               <folding>
                 <element signature="e#1149#1150#0" expanded="true" />
                 <element signature="e#1207#1208#0" expanded="true" />
@@ -70,55 +79,67 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Register/IntImmValue.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="e#362#363#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/BinaryOpInst.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
-              <folding>
-                <element signature="e#765#766#0" expanded="true" />
-                <element signature="e#791#792#0" expanded="true" />
-                <element signature="e#846#847#0" expanded="true" />
-                <element signature="e#2654#2655#0" expanded="true" />
-                <element signature="e#2689#2690#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/MoveInst.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
-              <folding>
-                <element signature="e#1622#1623#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="82" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="139">
+              <caret line="17" column="82" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2497#2498#0" expanded="true" />
+                <element signature="e#769#770#0" expanded="true" />
+                <element signature="e#809#810#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="43" column="76" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="218" column="40" selection-start-line="218" selection-start-column="40" selection-end-line="218" selection-end-column="40" />
+              <folding>
+                <element signature="method#processFuncArgs#0;class#GraphColoring#0" />
+                <element signature="method#GraphColoring#0;class#GraphColoring#0" />
+                <element signature="method#getVRInfo#0;class#GraphColoring#0" />
+                <element signature="method#addEdge#0;class#GraphColoring#0" />
+                <element signature="e#9813#10161#1" />
+                <element signature="e#10182#11497#1" />
+                <element signature="method#getStackSlot#0;class#GraphColoring#0" />
+                <element signature="method#naiveAllocate#0;class#GraphColoring#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="31">
+              <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4086#4087#0" expanded="true" />
+                <element signature="e#4121#4122#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -130,18 +151,6 @@
               <caret line="85" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="e#2642#2643#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/LoadInst.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="82" selection-start-line="82" selection-end-line="82" />
-              <folding>
-                <element signature="e#2555#2556#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,9 +192,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$CLASS</find>
-      <find>built</find>
-      <find>member</find>
       <find>init_func</find>
       <find>size</find>
       <find>processAssign</find>
@@ -213,6 +219,9 @@
       <find>symbol</find>
       <find>currentFuncSymbol</find>
       <find>currentSymbolTable</find>
+      <find>addr</find>
+      <find>register</find>
+      <find>null</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -247,7 +256,6 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Compiler.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/NASM/NASMRegisterSet.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/ast/ExprNode/IdentifierExprNode.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/BinaryOpInst.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/BranchJumpInst.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/CompareInst.java" />
@@ -265,19 +273,20 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/ClassVarAdder.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/ast/TypeNode/ClassType.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/ast/TypeNode/StringType.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncArgprocess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/naiveallocate.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Symbol/ClassSymbol.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/Symbol/FuncSymbol.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java" />
       </list>
     </option>
   </component>
@@ -288,9 +297,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="949" />
-    <option name="width" value="980" />
-    <option name="height" value="1031" />
+    <option name="x" value="948" />
+    <option name="width" value="981" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -306,87 +315,6 @@
             <path>
               <item name="Mcompiler" type="58d84e3e:PackageViewProjectNode" />
               <item name="Mcompiler" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-              <item name="DeclNode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-              <item name="ExprNode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="ast" type="462c0819:PsiDirectoryNode" />
-              <item name="StatNode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="error" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -438,6 +366,64 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="compiler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="error" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="IR" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mcompiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mcompiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="IR" type="462c0819:PsiDirectoryNode" />
+              <item name="Inst" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -448,7 +434,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557165038024" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557224707136" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -602,12 +588,12 @@
       <workItem from="1557100628894" duration="13340000" />
       <workItem from="1557127994483" duration="2542000" />
       <workItem from="1557130601270" duration="17655000" />
-      <workItem from="1557201846637" duration="1811000" />
+      <workItem from="1557201846637" duration="6630000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="479258000" />
+    <option name="totallyTimeSpent" value="484077000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -619,7 +605,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="633" y="0" width="653" height="687" extended-state="0" />
+    <frame x="633" y="0" width="653" height="687" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.505291" side_tool="true" weight="0.26434922" />
@@ -628,11 +614,11 @@
       <window_info id="Capture Tool" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.5035461" side_tool="true" weight="0.26434922" />
-      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.93109244" />
+      <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.92941177" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.31711712" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.497979" weight="0.57726467" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.6594595" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.497979" weight="0.58018017" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.6576577" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4995958" weight="0.339254" />
@@ -674,6 +660,30 @@
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java</url>
+          <line>117</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java</url>
+          <line>32</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java</url>
+          <line>62</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -682,26 +692,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/Java/jdk/src.zip!/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="611" selection-start-line="611" selection-end-line="611" />
-          <folding>
-            <element signature="e#24396#24397#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Java/jdk/src.zip!/java/util/Collections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="2034" selection-start-line="2034" selection-end-line="2034" />
-          <folding>
-            <element signature="e#83250#83251#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Java/jdk/src.zip!/java/lang/ClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47">
@@ -774,17 +764,6 @@
           <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#460#461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#769#770#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -969,24 +948,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="127" selection-start-line="127" selection-end-line="127" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4121#4122#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Register/StaticVarData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="77">
@@ -1132,35 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/BinaryOpInst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#791#792#0" expanded="true" />
-            <element signature="e#846#847#0" expanded="true" />
-            <element signature="e#2654#2655#0" expanded="true" />
-            <element signature="e#2689#2690#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="233" selection-start-line="233" selection-end-line="233" />
-          <folding>
-            <element signature="e#4264#4265#0" expanded="true" />
-            <element signature="e#4302#4303#0" expanded="true" />
-            <element signature="e#12076#12077#0" expanded="true" />
-            <element signature="e#12117#12118#0" expanded="true" />
-            <element signature="e#12174#12175#0" expanded="true" />
-            <element signature="e#12211#12212#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Register/PhysicalRegister.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -1182,13 +1114,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="43" column="76" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="218" column="40" selection-start-line="218" selection-start-column="40" selection-end-line="218" selection-end-column="40" />
+          <folding>
+            <element signature="method#processFuncArgs#0;class#GraphColoring#0" />
+            <element signature="method#GraphColoring#0;class#GraphColoring#0" />
+            <element signature="method#getVRInfo#0;class#GraphColoring#0" />
+            <element signature="method#addEdge#0;class#GraphColoring#0" />
+            <element signature="e#9813#10161#1" />
+            <element signature="e#10182#11497#1" />
+            <element signature="method#getStackSlot#0;class#GraphColoring#0" />
+            <element signature="method#naiveAllocate#0;class#GraphColoring#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19063">
-          <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
+        <state relative-caret-position="623">
+          <caret line="1073" column="35" selection-start-line="1073" selection-start-column="31" selection-end-line="1073" selection-end-column="35" />
           <folding>
             <element signature="e#1149#1150#0" expanded="true" />
             <element signature="e#1207#1208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/BinaryOpInst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#765#766#0" expanded="true" />
+            <element signature="e#791#792#0" expanded="true" />
+            <element signature="e#846#847#0" expanded="true" />
+            <element signature="e#2654#2655#0" expanded="true" />
+            <element signature="e#2689#2690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4086#4087#0" expanded="true" />
+            <element signature="e#4121#4122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMPrinter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="233" selection-start-line="233" selection-end-line="233" />
+          <folding>
+            <element signature="e#4264#4265#0" expanded="true" />
+            <element signature="e#4302#4303#0" expanded="true" />
+            <element signature="e#12076#12077#0" expanded="true" />
+            <element signature="e#12117#12118#0" expanded="true" />
+            <element signature="e#12174#12175#0" expanded="true" />
+            <element signature="e#12211#12212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="17" column="82" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
           </folding>
         </state>
       </provider>

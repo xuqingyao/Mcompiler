@@ -7,10 +7,7 @@ import com.echo.compiler.IR.Register.VirtualRegister;
 import com.echo.compiler.IR.IRVisitor;
 import com.echo.compiler.error.CompilerError;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Inst {
     public Inst prevInst = null, nextInst = null;
@@ -18,7 +15,7 @@ public abstract class Inst {
     public List<Register> usedRegisters = new ArrayList<>();
     public List<Value> usedRegValues = new ArrayList<>();
     public boolean removed = false;
-    public Set<VirtualRegister> liveIn = null, liveout = null;
+    public Set<VirtualRegister> liveIn = new HashSet<>(), liveout = new HashSet<>();
 
     public Inst(BasicBlock parentBB){
         this.parentBB = parentBB;

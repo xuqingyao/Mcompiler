@@ -20,7 +20,7 @@ import java.util.List;
 public class IRBuilder extends SymbolTableBuilder{
     public SymbolTable currentSymbolTable, globalSymbolTable;
     public BasicBlock currentBB = null;
-    public BasicBlock currentLoopStepBB, currentLoopAfterBB;
+    public BasicBlock currentLoopStepBB = null, currentLoopAfterBB = null;
     public Func currentFunction = null;
     public String currentClassName = null;
     public IRRoot ir = new IRRoot();
