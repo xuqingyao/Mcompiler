@@ -696,7 +696,7 @@ public class IRBuilder extends SymbolTableBuilder{
 
             currentBB = bodyBB;
             currentBB.addInst(new BinaryOpInst(currentBB, addrnow, BinaryOpInst.BinaryOps.ADD, addrnow, new IntImmValue(8)));
-            processArrayNew(node, null, addr, idx + 1);
+            processArrayNew(node, null, addrnow, idx + 1);
             currentBB.addInst(new BinaryOpInst(currentBB, loopidx, BinaryOpInst.BinaryOps.ADD, loopidx, new IntImmValue(1)));
             currentBB.setJumpInst(new JumpJumpInst(currentBB, condBB));
 

@@ -4,11 +4,39 @@
 
 		section	.bss
 Static_Data_a_1:	resq	1
+Static_Data_str_1:	resq	1
 
 		section	.data
 Static_Data_static_str_1:
-		dq		0
-		db		0
+		dq		4
+		db		115, 116, 114, 50, 0
+Static_Data_static_str_2:
+		dq		4
+		db		115, 116, 114, 51, 0
+Static_Data_static_str_3:
+		dq		4
+		db		115, 116, 114, 52, 0
+Static_Data_static_str_4:
+		dq		4
+		db		115, 116, 114, 53, 0
+Static_Data_static_str_5:
+		dq		4
+		db		115, 116, 114, 54, 0
+Static_Data_static_str_6:
+		dq		4
+		db		115, 116, 114, 55, 0
+Static_Data_static_str_7:
+		dq		4
+		db		115, 116, 114, 56, 0
+Static_Data_static_str_8:
+		dq		4
+		db		115, 116, 114, 57, 0
+Static_Data_static_str_9:
+		dq		5
+		db		115, 116, 114, 49, 48, 0
+Static_Data_static_str_10:
+		dq		4
+		db		115, 116, 114, 49, 0
 
 		section	.text
 
@@ -17,159 +45,154 @@ Static_Data_static_str_1:
 main:
 		push	rbx
 		push	rbp
-		sub		rsp, 280
+		sub		rsp, 184
 		mov		rbp, rsp
-		mov		r9, qword [Static_Data_a_1]
+		mov		r9, qword [Static_Data_str_1]
 		mov		qword [rbp], r9
-		push	r10
+		mov		r9, qword [Static_Data_a_1]
+		mov		qword [rbp+8], r9
 		push	r9
+		push	r10
 		call	Block_init_func_start_1
-		pop		r9
 		pop		r10
+		pop		r9
 		mov		r9, qword [Static_Data_a_1]
+		mov		qword [rbp+8], r9
+		mov		r9, qword [Static_Data_str_1]
 		mov		qword [rbp], r9
-		mov		r9, 4
-		mov		qword [rbp+8], r9
-		mov		r9, qword [rbp+8]
-		imul		r9, 8
-		mov		qword [rbp+8], r9
-		mov		r9, qword [rbp+8]
-		add		r9, 8
-		mov		qword [rbp+8], r9
-		mov		r9, qword [rbp+8]
-		push	r10
-		push	r9
-		push	r11
-		mov		rdi, r9
-		push	0
-		call	malloc
-		add		rsp, 8
-		pop		r11
-		pop		r9
-		pop		r10
-		mov		r10, rax
-		mov		qword [rbp+8], r10
-		mov		r9, qword [rbp+8]
-		mov		qword [r9], 4
-		mov		r9, qword [rbp+8]
-		mov		r10, r9
-		mov		qword [rbp+16], r10
-		mov		r9, qword [rbp+16]
-		mov		r10, r9
-		mov		qword [rbp+24], r10
 		mov		r9, 0
-		mov		qword [rbp+32], r9
+		mov		qword [rbp+16], r9
 		mov		r9, 0
-		mov		qword [rbp+40], r9
-		mov		r9, qword [rbp+40]
-		imul		r9, 8
-		mov		qword [rbp+40], r9
-		mov		r9, qword [rbp+40]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+40], r9
-		mov		r9, qword [rbp+40]
-		mov		r10, qword [rbp]
-		mov		qword [r9+8], r10
-		mov		r9, 1
-		mov		qword [rbp+48], r9
-		mov		r9, qword [rbp+48]
-		imul		r9, 8
-		mov		qword [rbp+48], r9
-		mov		r9, qword [rbp+48]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+48], r9
-		mov		r9, qword [rbp+48]
-		mov		r10, qword [rbp]
-		mov		qword [r9+8], r10
-		mov		r9, 2
-		mov		qword [rbp+56], r9
-		mov		r9, qword [rbp+56]
-		imul		r9, 8
-		mov		qword [rbp+56], r9
-		mov		r9, qword [rbp+56]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+56], r9
-		mov		r9, qword [rbp+56]
-		mov		r10, qword [rbp]
-		mov		qword [r9+8], r10
-		mov		r9, 3
-		mov		qword [rbp+64], r9
-		mov		r9, qword [rbp+64]
-		imul		r9, 8
-		mov		qword [rbp+64], r9
-		mov		r9, qword [rbp+64]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+64], r9
-		mov		r9, qword [rbp+64]
-		mov		r10, qword [rbp]
-		mov		qword [r9+8], r10
-		mov		r9, qword [rbp+24]
-		mov		r10, qword [r9]
-		mov		qword [rbp+72], r10
-		push	r10
-		push	r9
-		push	r11
-		push	0
-		mov		rax, qword [rbp+72]
-		mov		rdi, rax
-		call	_printlnInt
-		add		rsp, 8
-		pop		r11
-		pop		r9
-		pop		r10
+		mov		qword [rbp+24], r9
 		mov		r9, 0
-		mov		qword [rbp+32], r9
+		mov		qword [rbp+16], r9
 
 Block_for_cond_1:
-		mov		r9, 0
-		mov		qword [rbp+80], r9
-		mov		r9, qword [rbp+80]
-		imul		r9, 8
-		mov		qword [rbp+80], r9
-		mov		r9, qword [rbp+80]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+80], r9
-		mov		r9, qword [rbp+80]
-		mov		r10, qword [r9+8]
-		mov		qword [rbp+80], r10
-		mov		r9, qword [rbp+80]
-		mov		r10, qword [r9]
-		mov		qword [rbp+88], r10
+		mov		r9, qword [rbp+16]
+		and		r9, -1
+		xor		rax, rax
+		cmp		r9, 29
+		setle	al
+		mov		r10, rax
+		mov		qword [rbp+32], r10
 		mov		r9, qword [rbp+32]
-		mov		r10, qword [rbp+88]
+		cmp		r9, 1
+		je		Block_for_body_1
+
+Block_for_after_1:
+		mov		rax, 0
+		add		rsp, 184
+		pop		rbp
+		pop		rbx
+		ret
+
+Block_for_body_1:
+		mov		r9, 0
+		mov		qword [rbp+40], r9
+		mov		r9, qword [rbp+16]
+		mov		r10, r9
+		mov		qword [rbp+48], r10
+		mov		r9, qword [rbp+48]
+		imul		r9, 8
+		mov		qword [rbp+48], r9
+		mov		r9, qword [rbp+48]
+		mov		r10, qword [rbp]
+		add		r9, r10
+		mov		qword [rbp+48], r9
+		mov		r9, qword [rbp+16]
+		mov		r10, r9
+		mov		qword [rbp+56], r10
+		mov		r9, qword [rbp+56]
+		imul		r9, 8
+		mov		qword [rbp+56], r9
+		mov		r9, qword [rbp+56]
+		mov		r10, qword [rbp+8]
+		add		r9, r10
+		mov		qword [rbp+56], r9
+		mov		r9, qword [rbp+56]
+		mov		r10, qword [r9+8]
+		mov		qword [rbp+56], r10
+		mov		r9, 0
+		mov		qword [rbp+64], r9
+		mov		r9, qword [rbp+64]
+		imul		r9, 8
+		mov		qword [rbp+64], r9
+		mov		r9, qword [rbp+64]
+		mov		r10, qword [rbp+56]
+		add		r9, r10
+		mov		qword [rbp+64], r9
+		mov		r9, qword [rbp+64]
+		mov		r10, qword [r9+8]
+		mov		qword [rbp+64], r10
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rax, qword [rbp+64]
+		mov		rdi, rax
+		call	_toString
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		mov		r9, rax
+		mov		qword [rbp+72], r9
+		mov		r9, qword [rbp+48]
+		mov		r10, qword [rbp+72]
+		mov		qword [r9+8], r10
+		mov		r9, 0
+		mov		qword [rbp+24], r9
+
+Block_for_cond_2:
+		mov		r9, qword [rbp+24]
+		mov		r10, qword [rbp+16]
 		and		r9, -1
 		and		r10, -1
 		xor		rax, rax
 		cmp		r9, r10
 		setl	al
 		mov		r11, rax
-		mov		qword [rbp+96], r11
+		mov		qword [rbp+80], r11
+		mov		r9, qword [rbp+80]
+		cmp		r9, 1
+		je		Block_for_body_2
+		jmp		Block_for_after_2
+
+Block_for_body_2:
+		mov		r9, qword [rbp+24]
+		mov		r10, r9
+		mov		qword [rbp+88], r10
+		mov		r9, qword [rbp+88]
+		and		r9, 1
+		mov		qword [rbp+88], r9
+		mov		r9, qword [rbp+88]
+		and		r9, -1
+		xor		rax, rax
+		cmp		r9, 0
+		sete	al
+		mov		r10, rax
+		mov		qword [rbp+96], r10
 		mov		r9, qword [rbp+96]
 		cmp		r9, 1
-		je		Block_for_body_1
-		jmp		Block_for_after_1
+		je		Block_if_then_1
+		jmp		Block_if_after_1
 
-Block_for_body_1:
-		mov		r9, 0
-		mov		qword [rbp+104], r9
+Block_if_then_1:
+		mov		r9, qword [rbp+16]
+		mov		r10, r9
+		mov		qword [rbp+104], r10
 		mov		r9, qword [rbp+104]
 		imul		r9, 8
 		mov		qword [rbp+104], r9
 		mov		r9, qword [rbp+104]
-		mov		r10, qword [rbp+24]
+		mov		r10, qword [rbp+8]
 		add		r9, r10
 		mov		qword [rbp+104], r9
 		mov		r9, qword [rbp+104]
 		mov		r10, qword [r9+8]
 		mov		qword [rbp+104], r10
-		mov		r9, qword [rbp+32]
-		mov		r10, r9
-		mov		qword [rbp+112], r10
+		mov		r9, 0
+		mov		qword [rbp+112], r9
 		mov		r9, qword [rbp+112]
 		imul		r9, 8
 		mov		qword [rbp+112], r9
@@ -177,317 +200,317 @@ Block_for_body_1:
 		mov		r10, qword [rbp+104]
 		add		r9, r10
 		mov		qword [rbp+112], r9
-		push	r10
-		push	r9
-		push	r11
-		push	0
-		call	_getInt
-		add		rsp, 8
-		pop		r11
-		pop		r9
-		pop		r10
-		mov		r9, rax
-		mov		qword [rbp+120], r9
 		mov		r9, qword [rbp+112]
-		mov		r10, qword [rbp+120]
-		mov		qword [r9+8], r10
+		mov		r10, qword [r9+8]
+		mov		qword [rbp+112], r10
+		mov		r9, qword [rbp+40]
+		mov		r10, r9
+		mov		qword [rbp+120], r10
+		mov		r9, qword [rbp+120]
+		mov		r10, qword [rbp+112]
+		add		r9, r10
+		mov		qword [rbp+120], r9
+		mov		r9, qword [rbp+120]
+		mov		r10, r9
+		mov		qword [rbp+40], r10
 
-Block_for_step_1:
-		mov		r9, qword [rbp+32]
+Block_if_after_1:
+		mov		r9, qword [rbp+24]
 		mov		r10, r9
 		mov		qword [rbp+128], r10
-		mov		r9, qword [rbp+32]
-		inc		r9
-		mov		qword [rbp+32], r9
-		jmp		Block_for_cond_1
-
-Block_for_after_1:
-		mov		r9, 0
-		mov		qword [rbp+32], r9
-
-Block_for_cond_2:
-		mov		r9, 1
-		mov		qword [rbp+136], r9
-		mov		r9, qword [rbp+136]
-		imul		r9, 8
-		mov		qword [rbp+136], r9
-		mov		r9, qword [rbp+136]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+136], r9
-		mov		r9, qword [rbp+136]
-		mov		r10, qword [r9+8]
+		mov		r9, qword [rbp+128]
+		and		r9, 1
+		mov		qword [rbp+128], r9
+		mov		r9, qword [rbp+128]
+		and		r9, -1
+		xor		rax, rax
+		cmp		r9, 1
+		sete	al
+		mov		r10, rax
 		mov		qword [rbp+136], r10
 		mov		r9, qword [rbp+136]
-		mov		r10, qword [r9]
-		mov		qword [rbp+144], r10
-		mov		r9, qword [rbp+32]
-		mov		r10, qword [rbp+144]
-		and		r9, -1
-		and		r10, -1
-		xor		rax, rax
-		cmp		r9, r10
-		setl	al
-		mov		r11, rax
-		mov		qword [rbp+152], r11
-		mov		r9, qword [rbp+152]
 		cmp		r9, 1
-		je		Block_for_body_2
-		jmp		Block_for_after_2
+		je		Block_if_then_2
+		jmp		Block_if_after_2
 
-Block_for_body_2:
-		mov		r9, 1
-		mov		qword [rbp+160], r9
-		mov		r9, qword [rbp+160]
+Block_if_then_2:
+		mov		r9, qword [rbp+16]
+		mov		r10, r9
+		mov		qword [rbp+144], r10
+		mov		r9, qword [rbp+144]
 		imul		r9, 8
-		mov		qword [rbp+160], r9
-		mov		r9, qword [rbp+160]
-		mov		r10, qword [rbp+24]
+		mov		qword [rbp+144], r9
+		mov		r9, qword [rbp+144]
+		mov		r10, qword [rbp+8]
 		add		r9, r10
-		mov		qword [rbp+160], r9
-		mov		r9, qword [rbp+160]
+		mov		qword [rbp+144], r9
+		mov		r9, qword [rbp+144]
 		mov		r10, qword [r9+8]
+		mov		qword [rbp+144], r10
+		mov		r9, 29
+		mov		qword [rbp+152], r9
+		mov		r9, qword [rbp+152]
+		imul		r9, 8
+		mov		qword [rbp+152], r9
+		mov		r9, qword [rbp+152]
+		mov		r10, qword [rbp+144]
+		add		r9, r10
+		mov		qword [rbp+152], r9
+		mov		r9, qword [rbp+152]
+		mov		r10, qword [r9+8]
+		mov		qword [rbp+152], r10
+		mov		r9, qword [rbp+40]
+		mov		r10, r9
 		mov		qword [rbp+160], r10
-		mov		r9, qword [rbp+32]
-		mov		r10, r9
-		mov		qword [rbp+168], r10
-		mov		r9, qword [rbp+168]
-		imul		r9, 8
-		mov		qword [rbp+168], r9
-		mov		r9, qword [rbp+168]
-		mov		r10, qword [rbp+160]
+		mov		r9, qword [rbp+160]
+		mov		r10, qword [rbp+152]
 		add		r9, r10
-		mov		qword [rbp+168], r9
-		mov		r9, qword [rbp+168]
-		mov		r10, qword [r9+8]
-		mov		qword [rbp+168], r10
-		push	r10
-		push	r9
-		push	r11
-		push	0
-		mov		rax, qword [rbp+168]
-		mov		rdi, rax
-		call	_printInt
-		add		rsp, 8
-		pop		r11
-		pop		r9
-		pop		r10
-
-Block_for_step_2:
-		mov		r9, qword [rbp+32]
+		mov		qword [rbp+160], r9
+		mov		r9, qword [rbp+160]
 		mov		r10, r9
-		mov		qword [rbp+176], r10
-		mov		r9, qword [rbp+32]
+		mov		qword [rbp+40], r10
+
+Block_if_after_2:
+
+Block_for_step_1:
+		mov		r9, qword [rbp+24]
+		mov		r10, r9
+		mov		qword [rbp+168], r10
+		mov		r9, qword [rbp+24]
 		inc		r9
-		mov		qword [rbp+32], r9
+		mov		qword [rbp+24], r9
 		jmp		Block_for_cond_2
 
 Block_for_after_2:
-		push	r10
-		push	r9
 		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_10
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
 		push	0
 		mov		rdi, Static_Data_static_str_1
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_2
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_3
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_4
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_5
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_6
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_7
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_8
+		call	_print
+		add		rsp, 8
+		pop		r10
+		pop		r9
+		pop		r11
+		push	r11
+		push	r9
+		push	r10
+		push	0
+		mov		rdi, Static_Data_static_str_9
 		call	_println
 		add		rsp, 8
-		pop		r11
-		pop		r9
 		pop		r10
-		mov		r9, 0
-		mov		qword [rbp+32], r9
-
-Block_for_cond_3:
-		mov		r9, 2
-		mov		qword [rbp+184], r9
-		mov		r9, qword [rbp+184]
-		imul		r9, 8
-		mov		qword [rbp+184], r9
-		mov		r9, qword [rbp+184]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+184], r9
-		mov		r9, qword [rbp+184]
-		mov		r10, qword [r9+8]
-		mov		qword [rbp+184], r10
-		mov		r9, qword [rbp+184]
-		mov		r10, qword [r9]
-		mov		qword [rbp+192], r10
-		mov		r9, qword [rbp+32]
-		mov		r10, qword [rbp+192]
-		and		r9, -1
-		and		r10, -1
-		xor		rax, rax
-		cmp		r9, r10
-		setl	al
-		mov		r11, rax
-		mov		qword [rbp+200], r11
-		mov		r9, qword [rbp+200]
-		cmp		r9, 1
-		je		Block_for_body_3
-		jmp		Block_for_after_3
-
-Block_for_body_3:
-		mov		r9, 2
-		mov		qword [rbp+208], r9
-		mov		r9, qword [rbp+208]
-		imul		r9, 8
-		mov		qword [rbp+208], r9
-		mov		r9, qword [rbp+208]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+208], r9
-		mov		r9, qword [rbp+208]
-		mov		r10, qword [r9+8]
-		mov		qword [rbp+208], r10
-		mov		r9, qword [rbp+32]
-		mov		r10, r9
-		mov		qword [rbp+216], r10
-		mov		r9, qword [rbp+216]
-		imul		r9, 8
-		mov		qword [rbp+216], r9
-		mov		r9, qword [rbp+216]
-		mov		r10, qword [rbp+208]
-		add		r9, r10
-		mov		qword [rbp+216], r9
-		mov		r9, qword [rbp+216]
-		mov		qword [r9+8], 0
-
-Block_for_step_3:
-		mov		r9, qword [rbp+32]
-		mov		r10, r9
-		mov		qword [rbp+224], r10
-		mov		r9, qword [rbp+32]
-		inc		r9
-		mov		qword [rbp+32], r9
-		jmp		Block_for_cond_3
-
-Block_for_after_3:
-		mov		r9, 0
-		mov		qword [rbp+32], r9
-
-Block_for_cond_4:
-		mov		r9, 3
-		mov		qword [rbp+232], r9
-		mov		r9, qword [rbp+232]
-		imul		r9, 8
-		mov		qword [rbp+232], r9
-		mov		r9, qword [rbp+232]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+232], r9
-		mov		r9, qword [rbp+232]
-		mov		r10, qword [r9+8]
-		mov		qword [rbp+232], r10
-		mov		r9, qword [rbp+232]
-		mov		r10, qword [r9]
-		mov		qword [rbp+240], r10
-		mov		r9, qword [rbp+32]
-		mov		r10, qword [rbp+240]
-		and		r9, -1
-		and		r10, -1
-		xor		rax, rax
-		cmp		r9, r10
-		setl	al
-		mov		r11, rax
-		mov		qword [rbp+248], r11
-		mov		r9, qword [rbp+248]
-		cmp		r9, 1
-		je		Block_for_body_4
-
-Block_for_after_4:
-		mov		rax, 0
-		add		rsp, 280
-		pop		rbp
-		pop		rbx
-		ret
-
-Block_for_body_4:
-		mov		r9, 3
-		mov		qword [rbp+256], r9
-		mov		r9, qword [rbp+256]
-		imul		r9, 8
-		mov		qword [rbp+256], r9
-		mov		r9, qword [rbp+256]
-		mov		r10, qword [rbp+24]
-		add		r9, r10
-		mov		qword [rbp+256], r9
-		mov		r9, qword [rbp+256]
-		mov		r10, qword [r9+8]
-		mov		qword [rbp+256], r10
-		mov		r9, qword [rbp+32]
-		mov		r10, r9
-		mov		qword [rbp+264], r10
-		mov		r9, qword [rbp+264]
-		imul		r9, 8
-		mov		qword [rbp+264], r9
-		mov		r9, qword [rbp+264]
-		mov		r10, qword [rbp+256]
-		add		r9, r10
-		mov		qword [rbp+264], r9
-		mov		r9, qword [rbp+264]
-		mov		r10, qword [r9+8]
-		mov		qword [rbp+264], r10
-		push	r10
-		push	r9
-		push	r11
-		push	0
-		mov		rax, qword [rbp+264]
-		mov		rdi, rax
-		call	_printInt
-		add		rsp, 8
-		pop		r11
 		pop		r9
-		pop		r10
+		pop		r11
 
-Block_for_step_4:
-		mov		r9, qword [rbp+32]
+Block_for_step_2:
+		mov		r9, qword [rbp+16]
 		mov		r10, r9
-		mov		qword [rbp+272], r10
-		mov		r9, qword [rbp+32]
+		mov		qword [rbp+176], r10
+		mov		r9, qword [rbp+16]
 		inc		r9
-		mov		qword [rbp+32], r9
-		jmp		Block_for_cond_4
+		mov		qword [rbp+16], r9
+		jmp		Block_for_cond_1
 
 # function init_func
 
 Block_init_func_start_1:
 		push	rbx
 		push	rbp
-		sub		rsp, 24
+		sub		rsp, 88
 		mov		rbp, rsp
-		mov		r9, qword [Static_Data_a_1]
+		mov		r9, qword [Static_Data_str_1]
 		mov		qword [rbp], r9
-		mov		r9, 4
+		mov		r9, qword [Static_Data_a_1]
 		mov		qword [rbp+8], r9
-		mov		r9, qword [rbp+8]
+		mov		r9, 30
+		mov		qword [rbp+16], r9
+		mov		r9, qword [rbp+16]
 		imul		r9, 8
-		mov		qword [rbp+8], r9
-		mov		r9, qword [rbp+8]
+		mov		qword [rbp+16], r9
+		mov		r9, qword [rbp+16]
 		add		r9, 8
-		mov		qword [rbp+8], r9
-		mov		r9, qword [rbp+8]
-		push	r10
+		mov		qword [rbp+16], r9
+		mov		r9, qword [rbp+16]
 		push	r9
+		push	r10
 		mov		rdi, r9
 		call	malloc
-		pop		r9
 		pop		r10
+		pop		r9
 		mov		r10, rax
-		mov		qword [rbp+8], r10
-		mov		r9, qword [rbp+8]
-		mov		qword [r9], 4
-		mov		r9, qword [rbp+8]
-		mov		r10, r9
 		mov		qword [rbp+16], r10
 		mov		r9, qword [rbp+16]
+		mov		qword [r9], 30
+		mov		r9, 0
+		mov		qword [rbp+24], r9
+		mov		r9, qword [rbp+16]
+		mov		r10, r9
+		mov		qword [rbp+32], r10
+
+Block_while_cond_1:
+		mov		r9, qword [rbp+24]
+		and		r9, -1
+		xor		rax, rax
+		cmp		r9, 30
+		setl	al
+		mov		r10, rax
+		mov		qword [rbp+40], r10
+		mov		r9, qword [rbp+40]
+		cmp		r9, 1
+		je		Block_while_body_1
+
+Block_while_after_1:
+		mov		r9, qword [rbp+16]
+		mov		r10, r9
+		mov		qword [rbp+48], r10
+		mov		r9, qword [rbp+48]
+		mov		r10, r9
+		mov		qword [rbp+8], r10
+		mov		r9, 30
+		mov		qword [rbp+56], r9
+		mov		r9, qword [rbp+56]
+		imul		r9, 8
+		mov		qword [rbp+56], r9
+		mov		r9, qword [rbp+56]
+		add		r9, 8
+		mov		qword [rbp+56], r9
+		mov		r9, qword [rbp+56]
+		push	r9
+		push	r10
+		mov		rdi, r9
+		call	malloc
+		pop		r10
+		pop		r9
+		mov		r10, rax
+		mov		qword [rbp+56], r10
+		mov		r9, qword [rbp+56]
+		mov		qword [r9], 30
+		mov		r9, qword [rbp+56]
+		mov		r10, r9
+		mov		qword [rbp+64], r10
+		mov		r9, qword [rbp+64]
 		mov		r10, r9
 		mov		qword [rbp], r10
 		mov		r9, qword [rbp]
+		mov		qword [Static_Data_str_1], r9
+		mov		r9, qword [rbp+8]
 		mov		qword [Static_Data_a_1], r9
-		add		rsp, 24
+		add		rsp, 88
 		pop		rbp
 		pop		rbx
 		ret
+
+Block_while_body_1:
+		mov		r9, qword [rbp+32]
+		add		r9, 8
+		mov		qword [rbp+32], r9
+		mov		r9, 30
+		mov		qword [rbp+72], r9
+		mov		r9, qword [rbp+72]
+		imul		r9, 8
+		mov		qword [rbp+72], r9
+		mov		r9, qword [rbp+72]
+		add		r9, 8
+		mov		qword [rbp+72], r9
+		mov		r9, qword [rbp+72]
+		push	r9
+		push	r10
+		mov		rdi, r9
+		call	malloc
+		pop		r10
+		pop		r9
+		mov		r10, rax
+		mov		qword [rbp+72], r10
+		mov		r9, qword [rbp+72]
+		mov		qword [r9], 30
+		mov		r9, qword [rbp+32]
+		mov		r10, qword [rbp+72]
+		mov		qword [r9], r10
+		mov		r9, qword [rbp+24]
+		inc		r9
+		mov		qword [rbp+24], r9
+		jmp		Block_while_cond_1
 
 
 # built-in functions
