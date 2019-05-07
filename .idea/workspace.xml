@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" afterDir="false" />
-    </list>
+    <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="139">
@@ -93,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="43" column="76" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
+            <state relative-caret-position="234">
+              <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -282,11 +269,11 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/SemanticChecker.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/GlobalSymbolTableBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Func.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/Inst/Inst.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
       </list>
     </option>
   </component>
@@ -296,7 +283,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="948" />
     <option name="width" value="981" />
     <option name="height" value="1032" />
@@ -434,7 +421,7 @@
     <property name="$PROJECT_DIR$/src/com/echo/compiler/parser/m.g4::/output-dir" value="C:\Users\echo\Desktop\Mcompiler\src\com\echo\compiler\parser" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557224707136" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557225591642" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -588,12 +575,12 @@
       <workItem from="1557100628894" duration="13340000" />
       <workItem from="1557127994483" duration="2542000" />
       <workItem from="1557130601270" duration="17655000" />
-      <workItem from="1557201846637" duration="6630000" />
+      <workItem from="1557201846637" duration="7328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="484077000" />
+    <option name="totallyTimeSpent" value="484775000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -605,7 +592,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="633" y="0" width="653" height="687" extended-state="1" />
+    <frame x="632" y="0" width="654" height="688" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.505291" side_tool="true" weight="0.26434922" />
@@ -1114,13 +1101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="43" column="76" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
@@ -1206,6 +1186,13 @@
             <element signature="e#769#770#0" expanded="true" />
             <element signature="e#809#810#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
         </state>
       </provider>
     </entry>
