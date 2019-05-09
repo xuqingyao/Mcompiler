@@ -99,10 +99,10 @@ public class Main {
             outS = System.out;
         else
             outS = new PrintStream(new FileOutputStream(outFile));
-//        new FuncInlineprocess(irRoot).process();
         new Registerprocess(irRoot).process();
+        new FuncInlineprocess(irRoot).process();
         new GlobalVariableProcess(irRoot).processs();
-//        new FuncArgprocess(irRoot).process();
+        new FuncArgprocess(irRoot).process();
 //        new naiveallocate(irRoot).process();
 //        new LiveAnalysis(irRoot).process();
         new GraphColoring(irRoot).process();

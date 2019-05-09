@@ -82,6 +82,9 @@ public class GraphColoring {
         this.colornumber = physicalRegisters.size();
     }
 
+//    interference  graph:
+//      nodes are variables;
+//      edges are between simultaneously alive variables.
     private void BuildGraph(){
         for(VirtualRegister argVreg : currentFunc.argVRegList)
             getVRInfo(argVreg);
@@ -346,7 +349,7 @@ public class GraphColoring {
     }
 
     public void process(){
-        processFuncArgs();
+//        processFuncArgs();
 //        naiveAllocate();
         new LiveAnalysis(ir).process();
         for(Func func : ir.funcs.values()){

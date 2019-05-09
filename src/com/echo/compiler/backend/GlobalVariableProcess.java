@@ -121,7 +121,7 @@ public class GlobalVariableProcess {
         }
         for(Func func : ir.funcs.values()){
             FuncInfo funcInfo = funcFuncInfoMap.get(func);
-            ReturnJumpInst returnJumpInst= func.returnList.get(0);
+            ReturnJumpInst returnJumpInst = func.returnList.get(0);
             //store defined static data at the end of the function
             for(StaticData staticData : funcInfo.definedStaticData)
                 returnJumpInst.prependInst(new StoreInst(returnJumpInst.parentBB, funcInfo.staticMap.get(staticData), staticData, 8));

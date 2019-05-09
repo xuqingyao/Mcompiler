@@ -148,7 +148,7 @@ Block_if_after_2:
 		jmp		Block_find_end_1
 
 Block_if_after_1:
-		mov		r11, 5
+		mov		r10, 5
 		mov		r10, 1
 		neg		r10
 		and		rsi, -1
@@ -163,27 +163,8 @@ Block_if_after_1:
 Block_if_else_2:
 		mov		r10, rdi
 		dec		r10
-		mov		r11, r10
 
 Block_for_body_1:
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		mov		rdi, r11
-		call	Block_is_prime_start_1
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r10, rax
-		cmp		r10, 1
-		je		Block_and_lhs_true_1
-		jmp		Block_if_after_3
-
-Block_and_lhs_true_1:
-		mov		r10, rdi
-		sub		r10, r11
 		push	r11
 		push	r10
 		push	rdi
@@ -194,8 +175,26 @@ Block_and_lhs_true_1:
 		pop		rdi
 		pop		r10
 		pop		r11
-		mov		r10, rax
-		cmp		r10, 1
+		mov		r11, rax
+		cmp		r11, 1
+		je		Block_and_lhs_true_1
+		jmp		Block_if_after_3
+
+Block_and_lhs_true_1:
+		mov		r11, rdi
+		sub		r11, r10
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, r11
+		call	Block_is_prime_start_1
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		mov		r11, rax
+		cmp		r11, 1
 		je		Block_if_then_4
 		jmp		Block_if_after_3
 
@@ -234,7 +233,7 @@ Block_if_then_4:
 		push	r10
 		push	rdi
 		push	rsi
-		mov		rdi, r11
+		mov		rdi, r10
 		call	_printInt
 		pop		rsi
 		pop		rdi
@@ -250,7 +249,7 @@ Block_if_then_4:
 		pop		rdi
 		pop		r10
 		pop		r11
-		sub		rdi, r11
+		sub		rdi, r10
 		push	r11
 		push	r10
 		push	rdi
@@ -268,7 +267,7 @@ Block_if_then_4:
 Block_if_after_3:
 
 Block_for_step_1:
-		dec		r11
+		dec		r10
 		jmp		Block_for_body_1
 
 Block_if_then_3:
@@ -328,13 +327,13 @@ Block_work_start_1:
 		push	rbp
 		sub		rsp, 8
 		mov		rbp, rsp
-		mov		r10, qword [Static_Data_n_1]
-		mov		r11, 1
-		neg		r11
+		mov		r11, qword [Static_Data_n_1]
+		mov		r10, 1
+		neg		r10
 		push	r11
 		push	r10
-		mov		rdi, r10
-		mov		rsi, r11
+		mov		rdi, r11
+		mov		rsi, r10
 		call	Block_find_start_1
 		pop		r10
 		pop		r11

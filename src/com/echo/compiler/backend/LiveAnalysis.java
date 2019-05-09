@@ -28,12 +28,20 @@ public class LiveAnalysis {
         }
     }
 
+
     public void processFunc(Func func){
-        //initialize
+        //  for each node n in CFG                                                      ----initialize solutions
+        //      in[n] = empty; out[n] = empty
         List<BasicBlock> reversePreOrder = func.getReversePreOrder();
         for(BasicBlock BB : reversePreOrder)
             init(BB);
 
+        //    repeat
+        //      for each node n in CFG
+        //          in'[n] = in[n]; out’[n] = out[n]                                    ----save current results
+        //          in[n] = use[n] \cup (out[n] – def[n]); out[n] = \cup in[s]          ----solve data-flow equations
+        //    until
+        //      in’[n] = in[n] and out’[n] = out[n] for all n                          ----test for convergence
         Set<VirtualRegister> in = new HashSet<>();
         Set<VirtualRegister> out = new HashSet<>();
         boolean changed = true;
