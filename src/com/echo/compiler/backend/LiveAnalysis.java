@@ -39,7 +39,7 @@ public class LiveAnalysis {
         //    repeat
         //      for each node n in CFG
         //          in'[n] = in[n]; out'[n] = out[n]                                    ----save current results
-        //          in[n] = use[n] \cup (out[n] – def[n]); out[n] = \cup in[s]          ----solve data-flow equations
+        //          in[n] = use[n] \cup (out[n] - def[n]); out[n] = \cup in[s]          ----solve data-flow equations
         //    until
         //      in'[n] = in[n] and out'[n] = out[n] for all n                          ----test for convergence
         Set<VirtualRegister> in = new HashSet<>();
