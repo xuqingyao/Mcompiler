@@ -44,7 +44,6 @@ Block_if_then_1:
 		jmp		Block_is_prime_end_1
 
 Block_if_after_1:
-		mov		r11, 0
 		mov		r11, 2
 
 Block_for_cond_1:
@@ -75,7 +74,7 @@ Block_for_body_1:
 		mov		r10, rax
 		cmp		r10, 1
 		je		Block_if_then_2
-		jmp		Block_if_after_2
+		jmp		Block_for_step_1
 
 Block_if_then_2:
 		mov		r10, 0
@@ -148,7 +147,7 @@ Block_if_then_4:
 		pop		rdi
 		pop		r10
 		pop		r11
-		jmp		Block_if_after_4
+		jmp		Block_find_end_1
 
 Block_if_else_1:
 		push	r11
@@ -173,12 +172,12 @@ Block_if_else_1:
 		pop		rdi
 		pop		r10
 		pop		r11
+		jmp		Block_find_end_1
 
 Block_if_after_4:
 		jmp		Block_find_end_1
 
 Block_if_after_3:
-		mov		r11, 5
 		mov		r10, 1
 		neg		r10
 		and		rsi, -1
@@ -205,7 +204,6 @@ Block_for_body_2:
 		je		Block_if_then_6
 
 Block_if_after_5:
-		mov		r12, 0
 		mov		r12, 2
 
 Block_for_cond_2:
@@ -239,6 +237,7 @@ Block_for_body_3:
 		mov		r13, rax
 		cmp		r13, 1
 		je		Block_if_then_7
+		jmp		Block_for_step_2
 
 Block_if_after_6:
 
@@ -256,7 +255,7 @@ Block_if_then_6:
 Block_is_prime_end_2:
 		cmp		r10, 1
 		je		Block_and_lhs_true_1
-		jmp		Block_if_after_7
+		jmp		Block_for_step_3
 
 Block_and_lhs_true_1:
 		mov		r12, rdi
@@ -268,14 +267,13 @@ Block_and_lhs_true_1:
 		mov		r10, rax
 		cmp		r10, 1
 		je		Block_if_then_8
-		jmp		Block_if_after_8
+		jmp		Block_if_after_7
 
 Block_if_then_8:
 		mov		r10, 0
 		jmp		Block_is_prime_end_3
 
-Block_if_after_8:
-		mov		r13, 0
+Block_if_after_7:
 		mov		r13, 2
 
 Block_for_cond_3:
@@ -306,15 +304,15 @@ Block_for_body_4:
 		mov		r10, rax
 		cmp		r10, 1
 		je		Block_if_then_9
-		jmp		Block_if_after_9
+		jmp		Block_for_step_4
 
 Block_if_then_9:
 		mov		r10, 0
 		jmp		Block_is_prime_end_3
 
-Block_if_after_9:
+Block_if_after_8:
 
-Block_for_step_3:
+Block_for_step_4:
 		inc		r13
 		jmp		Block_for_cond_3
 
@@ -324,7 +322,7 @@ Block_for_after_3:
 Block_is_prime_end_3:
 		cmp		r10, 1
 		je		Block_if_then_10
-		jmp		Block_if_after_7
+		jmp		Block_for_step_3
 
 Block_if_then_10:
 		push	r11
@@ -392,14 +390,13 @@ Block_if_then_10:
 		pop		r11
 		jmp		Block_find_end_1
 
-Block_if_after_7:
+Block_if_after_9:
 
-Block_for_step_4:
+Block_for_step_3:
 		dec		r11
 		jmp		Block_for_body_2
 
 Block_if_then_5:
-		mov		r11, 6
 		mov		r11, rdi
 		sub		r11, 2
 
@@ -418,7 +415,6 @@ Block_if_then_11:
 		jmp		Block_is_prime_end_4
 
 Block_if_after_10:
-		mov		r12, 0
 		mov		r12, 2
 
 Block_for_cond_4:
@@ -449,7 +445,7 @@ Block_for_body_6:
 		mov		r10, rax
 		cmp		r10, 1
 		je		Block_if_then_12
-		jmp		Block_if_after_11
+		jmp		Block_for_step_5
 
 Block_if_then_12:
 		mov		r10, 0
@@ -467,7 +463,7 @@ Block_for_after_4:
 Block_is_prime_end_4:
 		cmp		r10, 1
 		je		Block_if_then_13
-		jmp		Block_if_after_12
+		jmp		Block_for_step_6
 
 Block_if_then_13:
 		sub		rdi, r11
@@ -497,7 +493,6 @@ Block_find_end_1:
 Block_if_after_12:
 
 Block_for_step_6:
-		mov		r10, r11
 		dec		r11
 		jmp		Block_for_body_5
 
@@ -508,7 +503,6 @@ main:
 		push	rbp
 		sub		rsp, 8
 		mov		rbp, rsp
-		mov		r11, qword [Static_Data_n_1]
 
 Block_init_func_start_1:
 		push	r11
