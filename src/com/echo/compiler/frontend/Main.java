@@ -100,7 +100,7 @@ public class Main {
         else
             outS = new PrintStream(new FileOutputStream(outFile));
         new Registerprocess(irRoot).process();
-        new FuncInlineprocess(irRoot).process();
+//         new FuncInlineprocess(irRoot).process();
         new GlobalVariableProcess(irRoot).processs();
         new FuncArgprocess(irRoot).process();
 //        new naiveallocate(irRoot).process();
