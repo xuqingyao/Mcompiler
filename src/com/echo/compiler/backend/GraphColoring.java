@@ -352,7 +352,7 @@ public class GraphColoring {
 //        processFuncArgs();
 //        naiveAllocate();
         new LiveAnalysis(ir).process();
-//         new uselessDeleteProcess(ir).process();
+        new uselessDeleteProcess(ir).process();
         for(Func func : ir.funcs.values()){
             currentFunc = func;
             vrInfoMap.clear();
