@@ -157,9 +157,53 @@ public class FuncInlineprocess {
         return funcBak;
     }
 
+    private void processFunc(){
+        List<BasicBlock> reversePostOrder;
+        List<String> uncalledFunc = new ArrayList<>();
+        boolean changed = true, thisChanged;
+        while(changed){
+            changed = false;
+            uncalledFunc.clear();
+            for(Func func : ir.funcs.values()){
+                FuncInfo funcInfo = funcFuncInfoMap.get(func);
+                reversePostOrder = new ArrayList<>(func.getReversePostOrder());
+                thisChanged = false;
+                for(BasicBlock BB : reversePostOrder){
+                    for(Inst inst = BB.firstInst, nextInst; inst != null; inst = nextInst){
+                        nextInst = inst.nextInst;
+                        if(!(inst instanceof FuncCallInst))//not a function call, skip
+                            continue;
+                        FuncInfo calleeInfo = funcFuncInfoMap.get(((FuncCallInst)inst).func);
+                        if(calleeInfo == null)//a builtIn func, skip
+                            continue;
+                        if(calleeInfo.recursivecall)// a recursive function, skip
+                            continue;
+                        if(calleeInfo.memfunc)
+                            continue;
+                        if(calleeInfo.numInst > 30 || calleeInfo.numInst + funcInfo.numInst > 1 << 12)//the callee function is too big
+                            continue;
+                        nextInst = InlineProcess((FuncCallInst)inst);//the newEndBB.firstInstz
+                        funcInfo.numInst += calleeInfo.numInst;
+                        changed = true;
+                        thisChanged = true;
+                        if(--calleeInfo.numused == 0)
+                            uncalledFunc.add(((FuncCallInst) inst).func.name);
+                    }
+                }
+                if(thisChanged)
+                    func.calcReversePostOrder();
+            }
+            for(String name : uncalledFunc)
+                ir.removeFunc(name);
+        }
+        for(Func func : ir.funcs.values())
+            func.updateCalleeSet();
+        ir.updateCalleeSet();
+    }
+
     private void processReserve(){
-        List<BasicBlock> reversePostOrder = new ArrayList<>();
-        boolean changed = true, thisChanged = false;
+        List<BasicBlock> reversePostOrder;
+        boolean changed = true, thisChanged;
         for(int i = 0; changed && i < 5; ++ i){
             changed = false;
             funcFuncMap.clear();
@@ -207,51 +251,8 @@ public class FuncInlineprocess {
             funcInfo.memfunc = func.isMemFunc;
             funcFuncInfoMap.put(func, funcInfo);
         }
-
         countInstNum();
-
-        List<BasicBlock> reversePostOrder;
-        List<String> uncalledFunc = new ArrayList<>();
-        boolean changed = true, thisFuncchanged;
-        while(changed){
-            changed = false;
-            uncalledFunc.clear();
-            for(Func func : ir.funcs.values()){
-                FuncInfo funcInfo = funcFuncInfoMap.get(func);
-                reversePostOrder = new ArrayList<>(func.getReversePostOrder());
-                thisFuncchanged = false;
-                for(BasicBlock BB : reversePostOrder){
-                    for(Inst inst = BB.firstInst, nextInst; inst != null; inst = nextInst){
-                        nextInst = inst.nextInst;
-                        if(!(inst instanceof FuncCallInst))//not a function call, skip
-                            continue;
-                        FuncInfo calleeInfo = funcFuncInfoMap.get(((FuncCallInst)inst).func);
-                        if(calleeInfo == null)//a builtIn func, skip
-                            continue;
-                        if(calleeInfo.recursivecall)// a recursive function, skip
-                            continue;
-                        if(calleeInfo.memfunc)
-                            continue;
-                        if(calleeInfo.numInst > 30 || calleeInfo.numInst + funcInfo.numInst > 1 << 12)//the callee function is too big
-                            continue;
-                        nextInst = InlineProcess((FuncCallInst)inst);//the newEndBB.firstInstz
-                        funcInfo.numInst += calleeInfo.numInst;
-                        changed = true;
-                        thisFuncchanged = true;
-                        if(--calleeInfo.numused == 0)
-                            uncalledFunc.add(((FuncCallInst) inst).func.name);
-                    }
-                }
-                if(thisFuncchanged)
-                    func.calcReversePostOrder();
-            }
-            for(String name : uncalledFunc)
-                ir.removeFunc(name);
-        }
-        for(Func func : ir.funcs.values())
-            func.updateCalleeSet();
-        ir.updateCalleeSet();
-
+        processFunc();
         processReserve();
     }
 }
