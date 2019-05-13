@@ -1,13 +1,16 @@
 package com.echo.compiler.frontend;
 
-import com.echo.compiler.IR.BasicBlock;
-import com.echo.compiler.IR.Func;
-import com.echo.compiler.IR.IRGlobalVar;
-import com.echo.compiler.IR.IRRoot;
+import com.echo.compiler.IR.*;
 import com.echo.compiler.IR.Inst.*;
 import com.echo.compiler.IR.Register.*;
-import com.echo.compiler.Symbol.*;
-import com.echo.compiler.ast.DeclNode.*;
+import com.echo.compiler.Symbol.ClassSymbol;
+import com.echo.compiler.Symbol.FuncSymbol;
+import com.echo.compiler.Symbol.SymbolTable;
+import com.echo.compiler.Symbol.VarSymbol;
+import com.echo.compiler.ast.DeclNode.ClassDeclNode;
+import com.echo.compiler.ast.DeclNode.DeclNode;
+import com.echo.compiler.ast.DeclNode.FuncDeclNode;
+import com.echo.compiler.ast.DeclNode.VarDeclNode;
 import com.echo.compiler.ast.ExprNode.*;
 import com.echo.compiler.ast.Node;
 import com.echo.compiler.ast.ProgramNode;
@@ -303,6 +306,12 @@ public class IRBuilder extends SymbolTableBuilder{
         BasicBlock oldLoopAfterBB = currentLoopAfterBB;
         currentLoopStepBB = stepBB;
         currentLoopAfterBB = afterBB;
+
+        condBB.forNode = node;
+        stepBB.forNode = node;
+        bodyBB.forNode = node;
+        afterBB.forNode = node;
+        ir.forRecordMap.put(node, new ForRecord(condBB, stepBB, bodyBB, afterBB));
 
         if(node.getInit() != null)
             node.getInit().accept(this);

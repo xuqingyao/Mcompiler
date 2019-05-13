@@ -1,11 +1,14 @@
 package com.echo.compiler.backend;
 
 import com.echo.compiler.IR.BasicBlock;
+import com.echo.compiler.IR.ForRecord;
 import com.echo.compiler.IR.Func;
 import com.echo.compiler.IR.IRRoot;
 import com.echo.compiler.IR.Inst.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class uselessDeleteProcess {
@@ -30,6 +33,43 @@ public class uselessDeleteProcess {
                         inst.remove();
                     }
                 }
+            }
+        }
+
+        for(ForRecord forRecord : ir.forRecordMap.values()){
+            if(forRecord.processed)
+                continue;
+            boolean isOutside = false;
+            if(forRecord.condBB == null || forRecord.stepBB == null || forRecord.bodyBB == null || forRecord.afterBB == null)
+                continue;
+            List<BasicBlock> BBlist = new ArrayList<>();
+            BBlist.add(forRecord.condBB);
+            BBlist.add(forRecord.stepBB);
+            BBlist.add(forRecord.bodyBB);
+            BBlist.add(forRecord.afterBB);
+            Inst afterBBfirstInst = forRecord.afterBB.firstInst;
+            for(int i = 0; i < 3; ++ i){
+                for(Inst inst = BBlist.get(i).firstInst; inst != null; inst = inst.nextInst){
+                    if(inst instanceof FuncCallInst || inst instanceof StoreInst || inst instanceof ReturnJumpInst || inst instanceof PushInst || inst instanceof PopInst)
+                        isOutside = true;
+                    else if(inst.getDefinedRegister() != null){
+                        if(afterBBfirstInst.liveIn.contains(inst.getDefinedRegister()))
+                            isOutside = true;
+                    }
+                    else if(inst instanceof JumpJumpInst){
+                        if(!BBlist.contains(((JumpJumpInst) inst).targetBB))
+                            isOutside = true;
+                    }
+                    else if(inst instanceof BranchJumpInst){
+                        if(!BBlist.contains(((BranchJumpInst) inst).thenBB) || !BBlist.contains(((BranchJumpInst) inst).elseBB))
+                            isOutside = true;
+                    }
+                }
+            }
+            if(!isOutside){
+                forRecord.condBB.init();
+                forRecord.condBB.setJumpInst(new JumpJumpInst(forRecord.condBB, forRecord.afterBB));
+                forRecord.processed = true;
             }
         }
     }

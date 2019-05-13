@@ -1,6 +1,7 @@
 package com.echo.compiler.IR;
 
 import com.echo.compiler.IR.Inst.*;
+import com.echo.compiler.ast.StatNode.StatNode;
 import com.echo.compiler.error.CompilerError;
 
 import java.util.HashSet;
@@ -13,6 +14,7 @@ public class BasicBlock {
     public boolean hasJumpInit = false;
     public int postOrderIdx, preOrderIdx;
     public Set<BasicBlock> prevBBSet = new HashSet<>(), nextBBSet = new HashSet<>();
+    public StatNode forNode = null;
 
     public BasicBlock(Func func, String name){
         this.func = func;
@@ -77,6 +79,11 @@ public class BasicBlock {
             func.returnList.remove(lastInst);
         else
             throw new CompilerError("invalid type of IRJumpInst");
+    }
+
+    public void init(){
+        firstInst = lastInst = null;
+        hasJumpInit = false;
     }
 
     public void accept(IRVisitor visitor){

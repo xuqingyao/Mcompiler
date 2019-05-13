@@ -1,6 +1,7 @@
 package com.echo.compiler.backend;
 
 import com.echo.compiler.IR.BasicBlock;
+import com.echo.compiler.IR.ForRecord;
 import com.echo.compiler.IR.Func;
 import com.echo.compiler.IR.IRRoot;
 import com.echo.compiler.IR.Inst.*;
@@ -75,6 +76,17 @@ public class FuncInlineprocess {
         //copy Insts
         for(BasicBlock oldBB : reversePostOrder){
             BasicBlock newBB = (BasicBlock)renameMap.get(oldBB);
+            if(oldBB.forNode != null){
+                ForRecord forRecord = ir.forRecordMap.get(oldBB.forNode);
+                if(forRecord.condBB == oldBB)
+                    forRecord.condBB = newBB;
+                if(forRecord.stepBB == oldBB)
+                    forRecord.stepBB = newBB;
+                if(forRecord.bodyBB == oldBB)
+                    forRecord.bodyBB = newBB;
+                if(forRecord.afterBB == oldBB)
+                    forRecord.afterBB = newBB;
+            }
             for(Inst inst = oldBB.firstInst; inst != null; inst = inst.nextInst){
                 for(Value usedValue : inst.usedRegValues)
                     copyValue(renameMap, usedValue);

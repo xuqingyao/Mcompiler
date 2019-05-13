@@ -4,6 +4,7 @@ import com.echo.compiler.IR.Register.PhysicalRegister;
 import com.echo.compiler.IR.Register.StaticData;
 import com.echo.compiler.IR.Register.StaticStringData;
 import com.echo.compiler.NASM.NASMRegisterSet;
+import com.echo.compiler.ast.StatNode.StatNode;
 
 import java.util.*;
 
@@ -14,6 +15,7 @@ public class IRRoot {
     public boolean hasDivShiftInst = false;
     public PhysicalRegister reg0, reg1;
     public int maxFuncArgNum;
+    public Map<StatNode, ForRecord> forRecordMap = new HashMap<>();
 
     public IRRoot() {
         insertBuildInFuncs();
