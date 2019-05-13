@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2972d054-19b5-4cdc-98dc-fe9443a8d704" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/IRBuilder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/IRBuilder$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/IRBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/IRBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/frontend/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.o" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mcompiler/com/echo/compiler/prog.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/backend/uselessDeleteProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/backend/uselessDeleteProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/echo/compiler/prog.o" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,11 +40,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1984">
-              <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
+            <state relative-caret-position="310">
+              <caret line="36" column="89" selection-start-line="36" selection-start-column="89" selection-end-line="36" selection-end-column="89" />
+              <folding>
+                <element signature="e#585#586#0" expanded="true" />
+                <element signature="e#613#614#0" expanded="true" />
+                <element signature="e#6246#6404#1" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9579">
+            <state relative-caret-position="9486">
               <caret line="313" column="38" selection-start-line="313" selection-start-column="38" selection-end-line="313" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -91,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+            <state relative-caret-position="341">
+              <caret line="50" column="45" lean-forward="true" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
               <folding>
                 <element signature="e#2020#2021#0" expanded="true" />
                 <element signature="e#2063#2064#0" expanded="true" />
@@ -107,34 +99,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/uselessDeleteProcess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1767">
-              <caret line="59" column="76" lean-forward="true" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
+            <state relative-caret-position="-310">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2647#2648#0" expanded="true" />
-                <element signature="e#2682#2683#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/ForRecord.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -142,17 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
+            <state relative-caret-position="482">
               <caret line="37" selection-start-line="37" selection-end-line="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/NASMTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -160,7 +120,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4283">
+            <state relative-caret-position="-4469">
               <caret line="136" column="60" selection-start-line="136" selection-start-column="60" selection-end-line="136" selection-end-column="60" />
               <folding>
                 <element signature="method#getStackSlot#0;class#GraphColoring#0" />
@@ -269,11 +229,11 @@
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GlobalVariableProcess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java" />
-        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/ForRecord.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java" />
+        <option value="$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/uselessDeleteProcess.java" />
         <option value="$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java" />
       </list>
@@ -285,7 +245,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="949" />
     <option name="width" value="980" />
     <option name="height" value="1031" />
@@ -354,7 +314,7 @@
     <property name="ToolWindowVersion Control.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557739625290" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557746241020" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/M-compiler-master/src/jwb/Parser/M.g4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -514,12 +474,12 @@
       <workItem from="1557363025709" duration="3946000" />
       <workItem from="1557407464514" duration="3810000" />
       <workItem from="1557445965795" duration="5179000" />
-      <workItem from="1557737351029" duration="2210000" />
+      <workItem from="1557737351029" duration="5876000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="521680000" />
+    <option name="totallyTimeSpent" value="525346000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -531,7 +491,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="633" y="0" width="653" height="687" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.505291" side_tool="true" weight="0.26434922" />
@@ -543,7 +503,7 @@
       <window_info content_ui="combo" id="Project" order="6" sideWeight="0.49470899" weight="0.94957983" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.31711712" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49717057" weight="0.589698" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49717057" weight="0.58792186" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.6576577" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1024,24 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4283">
-          <caret line="136" column="60" selection-start-line="136" selection-start-column="60" selection-end-line="136" selection-end-column="60" />
-          <folding>
-            <element signature="method#getStackSlot#0;class#GraphColoring#0" />
-            <element signature="method#naiveAllocate#0;class#GraphColoring#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/IRRoot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -1057,24 +999,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9579">
-          <caret line="313" column="38" selection-start-line="313" selection-start-column="38" selection-end-line="313" selection-end-column="38" />
+        <state relative-caret-position="341">
+          <caret line="50" column="45" lean-forward="true" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2647#2648#0" expanded="true" />
-            <element signature="e#2682#2683#0" expanded="true" />
+            <element signature="e#2020#2021#0" expanded="true" />
+            <element signature="e#2063#2064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1086,10 +1017,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/LiveAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/GraphColoring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4469">
+          <caret line="136" column="60" selection-start-line="136" selection-start-column="60" selection-end-line="136" selection-end-column="60" />
+          <folding>
+            <element signature="method#getStackSlot#0;class#GraphColoring#0" />
+            <element signature="method#naiveAllocate#0;class#GraphColoring#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/IR/BasicBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2413">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2647#2648#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/uselessDeleteProcess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1767">
-          <caret line="59" column="76" lean-forward="true" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="76" />
+        <state relative-caret-position="-310">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/IRBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9486">
+          <caret line="313" column="38" selection-start-line="313" selection-start-column="38" selection-end-line="313" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1098,18 +1069,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/backend/FuncInlineprocess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1984">
-          <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/echo/compiler/frontend/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+        <state relative-caret-position="310">
+          <caret line="36" column="89" selection-start-line="36" selection-start-column="89" selection-end-line="36" selection-end-column="89" />
           <folding>
-            <element signature="e#2020#2021#0" expanded="true" />
-            <element signature="e#2063#2064#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#613#614#0" expanded="true" />
+            <element signature="e#6246#6404#1" />
           </folding>
         </state>
       </provider>

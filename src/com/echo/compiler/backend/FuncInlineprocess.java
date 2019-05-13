@@ -18,6 +18,7 @@ public class FuncInlineprocess {
 
     public IRRoot ir;
     private Map<Func, FuncInfo> funcFuncInfoMap = new HashMap<>();
+    private Map<Func, Func> funcFuncMap = new HashMap<>();
 
     public FuncInlineprocess(IRRoot ir){
         this.ir = ir;
@@ -32,7 +33,8 @@ public class FuncInlineprocess {
     // return newEndBB.firstInst
     private Inst InlineProcess(FuncCallInst funcCallInst){
         Func callerFunc = funcCallInst.parentBB.func;
-        Func calleeFunc = funcCallInst.func;
+//        Func calleeFunc = funcCallInst.func;
+        Func calleeFunc = funcFuncMap.getOrDefault(funcCallInst.func, funcCallInst.func);
         List<BasicBlock> reversePostOrder = calleeFunc.getReversePostOrder();
 
         Map<Object, Object> renameMap = new HashMap<>();
@@ -135,6 +137,68 @@ public class FuncInlineprocess {
         }
     }
 
+    private Func genFunc(Func func){
+        Func funcBak = new Func();
+        Map<Object, Object> renameMap = new HashMap<>();
+        for(BasicBlock BB : func.getReversePostOrder())
+            renameMap.put(BB, new BasicBlock(funcBak, BB.name));
+        for(BasicBlock BB : func.getReversePostOrder()){
+            BasicBlock BBBak = (BasicBlock)renameMap.get(BB);
+            for(Inst inst = BB.firstInst; inst != null; inst = inst.nextInst){
+                if(inst instanceof JumpInst)
+                    BBBak.setJumpInst(((JumpInst) inst).copyRename(renameMap));
+                else
+                    BBBak.addInst(inst.copyRename(renameMap));
+            }
+        }
+        funcBak.startBB = (BasicBlock)renameMap.get(func.startBB);
+        funcBak.endBB = (BasicBlock)renameMap.get(func.endBB);
+        funcBak.argVRegList = func.argVRegList;
+        return funcBak;
+    }
+
+    private void processReserve(){
+        List<BasicBlock> reversePostOrder = new ArrayList<>();
+        boolean changed = true, thisChanged = false;
+        for(int i = 0; changed && i < 5; ++ i){
+            changed = false;
+            funcFuncMap.clear();
+            for(Func func : ir.funcs.values()){
+                FuncInfo funcInfo = funcFuncInfoMap.get(func);
+                if(funcInfo.recursivecall)
+                    funcFuncMap.put(func, genFunc(func));
+            }
+            for(Func func : ir.funcs.values()){
+                FuncInfo funcInfo = funcFuncInfoMap.get(func);
+                reversePostOrder = new ArrayList<>(func.getReversePostOrder());
+                thisChanged = false;
+                for(BasicBlock BB : reversePostOrder){
+                    for(Inst inst = BB.firstInst, nextInst; inst != null; inst = nextInst){
+                        nextInst = inst.nextInst;
+                        if(!(inst instanceof FuncCallInst))//not a function call, skip
+                            continue;
+                        FuncInfo calleeInfo = funcFuncInfoMap.get(((FuncCallInst)inst).func);
+                        if(calleeInfo == null)//a builtIn func, skip
+                            continue;
+                        if(calleeInfo.memfunc)
+                            continue;
+                        if(calleeInfo.numInst > 30 || calleeInfo.numInst + funcInfo.numInst > 1 << 12)//the callee function is too big
+                            continue;
+                        nextInst = InlineProcess((FuncCallInst)inst);//the newEndBB.firstInstz
+                        funcInfo.numInst += calleeInfo.numInst;
+                        changed = true;
+                        thisChanged = true;
+                    }
+                }
+                if(thisChanged)
+                    func.calcReversePostOrder();
+            }
+        }
+        for(Func func : ir.funcs.values())
+            func.updateCalleeSet();
+        ir.updateCalleeSet();
+    }
+
     public void process(){
         for(Func func : ir.funcs.values()){
             func.recursiveCall = func.calleeSet.contains(func);
@@ -187,5 +251,7 @@ public class FuncInlineprocess {
         for(Func func : ir.funcs.values())
             func.updateCalleeSet();
         ir.updateCalleeSet();
+
+        processReserve();
     }
 }

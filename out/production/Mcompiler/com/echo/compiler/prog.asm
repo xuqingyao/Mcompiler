@@ -3,246 +3,97 @@
 		extern	malloc
 
 		section	.bss
-Static_Data_MAXN_1:	resq	1
-Static_Data_mod_1:	resq	1
-Static_Data_a_1:	resq	1
-Static_Data_num_1:	resq	1
+Static_Data_n_1:	resq	1
+
+		section	.data
+Static_Data_static_str_1:
+		dq		1
+		db		51, 0
+Static_Data_static_str_2:
+		dq		1
+		db		50, 0
+Static_Data_static_str_3:
+		dq		1
+		db		49, 0
+Static_Data_static_str_4:
+		dq		1
+		db		32, 0
 
 		section	.text
 
-# function workb
+# function find
 
-Block_workb_start_1:
-		push	r13
+Block_find_start_1:
 		push	r12
+		push	r13
 		push	rbx
 		push	rbp
 		sub		rsp, 8
 		mov		rbp, rsp
-		mov		r11, qword [Static_Data_num_1]
-		mov		r12, qword [Static_Data_mod_1]
-		mov		r10, 0
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r10, qword [r10]
 		and		rdi, -1
-		and		r10, -1
 		xor		rax, rax
-		cmp		rdi, r10
-		sete	al
-		mov		r10, rax
-		cmp		r10, 1
-		je		Block_and_lhs_true_1
-		jmp		Block_if_after_1
-
-Block_and_lhs_true_1:
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r10, qword [r10+8]
-		and		rsi, -1
-		and		r10, -1
-		xor		rax, rax
-		cmp		rsi, r10
+		cmp		rdi, 1
 		sete	al
 		mov		r10, rax
 		cmp		r10, 1
 		je		Block_if_then_1
-		jmp		Block_if_after_1
-
-Block_if_then_1:
-		imul		rdx, 8
-		add		rdx, r11
-		mov		rdx, qword [rdx+8]
-		mov		r10, qword [rdx+24]
-		jmp		Block_workb_end_1
 
 Block_if_after_1:
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r13, qword [r10]
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r10, qword [r10+8]
-		add		r13, r10
-		mov		rbx, rcx
-		mov		rcx, 1
-		sar		r13, cl
-		mov		rcx, rbx
-		and		r13, -1
-		mov		r10, r13
-		and		rsi, -1
-		and		r10, -1
-		xor		rax, rax
-		cmp		rsi, r10
-		setle	al
-		mov		r11, rax
-		cmp		r11, 1
-		je		Block_if_then_2
+		mov		r11, 2
 
-Block_if_else_1:
+Block_for_cond_1:
+		mov		r10, r11
+		imul		r10, r11
+		and		r10, -1
 		and		rdi, -1
-		and		r10, -1
 		xor		rax, rax
-		cmp		rdi, r10
-		setg	al
-		mov		r11, rax
-		cmp		r11, 1
-		je		Block_if_then_3
-		jmp		Block_if_else_2
-
-Block_if_then_3:
-		mov		r10, rdx
-		imul		r10, 2
-		inc		r10
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		push	rsi
-		mov		rdi, qword [rsp+8]
-		mov		rsi, qword [rsp]
-		mov		rdx, r10
-		add		rsp, 16
-		call	Block_workb_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
+		cmp		r10, rdi
+		setle	al
 		mov		r10, rax
-		jmp		Block_workb_end_1
+		cmp		r10, 1
+		je		Block_for_body_1
 
-Block_if_else_2:
-		mov		r11, rdx
-		imul		r11, 2
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		mov		rdi, qword [rsp]
-		mov		rsi, r10
-		mov		rdx, r11
-		add		rsp, 8
-		call	Block_workb_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r11, rax
-		mov		r13, r10
-		inc		r13
-		mov		r10, rdx
-		imul		r10, 2
-		inc		r10
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rsi
-		mov		rdi, r13
-		mov		rsi, qword [rsp]
-		mov		rdx, r10
-		add		rsp, 8
-		call	Block_workb_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r10, rax
-		add		r11, r10
-		mov		rbx, r12
-		mov		rax, r11
+Block_for_after_1:
+		mov		r10, 1
+		jmp		Block_is_prime_end_1
+
+Block_for_body_1:
+		mov		rbx, r11
+		mov		rax, rdi
 		mov		r8, rdx
 		cdq
 		idiv	rbx
 		mov		r10, rdx
 		mov		rdx, r8
-		jmp		Block_workb_end_1
-
-Block_if_then_2:
-		imul		rdx, 2
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		push	rsi
-		push	rdx
-		mov		rdi, qword [rsp+16]
-		mov		rsi, qword [rsp+8]
-		mov		rdx, qword [rsp]
-		add		rsp, 24
-		call	Block_workb_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r10, rax
-
-Block_workb_end_1:
-		mov		rax, r10
-		add		rsp, 8
-		pop		rbp
-		pop		rbx
-		pop		r12
-		pop		r13
-		ret
-
-# function worka
-
-Block_worka_start_1:
-		push	r12
-		push	rbx
-		push	rbp
-		mov		rbp, rsp
-		mov		r11, qword [Static_Data_num_1]
-		mov		r12, 0
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r10, qword [r10]
-		and		rdi, -1
 		and		r10, -1
 		xor		rax, rax
-		cmp		rdi, r10
+		cmp		r10, 0
 		sete	al
 		mov		r10, rax
 		cmp		r10, 1
-		je		Block_and_lhs_true_2
-		jmp		Block_if_after_2
+		je		Block_if_then_2
+		jmp		Block_for_step_1
 
-Block_and_lhs_true_2:
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r10, qword [r10+8]
+Block_if_after_2:
+
+Block_for_step_1:
+		inc		r11
+		jmp		Block_for_cond_1
+
+Block_if_then_2:
+		mov		r10, 0
+		jmp		Block_is_prime_end_1
+
+Block_if_then_1:
+		mov		r10, 0
+
+Block_is_prime_end_1:
+		cmp		r10, 1
+		je		Block_if_then_3
+
+Block_if_after_3:
+		mov		r10, 1
+		neg		r10
 		and		rsi, -1
 		and		r10, -1
 		xor		rax, rax
@@ -251,730 +102,430 @@ Block_and_lhs_true_2:
 		mov		r10, rax
 		cmp		r10, 1
 		je		Block_if_then_4
-		jmp		Block_if_after_2
+		jmp		Block_if_else_1
 
 Block_if_then_4:
-		imul		rdx, 8
-		add		rdx, r11
-		mov		rdx, qword [rdx+8]
-		mov		r10, qword [rdx+16]
-		jmp		Block_worka_end_1
+		mov		r10, rdi
+		sub		r10, 2
+		mov		r11, r10
 
-Block_if_after_2:
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r12, qword [r10]
-		mov		r10, rdx
-		imul		r10, 8
-		add		r10, r11
-		mov		r10, qword [r10+8]
-		mov		r11, qword [r10+8]
-		mov		r10, r12
-		add		r10, r11
-		mov		rbx, rcx
-		mov		rcx, 1
-		sar		r10, cl
-		mov		rcx, rbx
-		and		r10, -1
-		mov		r12, r10
-		and		rsi, -1
-		and		r12, -1
+Block_for_body_2:
+		and		r11, -1
 		xor		rax, rax
-		cmp		rsi, r12
-		setle	al
+		cmp		r11, 1
+		sete	al
 		mov		r10, rax
 		cmp		r10, 1
 		je		Block_if_then_5
 
-Block_if_else_3:
-		and		rdi, -1
-		and		r12, -1
-		xor		rax, rax
-		cmp		rdi, r12
-		setg	al
-		mov		r10, rax
-		cmp		r10, 1
-		je		Block_if_then_6
-		jmp		Block_if_else_4
+Block_if_after_4:
+		mov		r12, 2
 
-Block_if_then_6:
-		imul		rdx, 2
-		inc		rdx
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		push	rsi
-		push	rdx
-		mov		rdi, qword [rsp+16]
-		mov		rsi, qword [rsp+8]
-		mov		rdx, qword [rsp]
-		add		rsp, 24
-		call	Block_worka_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r10, rax
-		jmp		Block_worka_end_1
-
-Block_if_else_4:
-		mov		r10, rdx
-		imul		r10, 2
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		mov		rdi, qword [rsp]
-		mov		rsi, r12
-		mov		rdx, r10
-		add		rsp, 8
-		call	Block_worka_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r10, rax
-		inc		r12
-		imul		rdx, 2
-		inc		rdx
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rsi
-		push	rdx
-		mov		rdi, r12
-		mov		rsi, qword [rsp+8]
-		mov		rdx, qword [rsp]
-		add		rsp, 16
-		call	Block_worka_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r11, rax
+Block_for_cond_2:
+		mov		r10, r12
+		imul		r10, r12
 		and		r10, -1
 		and		r11, -1
 		xor		rax, rax
 		cmp		r10, r11
-		setl	al
-		mov		r12, rax
-		cmp		r12, 1
-		je		Block_if_then_7
-
-Block_if_else_5:
-		jmp		Block_max_end_1
-
-Block_if_then_7:
-		mov		r10, r11
-
-Block_max_end_1:
-		jmp		Block_worka_end_1
-
-Block_if_then_5:
-		imul		rdx, 2
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		push	rsi
-		push	rdx
-		mov		rdi, qword [rsp+16]
-		mov		rsi, qword [rsp+8]
-		mov		rdx, qword [rsp]
-		add		rsp, 24
-		call	Block_worka_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
+		setle	al
 		mov		r10, rax
+		cmp		r10, 1
+		je		Block_for_body_3
 
-Block_worka_end_1:
-		mov		rax, r10
-		pop		rbp
-		pop		rbx
-		pop		r12
-		ret
+Block_for_after_2:
+		mov		r10, 1
+		jmp		Block_is_prime_end_2
 
-# function buildsum
-
-Block_buildsum_start_1:
-		push	r15
-		push	r13
-		push	r12
-		push	r14
-		push	rbx
-		push	rbp
-		sub		rsp, 8
-		mov		rbp, rsp
-		mov		r14, qword [Static_Data_num_1]
-		mov		r13, qword [Static_Data_mod_1]
-		mov		r10, qword [Static_Data_a_1]
-		mov		r15, 0
-		mov		r11, rdx
-		imul		r11, 8
-		add		r11, r14
-		mov		r11, qword [r11+8]
-		mov		qword [r11], rdi
-		mov		r11, rdx
-		imul		r11, 8
-		add		r11, r14
-		mov		r11, qword [r11+8]
-		mov		qword [r11+8], rsi
-		and		rdi, -1
-		and		rsi, -1
-		xor		rax, rax
-		cmp		rdi, rsi
-		sete	al
-		mov		r11, rax
-		cmp		r11, 1
-		je		Block_if_then_8
-
-Block_if_after_3:
-		mov		r15, rdi
-		add		r15, rsi
-		mov		rbx, rcx
-		mov		rcx, 1
-		sar		r15, cl
-		mov		rcx, rbx
-		and		r15, -1
-		mov		r12, rdx
-		imul		r12, 8
-		add		r12, r14
-		mov		r12, qword [r12+8]
-		mov		r10, rdx
-		imul		r10, 2
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		mov		rdi, qword [rsp]
-		mov		rsi, r15
-		mov		rdx, r10
-		add		rsp, 8
-		call	Block_buildsum_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r10, rax
-		inc		r15
-		mov		r11, rdx
-		imul		r11, 2
-		inc		r11
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rsi
-		mov		rdi, r15
-		mov		rsi, qword [rsp]
-		mov		rdx, r11
-		add		rsp, 8
-		call	Block_buildsum_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r11, rax
-		add		r10, r11
-		mov		rbx, r13
-		mov		rax, r10
+Block_for_body_3:
+		mov		rbx, r12
+		mov		rax, r11
 		mov		r8, rdx
 		cdq
 		idiv	rbx
 		mov		r10, rdx
 		mov		rdx, r8
-		mov		qword [r12+24], r10
-		imul		rdx, 8
-		add		rdx, r14
-		mov		rdx, qword [rdx+8]
-		mov		rdi, qword [rdx+24]
-		jmp		Block_buildsum_end_1
+		and		r10, -1
+		xor		rax, rax
+		cmp		r10, 0
+		sete	al
+		mov		r10, rax
+		cmp		r10, 1
+		je		Block_if_then_6
+		jmp		Block_for_step_2
+
+Block_if_then_6:
+		mov		r10, 0
+		jmp		Block_is_prime_end_2
+
+Block_if_after_5:
+
+Block_for_step_2:
+		inc		r12
+		jmp		Block_for_cond_2
+
+Block_if_then_5:
+		mov		r10, 0
+
+Block_is_prime_end_2:
+		cmp		r10, 1
+		je		Block_if_then_7
+		jmp		Block_for_step_3
+
+Block_if_after_6:
+
+Block_for_step_3:
+		dec		r11
+		jmp		Block_for_body_2
+
+Block_if_then_7:
+		sub		rdi, r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		push	rdi
+		mov		rdi, qword [rsp]
+		mov		rsi, r11
+		add		rsp, 8
+		call	Block_find_start_1
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		mov		r10, rax
+		jmp		Block_find_end_1
+
+Block_if_else_1:
+		mov		r11, rdi
+		dec		r11
+
+Block_for_body_4:
+		and		r11, -1
+		xor		rax, rax
+		cmp		r11, 1
+		sete	al
+		mov		r10, rax
+		cmp		r10, 1
+		je		Block_if_then_8
+		jmp		Block_if_after_7
 
 Block_if_then_8:
-		imul		rdx, 8
-		add		rdx, r14
-		mov		rdx, qword [rdx+8]
-		mov		r11, rdi
-		imul		r11, 8
-		add		r11, r10
-		mov		r11, qword [r11+8]
-		mov		qword [rdx+24], r11
-		imul		rdi, 8
-		add		rdi, r10
-		mov		rdi, qword [rdi+8]
+		mov		r10, 0
+		jmp		Block_is_prime_end_3
 
-Block_buildsum_end_1:
-		mov		rax, rdi
+Block_if_after_7:
+		mov		r10, 2
+
+Block_for_cond_3:
+		mov		r12, r10
+		imul		r12, r10
+		and		r12, -1
+		and		r11, -1
+		xor		rax, rax
+		cmp		r12, r11
+		setle	al
+		mov		r12, rax
+		cmp		r12, 1
+		je		Block_for_body_5
+
+Block_for_after_3:
+		mov		r10, 1
+		jmp		Block_is_prime_end_3
+
+Block_for_body_5:
+		mov		rbx, r10
+		mov		rax, r11
+		mov		r8, rdx
+		cdq
+		idiv	rbx
+		mov		r12, rdx
+		mov		rdx, r8
+		and		r12, -1
+		xor		rax, rax
+		cmp		r12, 0
+		sete	al
+		mov		r12, rax
+		cmp		r12, 1
+		je		Block_if_then_9
+		jmp		Block_for_step_4
+
+Block_if_after_8:
+
+Block_for_step_4:
+		inc		r10
+		jmp		Block_for_cond_3
+
+Block_if_then_9:
+		mov		r10, 0
+
+Block_is_prime_end_3:
+		cmp		r10, 1
+		je		Block_and_lhs_true_1
+		jmp		Block_for_step_5
+
+Block_and_lhs_true_1:
+		mov		r12, rdi
+		sub		r12, r11
+		and		r12, -1
+		xor		rax, rax
+		cmp		r12, 1
+		sete	al
+		mov		r10, rax
+		cmp		r10, 1
+		je		Block_if_then_10
+		jmp		Block_if_after_9
+
+Block_if_then_10:
+		mov		r10, 0
+		jmp		Block_is_prime_end_4
+
+Block_if_after_9:
+		mov		r13, 2
+
+Block_for_cond_4:
+		mov		r10, r13
+		imul		r10, r13
+		and		r10, -1
+		and		r12, -1
+		xor		rax, rax
+		cmp		r10, r12
+		setle	al
+		mov		r10, rax
+		cmp		r10, 1
+		je		Block_for_body_6
+
+Block_for_after_4:
+		mov		r10, 1
+		jmp		Block_is_prime_end_4
+
+Block_for_body_6:
+		mov		rbx, r13
+		mov		rax, r12
+		mov		r8, rdx
+		cdq
+		idiv	rbx
+		mov		r10, rdx
+		mov		rdx, r8
+		and		r10, -1
+		xor		rax, rax
+		cmp		r10, 0
+		sete	al
+		mov		r10, rax
+		cmp		r10, 1
+		je		Block_if_then_11
+		jmp		Block_for_step_6
+
+Block_if_then_11:
+		mov		r10, 0
+
+Block_is_prime_end_4:
+		cmp		r10, 1
+		je		Block_if_then_12
+		jmp		Block_for_step_5
+
+Block_if_after_10:
+
+Block_for_step_5:
+		dec		r11
+		jmp		Block_for_body_4
+
+Block_if_then_12:
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, Static_Data_static_str_1
+		call	_println
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, rsi
+		call	_printInt
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, Static_Data_static_str_4
+		call	_print
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, r11
+		call	_printInt
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, Static_Data_static_str_4
+		call	_print
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		sub		rdi, r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		push	rdi
+		mov		rdi, qword [rsp]
+		add		rsp, 8
+		call	_printlnInt
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		jmp		Block_find_end_1
+
+Block_if_after_11:
+
+Block_for_step_6:
+		inc		r13
+		jmp		Block_for_cond_4
+
+Block_if_then_3:
+		and		rsi, -1
+		xor		rax, rax
+		cmp		rsi, 0
+		setg	al
+		mov		r10, rax
+		cmp		r10, 1
+		je		Block_if_then_13
+
+Block_if_else_2:
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, Static_Data_static_str_3
+		call	_println
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		push	rdi
+		mov		rdi, qword [rsp]
+		add		rsp, 8
+		call	_printlnInt
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		jmp		Block_find_end_1
+
+Block_if_then_13:
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, Static_Data_static_str_2
+		call	_println
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, rsi
+		call	_printInt
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		mov		rdi, Static_Data_static_str_4
+		call	_print
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		push	r11
+		push	r10
+		push	rdi
+		push	rsi
+		push	rdi
+		mov		rdi, qword [rsp]
+		add		rsp, 8
+		call	_printlnInt
+		pop		rsi
+		pop		rdi
+		pop		r10
+		pop		r11
+		jmp		Block_find_end_1
+
+Block_if_after_12:
+
+Block_find_end_1:
 		add		rsp, 8
 		pop		rbp
 		pop		rbx
-		pop		r14
-		pop		r12
 		pop		r13
-		pop		r15
+		pop		r12
 		ret
 
 # function main
 
 main:
-		push	r15
-		push	r13
-		push	r12
-		push	r14
 		push	rbx
 		push	rbp
-		sub		rsp, 40
+		sub		rsp, 8
 		mov		rbp, rsp
-		mov		r8, 10500
-		mov		qword [rbp+16], r8
-		mov		r8, qword [rbp+16]
-		mov		r10, r8
-		imul		r10, 8
-		add		r10, 8
-		push	r11
-		push	r8
-		push	r10
-		mov		rdi, r10
-		push	0
-		call	malloc
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r10, rax
-		mov		r8, qword [rbp+16]
-		mov		qword [r10], r8
-		mov		r11, 4
-		mov		r8, qword [rbp+16]
-		imul		r11, r8
-		mov		r15, r11
-		imul		r15, 8
-		add		r15, 8
-		push	r11
-		push	r8
-		push	r10
-		mov		rdi, r15
-		push	0
-		call	malloc
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r15, rax
-		mov		qword [r15], r11
 
 Block_init_func_start_1:
 		push	r11
-		push	r8
 		push	r10
-		push	0
 		call	_getInt
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r13, rax
-		push	r11
-		push	r8
-		push	r10
-		push	0
-		call	_getInt
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r14, rax
-		mov		r8, 0
-		mov		qword [rbp+24], r8
-		mov		r8, 0
-		mov		qword [rbp+24], r8
-
-Block_for_cond_1:
-		mov		r11, 4
-		mov		r8, qword [rbp+16]
-		imul		r11, r8
-		mov		r8, qword [rbp+24]
-		and		r8, -1
-		and		r11, -1
-		xor		rax, rax
-		cmp		r8, r11
-		setl	al
-		mov		r11, rax
-		cmp		r11, 1
-		je		Block_for_body_1
-
-Block_for_after_1:
-		mov		r8, 1
-		mov		qword [rbp+24], r8
-
-Block_for_cond_2:
-		mov		r8, qword [rbp+24]
-		and		r8, -1
-		and		r14, -1
-		xor		rax, rax
-		cmp		r8, r14
-		setle	al
-		mov		r11, rax
-		cmp		r11, 1
-		je		Block_for_body_2
-		jmp		Block_for_after_2
-
-Block_for_body_2:
-		mov		r8, qword [rbp+24]
-		mov		r12, r8
-		imul		r12, 8
-		add		r12, r10
-		push	r11
-		push	r8
-		push	r10
-		push	0
-		call	_getInt
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r11, rax
-		mov		rbx, r13
-		mov		rax, r11
-		mov		r8, rdx
-		cdq
-		idiv	rbx
-		mov		r11, rdx
-		mov		rdx, r8
-		mov		qword [r12+8], r11
-
-Block_for_step_1:
-		mov		r8, qword [rbp+24]
-		inc		r8
-		mov		qword [rbp+24], r8
-		jmp		Block_for_cond_2
-
-Block_for_after_2:
-		mov		qword [Static_Data_num_1], r15
-		mov		qword [Static_Data_a_1], r10
-		push	r11
-		push	r10
-		mov		rdi, 1
-		mov		rsi, r14
-		mov		rdx, 1
-		call	Block_buildmax_start_1
-		pop		r10
-		pop		r11
-		mov		r11, rax
-		mov		qword [Static_Data_num_1], r15
-		mov		qword [Static_Data_mod_1], r13
-		mov		qword [Static_Data_a_1], r10
-		push	r11
-		push	r10
-		mov		rdi, 1
-		mov		rsi, r14
-		mov		rdx, 1
-		call	Block_buildsum_start_1
-		pop		r10
-		pop		r11
-		mov		r11, rax
-		push	r11
-		push	r8
-		push	r10
-		push	0
-		call	_getInt
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r14, rax
-		mov		r12, 0
-		mov		r11, 0
-
-Block_while_cond_1:
-		mov		r11, r14
-		dec		r14
-		and		r11, -1
-		xor		rax, rax
-		cmp		r11, 0
-		setg	al
-		mov		r11, rax
-		cmp		r11, 1
-		je		Block_while_body_1
-
-Block_while_after_1:
-		mov		qword [Static_Data_num_1], r15
-		mov		qword [Static_Data_mod_1], r13
-		mov		qword [Static_Data_a_1], r10
-		mov		r8, qword [rbp+16]
-		mov		qword [Static_Data_MAXN_1], r8
-		mov		rax, 0
-		add		rsp, 40
-		pop		rbp
-		pop		rbx
-		pop		r14
-		pop		r12
-		pop		r13
-		pop		r15
-		ret
-
-Block_while_body_1:
-		push	r11
-		push	r8
-		push	r10
-		push	0
-		call	_getInt
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r12, rax
-		push	r11
-		push	r8
-		push	r10
-		push	0
-		call	_getInt
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r11, rax
-		mov		r8, r12
-		mov		qword [rbp], r8
-		mov		r8, 1
-		mov		qword [rbp+8], r8
-		mov		qword [Static_Data_num_1], r15
-		push	r11
-		push	r10
-		mov		rax, qword [rbp]
-		mov		rdi, rax
-		mov		rsi, r11
-		mov		rax, qword [rbp+8]
-		mov		rdx, rax
-		call	Block_worka_start_1
-		pop		r10
-		pop		r11
-		mov		r12, rax
-		mov		qword [Static_Data_num_1], r15
-		mov		qword [Static_Data_mod_1], r13
-		push	r11
-		push	r10
-		mov		rax, qword [rbp]
-		mov		rdi, rax
-		mov		rsi, r11
-		mov		rax, qword [rbp+8]
-		mov		rdx, rax
-		call	Block_workb_start_1
-		pop		r10
-		pop		r11
-		mov		r11, rax
-		and		r12, r11
-
-Block_workc_start_1:
-		push	r11
-		push	r8
-		push	r10
-		push	0
-		mov		rdi, r12
-		call	_printlnInt
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		jmp		Block_while_cond_1
-
-Block_for_body_1:
-		mov		r8, qword [rbp+24]
-		mov		r11, r8
-		imul		r11, 8
-		add		r11, r15
-		push	r11
-		push	r8
-		push	r10
-		mov		rdi, 32
-		push	0
-		call	malloc
-		add		rsp, 8
-		pop		r10
-		pop		r8
-		pop		r11
-		mov		r12, rax
-		mov		qword [r12], 0
-		mov		qword [r12+8], 0
-		mov		qword [r12+16], 0
-		mov		qword [r12+24], 0
-
-Block_node_start_1:
-		mov		qword [r11+8], r12
-
-Block_for_step_2:
-		mov		r8, qword [rbp+24]
-		inc		r8
-		mov		qword [rbp+24], r8
-		jmp		Block_for_cond_1
-
-# function buildmax
-
-Block_buildmax_start_1:
-		push	r13
-		push	r12
-		push	r14
-		push	rbx
-		push	rbp
-		mov		rbp, rsp
-		mov		r12, qword [Static_Data_num_1]
-		mov		r10, qword [Static_Data_a_1]
-		mov		r13, 0
-		mov		r11, rdx
-		imul		r11, 8
-		add		r11, r12
-		mov		r11, qword [r11+8]
-		mov		qword [r11], rdi
-		mov		r11, rdx
-		imul		r11, 8
-		add		r11, r12
-		mov		r11, qword [r11+8]
-		mov		qword [r11+8], rsi
-		and		rdi, -1
-		and		rsi, -1
-		xor		rax, rax
-		cmp		rdi, rsi
-		sete	al
-		mov		r11, rax
-		cmp		r11, 1
-		je		Block_if_then_9
-		jmp		Block_if_after_4
-
-Block_if_then_9:
-		imul		rdx, 8
-		add		rdx, r12
-		mov		rdx, qword [rdx+8]
-		mov		r11, rdi
-		imul		r11, 8
-		add		r11, r10
-		mov		r11, qword [r11+8]
-		mov		qword [rdx+16], r11
-		imul		rdi, 8
-		add		rdi, r10
-		mov		rdi, qword [rdi+8]
-		mov		r10, rdi
-		jmp		Block_buildmax_end_1
-
-Block_if_after_4:
-		mov		r13, rdi
-		add		r13, rsi
-		mov		rbx, rcx
-		mov		rcx, 1
-		sar		r13, cl
-		mov		rcx, rbx
-		and		r13, -1
-		mov		r11, rdx
-		imul		r11, 8
-		add		r11, r12
-		mov		r11, qword [r11+8]
-		mov		r10, rdx
-		imul		r10, 2
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rdi
-		mov		rdi, qword [rsp]
-		mov		rsi, r13
-		mov		rdx, r10
-		add		rsp, 8
-		call	Block_buildmax_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
-		pop		r10
-		pop		r11
-		mov		r14, rax
-		inc		r13
-		mov		r10, rdx
-		imul		r10, 2
-		inc		r10
-		push	r11
-		push	r10
-		push	rdi
-		push	rsi
-		push	rdx
-		push	0
-		push	rsi
-		mov		rdi, r13
-		mov		rsi, qword [rsp]
-		mov		rdx, r10
-		add		rsp, 8
-		call	Block_buildmax_start_1
-		add		rsp, 8
-		pop		rdx
-		pop		rsi
-		pop		rdi
 		pop		r10
 		pop		r11
 		mov		r10, rax
-		and		r14, -1
-		and		r10, -1
-		xor		rax, rax
-		cmp		r14, r10
-		setl	al
-		mov		r13, rax
-		cmp		r13, 1
-		je		Block_if_then_10
-		jmp		Block_if_else_6
+		mov		r11, r10
 
-Block_if_then_10:
-		jmp		Block_max_end_2
+Block_init_start_1:
+		mov		r10, 1
+		neg		r10
+		push	r11
+		push	r10
+		mov		rdi, r11
+		mov		rsi, r10
+		call	Block_find_start_1
+		pop		r10
+		pop		r11
+		mov		r10, rax
 
-Block_if_else_6:
-		mov		r10, r14
-
-Block_max_end_2:
-		mov		qword [r11+16], r10
-		imul		rdx, 8
-		add		rdx, r12
-		mov		rdx, qword [rdx+8]
-		mov		r10, qword [rdx+16]
-
-Block_buildmax_end_1:
-		mov		rax, r10
+Block_work_start_1:
+		mov		qword [Static_Data_n_1], r11
+		mov		rax, 0
+		add		rsp, 8
 		pop		rbp
 		pop		rbx
-		pop		r14
-		pop		r12
-		pop		r13
 		ret
 
 

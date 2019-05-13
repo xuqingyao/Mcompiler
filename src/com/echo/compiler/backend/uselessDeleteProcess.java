@@ -50,12 +50,12 @@ public class uselessDeleteProcess {
             Inst afterBBfirstInst = forRecord.afterBB.firstInst;
             for(int i = 0; i < 3; ++ i){
                 for(Inst inst = BBlist.get(i).firstInst; inst != null; inst = inst.nextInst){
-                    if(inst instanceof FuncCallInst || inst instanceof StoreInst || inst instanceof ReturnJumpInst || inst instanceof PushInst || inst instanceof PopInst)
-                        isOutside = true;
-                    else if(inst.getDefinedRegister() != null){
+                    if(inst.getDefinedRegister() != null){
                         if(afterBBfirstInst.liveIn.contains(inst.getDefinedRegister()))
                             isOutside = true;
                     }
+                    if(inst instanceof FuncCallInst || inst instanceof StoreInst || inst instanceof ReturnJumpInst || inst instanceof PushInst || inst instanceof PopInst)
+                        isOutside = true;
                     else if(inst instanceof JumpJumpInst){
                         if(!BBlist.contains(((JumpJumpInst) inst).targetBB))
                             isOutside = true;

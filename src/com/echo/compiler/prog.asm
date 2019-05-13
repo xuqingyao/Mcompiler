@@ -107,55 +107,54 @@ Block_if_after_3:
 Block_if_then_4:
 		mov		r10, rdi
 		sub		r10, 2
-		mov		r11, r10
 
 Block_for_body_2:
-		and		r11, -1
+		and		r10, -1
 		xor		rax, rax
-		cmp		r11, 1
-		sete	al
-		mov		r10, rax
 		cmp		r10, 1
+		sete	al
+		mov		r11, rax
+		cmp		r11, 1
 		je		Block_if_then_5
 
 Block_if_after_4:
 		mov		r12, 2
 
 Block_for_cond_2:
-		mov		r10, r12
-		imul		r10, r12
-		and		r10, -1
+		mov		r11, r12
+		imul		r11, r12
 		and		r11, -1
+		and		r10, -1
 		xor		rax, rax
-		cmp		r10, r11
+		cmp		r11, r10
 		setle	al
-		mov		r10, rax
-		cmp		r10, 1
+		mov		r11, rax
+		cmp		r11, 1
 		je		Block_for_body_3
 
 Block_for_after_2:
-		mov		r10, 1
+		mov		r11, 1
 		jmp		Block_is_prime_end_2
 
 Block_for_body_3:
 		mov		rbx, r12
-		mov		rax, r11
+		mov		rax, r10
 		mov		r8, rdx
 		cdq
 		idiv	rbx
-		mov		r10, rdx
+		mov		r11, rdx
 		mov		rdx, r8
-		and		r10, -1
+		and		r11, -1
 		xor		rax, rax
-		cmp		r10, 0
+		cmp		r11, 0
 		sete	al
-		mov		r10, rax
-		cmp		r10, 1
+		mov		r11, rax
+		cmp		r11, 1
 		je		Block_if_then_6
 		jmp		Block_for_step_2
 
 Block_if_then_6:
-		mov		r10, 0
+		mov		r11, 0
 		jmp		Block_is_prime_end_2
 
 Block_if_after_5:
@@ -165,28 +164,28 @@ Block_for_step_2:
 		jmp		Block_for_cond_2
 
 Block_if_then_5:
-		mov		r10, 0
+		mov		r11, 0
 
 Block_is_prime_end_2:
-		cmp		r10, 1
+		cmp		r11, 1
 		je		Block_if_then_7
 		jmp		Block_for_step_3
 
 Block_if_after_6:
 
 Block_for_step_3:
-		dec		r11
+		dec		r10
 		jmp		Block_for_body_2
 
 Block_if_then_7:
-		sub		rdi, r11
+		sub		rdi, r10
 		push	r11
 		push	r10
 		push	rdi
 		push	rsi
 		push	rdi
 		mov		rdi, qword [rsp]
-		mov		rsi, r11
+		mov		rsi, r10
 		add		rsp, 8
 		call	Block_find_start_1
 		pop		rsi
@@ -215,18 +214,18 @@ Block_if_then_8:
 		jmp		Block_is_prime_end_3
 
 Block_if_after_7:
-		mov		r10, 2
+		mov		r12, 2
 
 Block_for_cond_3:
-		mov		r12, r10
-		imul		r12, r10
-		and		r12, -1
+		mov		r10, r12
+		imul		r10, r12
+		and		r10, -1
 		and		r11, -1
 		xor		rax, rax
-		cmp		r12, r11
+		cmp		r10, r11
 		setle	al
-		mov		r12, rax
-		cmp		r12, 1
+		mov		r10, rax
+		cmp		r10, 1
 		je		Block_for_body_5
 
 Block_for_after_3:
@@ -234,26 +233,26 @@ Block_for_after_3:
 		jmp		Block_is_prime_end_3
 
 Block_for_body_5:
-		mov		rbx, r10
+		mov		rbx, r12
 		mov		rax, r11
 		mov		r8, rdx
 		cdq
 		idiv	rbx
-		mov		r12, rdx
+		mov		r10, rdx
 		mov		rdx, r8
-		and		r12, -1
+		and		r10, -1
 		xor		rax, rax
-		cmp		r12, 0
+		cmp		r10, 0
 		sete	al
-		mov		r12, rax
-		cmp		r12, 1
+		mov		r10, rax
+		cmp		r10, 1
 		je		Block_if_then_9
 		jmp		Block_for_step_4
 
 Block_if_after_8:
 
 Block_for_step_4:
-		inc		r10
+		inc		r12
 		jmp		Block_for_cond_3
 
 Block_if_then_9:
@@ -265,8 +264,9 @@ Block_is_prime_end_3:
 		jmp		Block_for_step_5
 
 Block_and_lhs_true_1:
-		mov		r12, rdi
-		sub		r12, r11
+		mov		r10, rdi
+		sub		r10, r11
+		mov		r12, r10
 		and		r12, -1
 		xor		rax, rax
 		cmp		r12, 1
