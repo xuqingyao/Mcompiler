@@ -253,6 +253,6 @@ public class FuncInlineprocess {
         }
         countInstNum();
         processFunc();
-        processRecursive();
+//         processRecursive();
     }
 }
