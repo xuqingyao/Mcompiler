@@ -176,8 +176,8 @@ public class FuncInlineprocess {
                         FuncInfo calleeInfo = funcFuncInfoMap.get(((FuncCallInst)inst).func);
                         if(calleeInfo == null)//a builtIn func, skip
                             continue;
-                        if(calleeInfo.recursivecall)// a recursive function, skip
-                            continue;
+//                         if(calleeInfo.recursivecall)// a recursive function, skip
+//                             continue;
                         if(calleeInfo.memfunc)
                             continue;
                         if(calleeInfo.numInst > 30 || calleeInfo.numInst + funcInfo.numInst > 1 << 12)//the callee function is too big
@@ -201,7 +201,7 @@ public class FuncInlineprocess {
         ir.updateCalleeSet();
     }
 
-    private void processReserve(){
+    private void processRecursive(){
         List<BasicBlock> reversePostOrder;
         boolean changed = true, thisChanged;
         for(int i = 0; changed && i < 5; ++ i){
@@ -253,6 +253,6 @@ public class FuncInlineprocess {
         }
         countInstNum();
         processFunc();
-//         processReserve();
+//         processRecursive();
     }
 }
